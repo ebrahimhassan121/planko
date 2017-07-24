@@ -1,0 +1,68 @@
+SMAP
+Home_jsp.java
+JSP
+*S JSP
+*F
++ 0 Home.jsp
+Home.jsp
++ 1 init.jsp
+init.jsp
++ 2 Header_1.jsp
+Header_1.jsp
++ 3 Header_2.jsp
+Header_2.jsp
++ 4 CategorieCoursal.jsp
+CategorieCoursal.jsp
++ 5 Solved_Questions.jsp
+Solved_Questions.jsp
++ 6 share.jsp
+share.jsp
++ 7 NotSolved_Question.jsp
+NotSolved_Question.jsp
++ 8 Translated_Questions.jsp
+Translated_Questions.jsp
++ 9 ads.jsp
+ads.jsp
++ 10 sidepar.jsp
+sidepar.jsp
++ 11 Footer.jsp
+Footer.jsp
+*L
+5,8:60
+5#1,7:68
+11:10
+11,27:75
+38,6:102,3
+44,2:120
+46:122,3
+47,11:125
+58,6:136,3
+64:154
+65:155,3
+66,6:158
+12#0,8:163
+5#2,55:171
+19#0,4:225
+5#3,123:229
+22#0,8:351
+5#4,114:359
+29#0,4:472
+5#5,73:476
+5#6,38:549
+77#5,7:586
+32#0,4:592
+5#7,72:596
+5#6,38:668
+76#7,6:705
+35#0,4:710
+5#8,72:714
+5#6,38:786
+76#8,7:823
+38#0,83:829
+5#9,40:912
+120#0,3:951
+5#10,199:954
+122#0,5:1152
+5#11,28:1157
+126#0,7:1184
+*E
