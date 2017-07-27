@@ -30,10 +30,10 @@
                         </a><!--End my-account-->
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"> التسجيل</a>
+                                <a  href="Profile.jsp"> حسابي</a>
                             </li>
                             <li>
-                                <a href="#">تسجيل الخروج</a>
+                                <a href="Logout">تسجيل الخروج</a>
                             </li>
                         </ul>
                     </div><!--End Dropdown-->
@@ -49,13 +49,14 @@
                 <div class="container">
                     <nav class="main-nav">
                         <ul class="nav navbar-nav ">
+                    
                             <li>
                                 <a href="Home.jsp">
                                     <i class="fa fa-home"></i>
                                     الرئيسية
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="questions.jsp">
                                     <i class="fa fa-question"></i>
@@ -88,6 +89,27 @@
                 <button type="submit" class="custom-btn">إسترجاع كلمة المرور</button>
             </form><!--End dialog-form-->
         </div><!--End login-dialog-->
+        
+        <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
+                <form class="dialog-form">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                    </div><!--End form-group-->
+                    <div class="form-group">
+                        <input class="form-control" placeholder="كلمة السر" type="password">
+                    </div><!--End form-group-->
+                    <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
+                        نسيت كلمة السر؟
+                    </a>
+                    <button type="submit" class="custom-btn">تسجيل دخول</button>
+                </form><!--End dialog-form-->
+                <div class="dont-have">
+                    ليس لديك حساب..
+                    <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">سجل الأن</a>
+                </div>           
+            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        </div>
+        
         <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
             <form class="dialog-form">
                 <div class="form-group text-center">

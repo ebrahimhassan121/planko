@@ -19,7 +19,18 @@
                     <%@include file="Header_1.jsp" %>
                 </div><!--End Container-->
             </div><!--End Top-Header-->
-            <%@include file="Header_2.jsp" %>
+            <%
+                String email="";
+                String password="";
+                if(session.getAttribute("email")!=null &&session.getAttribute("password")!=null){
+                    System.out.println("dddd");
+                    email= session.getAttribute("email").toString();
+                password=session.getAttribute("password").toString();
+            %>
+                <%@include file="Header_2.jsp" %>
+            <% }else{ %>
+                <%@include file="Header_0.jsp" %>
+            <% } %>
             <div class="main" role="main">
                 <div class="page-content">
                     <div class="container">

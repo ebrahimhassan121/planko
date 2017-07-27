@@ -1,15 +1,20 @@
 <%-- 
-    Document   : Header_2
-    Created on : Jul 18, 2017, 5:16:15 PM
-    Author     : AHMED 50070
+    Document   : Header_0
+    Created on : Jul 25, 2017, 11:31:17 PM
+    Author     : EHS
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <% 
+                      boolean login_error=false;
+                    if(request.getAttribute("login")!=null && request.getAttribute("login").equals("error")){
+                    login_error=true;
+                    }
+                        
+          %>
     </head>
     <body>
         <header class="header">
@@ -25,22 +30,22 @@
                 </button>
                 <div class="header-icons">
                     <div class="dropdown">
-                        <a href="Profile.jsp" class="my-account dropdwon">
-                            <img src="./assets/site/images/avatars/team1.jpg" alt="profile">                                
+                        <a href="#" class="my-account dropdwon">
+                            <img src="./assets/site/images/avatars/default-user-icon-profile.png" alt="profile">                                
                         </a><!--End my-account-->
                         <ul class="dropdown-menu">
                             <li>
-                                <a  href="Profile.jsp"> حسابي</a>
+                                <a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"> التسجيل</a>
                             </li>
                             <li>
-                                <a href="Logout">تسجيل الخروج</a>
+                                <a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top">تسجيل الدخول</a>
                             </li>
                         </ul>
                     </div><!--End Dropdown-->
                     <a href="Profile.jsp" class="saved-head">
                         <div class="saved-icon" title="المحفوظات">
                             <i class="fa fa-suitcase"></i>
-                            <span>5</span>
+                            <span>0</span>
                         </div><!--End cart-icon-->        
                     </a>
                 </div><!--End Header-Icons-->
@@ -82,7 +87,7 @@
         </header><!--End Header-->
 
         <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form">
+            <form class="dialog-form" method="post" action="">
                 <div class="form-group">
                     <input class="form-control" placeholder="البريد الالكترونى" type="email">
                 </div><!--End form-group-->
@@ -90,13 +95,22 @@
             </form><!--End dialog-form-->
         </div><!--End login-dialog-->
         
-        <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-                <form class="dialog-form">
+        <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box" >
+            <form class="dialog-form" method="post" action="Login">
+                <% 
+                    if(login_error){
+                        
+                 %>
+                
+                <div class="form-group">
+                    <span class="or"style="color: red;text-align: center" >معلومات دخول خاطئة</span>
+                </div>
+                <% } %>
                     <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                        <input class="form-control" placeholder="البريد الالكترونى" type="email" name="email" required>
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control" placeholder="كلمة السر" type="password">
+                        <input class="form-control" placeholder="كلمة السر" type="password" name="password" required>
                     </div><!--End form-group-->
                     <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
                         نسيت كلمة السر؟
@@ -140,9 +154,15 @@
             </form><!--End dialog-form-->
             <div class="dont-have">
                 لديك حساب بالفعل ..
-                <a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">إدخل الأن</a>
+                <a class="popup-text" id="login-dialog-link" href="#login-dialog" data-effect="mfp-zoom-out">إدخل الأن</a>
             </div>           
         </div><!--End login-dialog-->
 
     </body>
+    <script>    <% if(login_error) {%>
+                  $(document).ready(function() {
+                       $("#login-dialog-link").click();
+                      });
+                 <% } %>
+    </script>
 </html>
