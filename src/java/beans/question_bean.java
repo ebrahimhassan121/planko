@@ -15,7 +15,7 @@ public class question_bean {
     public void setQuestion_text(String Question_text) {
         this.Question_text = Question_text;
     }
-
+ 
     public void setTranslated(String translated) {
         this.translated = translated;
     }

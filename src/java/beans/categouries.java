@@ -15,7 +15,7 @@ public class categouries {
     public String getCategoriesID() {
         return categoriesID;
     }
-
+ 
     public String getCategoryNam() {
         return categoryNam;
     }

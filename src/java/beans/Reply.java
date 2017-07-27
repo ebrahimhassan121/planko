@@ -13,7 +13,7 @@ public class Reply {
     String ReplyID,Reply,CommentID,ReplyerID,ReplyDate,Deleted;
 
     public String getReplyID() {
-        return ReplyID;
+        return ReplyID; 
     }
 
     public void setReplyID(String ReplyID) {

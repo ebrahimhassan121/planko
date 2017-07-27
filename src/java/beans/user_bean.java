@@ -18,7 +18,7 @@ public class user_bean {
      */
     public String getName() {
         return name;
-    }
+    } 
 
     /**
      * @param name the name to set
