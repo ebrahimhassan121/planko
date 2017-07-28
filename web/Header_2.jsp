@@ -111,7 +111,7 @@
         </div>
         
         <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form">
+            <form class="dialog-form" method="post" action="Register">
                 <div class="form-group text-center">
                     <a href="" class="login-with-fb">
                         <i class="fa fa-facebook"></i>
@@ -120,16 +120,16 @@
                     <span class="or">أو </span>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأول" type="text">
+                    <input class="form-control" placeholder="الأسم الأول" name="fname" type="text" required>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأخير" type="text">
+                    <input class="form-control" placeholder="الأسم الأخير" name="lname" type="text" required>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                    <input class="form-control" placeholder="البريد الالكترونى"  name="email"type="email" required>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control"  placeholder="كلمة السر" type="password">
+                    <input class="form-control"  placeholder="كلمة السر" name="password" type="password" required>
                 </div><!--End form-group-->
                 <div class="notes">
                     من خلال الضغط على زر تسحيل . فانك توافق على 

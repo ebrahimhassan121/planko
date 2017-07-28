@@ -8,13 +8,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <% 
-                      boolean login_error=false;
-                    if(request.getAttribute("login")!=null && request.getAttribute("login").equals("error")){
-                    login_error=true;
-                    }
-                        
-          %>
+        <%
+            boolean login_error = false;
+            if (request.getAttribute("login") != null && request.getAttribute("login").equals("error")) {
+                login_error = true;
+            }
+
+        %>
     </head>
     <body>
         <header class="header">
@@ -54,7 +54,7 @@
                 <div class="container">
                     <nav class="main-nav">
                         <ul class="nav navbar-nav ">
-                    
+
                             <li>
                                 <a href="Home.jsp">
                                     <i class="fa fa-home"></i>
@@ -94,38 +94,44 @@
                 <button type="submit" class="custom-btn">إسترجاع كلمة المرور</button>
             </form><!--End dialog-form-->
         </div><!--End login-dialog-->
-        
+
         <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box" >
             <form class="dialog-form" method="post" action="Login">
-                <% 
-                    if(login_error){
-                        
-                 %>
-                
+                <div class="form-group text-center">
+                    <a href="" class="login-with-fb">
+                        <i class="fa fa-facebook"></i>
+                        الدخول من خلال فيسبوك
+                    </a>
+                    <span class="or">أو </span>
+                </div><!--End form-group-->
+                <%                    if (login_error) {
+
+                %>
+
                 <div class="form-group">
                     <span class="or"style="color: red;text-align: center" >معلومات دخول خاطئة</span>
                 </div>
                 <% } %>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email" name="email" required>
-                    </div><!--End form-group-->
-                    <div class="form-group">
-                        <input class="form-control" placeholder="كلمة السر" type="password" name="password" required>
-                    </div><!--End form-group-->
-                    <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
-                        نسيت كلمة السر؟
-                    </a>
-                    <button type="submit" class="custom-btn">تسجيل دخول</button>
-                </form><!--End dialog-form-->
-                <div class="dont-have">
-                    ليس لديك حساب..
-                    <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">سجل الأن</a>
-                </div>           
+                <div class="form-group">
+                    <input class="form-control" placeholder="البريد الالكترونى" type="email" name="email" required>
+                </div><!--End form-group-->
+                <div class="form-group">
+                    <input class="form-control" placeholder="كلمة السر" type="password" name="password" required>
+                </div><!--End form-group-->
+                <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
+                    نسيت كلمة السر؟
+                </a>
+                <button type="submit" class="custom-btn">تسجيل دخول</button>
+            </form><!--End dialog-form-->
+            <div class="dont-have">
+                ليس لديك حساب..
+                <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">سجل الأن</a>
+            </div>           
             <button title="Close (Esc)" type="button" class="mfp-close">×</button>
         </div>
-        
+
         <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form">
+            <form class="dialog-form" method="post" action="Register">
                 <div class="form-group text-center">
                     <a href="" class="login-with-fb">
                         <i class="fa fa-facebook"></i>
@@ -134,16 +140,17 @@
                     <span class="or">أو </span>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأول" type="text">
+                    <input class="form-control" placeholder="الأسم الأول" name="fname" type="text" required>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأخير" type="text">
+                    <input class="form-control" placeholder="الأسم الأخير" name="lname" type="text" required>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                    <input class="form-control" id="email" placeholder="البريد الالكترونى"  name="email"type="email" required>
+                    <span style="color: #f70009" hidden="true" id="email_hint"  >هذا الايميل غير متاح</span>
                 </div><!--End form-group-->
                 <div class="form-group">
-                    <input class="form-control"  placeholder="كلمة السر" type="password">
+                    <input class="form-control"  placeholder="كلمة السر" name="password" type="password" required>
                 </div><!--End form-group-->
                 <div class="notes">
                     من خلال الضغط على زر تسحيل . فانك توافق على 
@@ -159,10 +166,30 @@
         </div><!--End login-dialog-->
 
     </body>
-    <script>    <% if(login_error) {%>
-                  $(document).ready(function() {
-                       $("#login-dialog-link").click();
-                      });
-                 <% } %>
+    <script>    <% if (login_error) {%>
+$(document).ready(function () {
+    $("#login-dialog-link").click();
+});
+        <% }%>
+
+$('#email').on('keyup blur', function () {
+       $.get('AvailableEmail', {email: $('#email').val()}, function (responseText) {
+        if (responseText == "") {
+            $('#email_hint').hide();
+        } else if (responseText == "not_email") {
+            $('#email_hint').text("بريد الكتروني خاطيء");
+            $('#email_hint').show();
+        } else if (responseText == "registerd") {
+            $('#email_hint').text("بريد الكتروني مستخدم بالفعل");
+            $('#email_hint').show();
+        } else if (responseText == "valid") {
+
+            $('#email_hint').text("");
+            $('#email_hint').hide();
+        }
+                        });
+                
+
+});
     </script>
 </html>
