@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  */
 public class CheckDatabase {
     
+    
+    /*Initiate Connection*/
     Connection con=null;
      public Connection check() throws SQLException{
          

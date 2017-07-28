@@ -20,27 +20,48 @@
                 </div><!--End Container-->
             </div><!--End Top-Header-->
             <%
-                String email="";
-                String password="";
-                if(session.getAttribute("email")!=null &&session.getAttribute("password")!=null){
+                String email = "";
+                String password = "";
+                if (session.getAttribute("email") != null && session.getAttribute("password") != null) {
                     System.out.println("dddd");
-                    email= session.getAttribute("email").toString();
-                password=session.getAttribute("password").toString();
+                    email = session.getAttribute("email").toString();
+                    password = session.getAttribute("password").toString();
             %>
-                <%@include file="Header_2.jsp" %>
-            <% }else{ %>
-                <%@include file="Header_0.jsp" %>
-            <% } %>
+            <%@include file="Header_2.jsp" %>
+            <% } else {%>
+            <%@include file="Header_0.jsp" %>
+            <% }%>
             <div class="main" role="main">
                 <div class="page-content">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-md-push-3">
 
-                                <%@include file="CategorieCoursal.jsp" %>
+                                <div class="ask-box">
+                                    <div class="ask-box-head">
+                                        <div class="account">
+                                            <div class="account-img">
+                                                <img src="./assets/site/images/avatars/team1.jpg" alt="account image">
+                                            </div>
+                                            <div class="account-name">
+                                                <a href="my-account.html">
+                                                    <h5>محمود إسماعيل</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><!--End Ask-box-head-->
+                                    <div class="ask-box-body">
+                                        <a href="" class="" data-toggle="modal" data-target="#ask">
+                                            اسأل ما تريد
+                                        </a>
+                                    </div><!--End Ask-box-body-->
+                                </div><!--End Ask-box-->
+
+
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="solved">
                                         <%@include file="Solved_Questions.jsp" %>
+                                        <%@include file="CategorieCoursal.jsp" %>
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="not-solved">
                                         <%@include file="NotSolved_Question.jsp" %>
@@ -128,13 +149,40 @@
                                         </ul><!--End Side-social-->
                                     </div><!--End Side-widget-content-->
                                 </div><!--End Side-widget-->
-                                        <%@include file="ads.jsp" %>
+                                <%@include file="ads.jsp" %>
                             </div><!--End Col-md-3-->
                             <%@include file="sidepar.jsp" %>
                         </div><!--End Row-->
                     </div><!--End Container-->
                 </div><!--End page-content-->
                 <%@include file="Footer.jsp" %>
+                <div class="modal fade ask" id="ask" tabindex="-1" role="dialog" aria-labelledby="ask">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form class="form" method="" action="">
+                                <div class="modal-body">
+                                    <div class="account">
+                                        <div class="account-img">
+                                            <img src="./assets/site/images/avatars/team1.jpg" alt="account image">
+                                        </div>
+                                        <div class="account-name">
+                                            <a href="my-account.html">
+                                                <h5>محمود إسماعيل</h5>
+                                            </a>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control"></textarea>
+                                    </div><!--End Form-group-->
+                                </div><!--End modal-body-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="custom-btn pull-right"> اسأل سؤال</button>
+                                </div>
+                            </form><!--End Form-->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
 
             </div><!--End main-->
         </div><!--End Wrapper-->

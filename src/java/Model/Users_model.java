@@ -24,6 +24,7 @@ public class Users_model {
 
     Connection connect = null;
     ResultSet re = null;
+    String query;
 
     public user_bean select_user(String email, String password) throws SQLException {
         user_bean user = new user_bean();
@@ -31,7 +32,7 @@ public class Users_model {
         String UserDetails_ID = null;
         try {
             connect = cd.check();
-            String query = " Select `UserID`, `UserEmail`, `Password`, `role_id`, `phone`, `Facebook`, `twitter`, `Active` From users WHERE `UserEmail`='" + email + "' AND `password`='" + password + "' ";
+            query = " Select `UserID`, `UserEmail`, `Password`, `role_id`, `phone`, `Facebook`, `twitter`, `Active` From users WHERE `UserEmail`='" + email + "' AND `password`='" + password + "' ";
             Statement ps = connect.createStatement();
 
             rs = ps.executeQuery(query);
@@ -57,7 +58,6 @@ public class Users_model {
         } finally {
             rs.close();
             connect.close();
-
         }
         return user;
     }
