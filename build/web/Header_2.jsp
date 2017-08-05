@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        
     </head>
     <body>
         <header class="header">
@@ -26,7 +26,7 @@
                 <div class="header-icons">
                     <div class="dropdown">
                         <a href="Profile.jsp" class="my-account dropdwon">
-                            <img src="./assets/site/images/avatars/team1.jpg" alt="profile">                                
+                            <img src="<%=session.getAttribute("avatar").toString()%>" alt="profile">                                
                         </a><!--End my-account-->
                         <ul class="dropdown-menu">
                             <li>
@@ -80,69 +80,6 @@
                 </div><!--End container-->
             </div><!--End Navbar-collapse-->
         </header><!--End Header-->
-
-        <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form">
-                <div class="form-group">
-                    <input class="form-control" placeholder="البريد الالكترونى" type="email">
-                </div><!--End form-group-->
-                <button type="submit" class="custom-btn">إسترجاع كلمة المرور</button>
-            </form><!--End dialog-form-->
-        </div><!--End login-dialog-->
-        
-        <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-                <form class="dialog-form">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
-                    </div><!--End form-group-->
-                    <div class="form-group">
-                        <input class="form-control" placeholder="كلمة السر" type="password">
-                    </div><!--End form-group-->
-                    <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
-                        نسيت كلمة السر؟
-                    </a>
-                    <button type="submit" class="custom-btn">تسجيل دخول</button>
-                </form><!--End dialog-form-->
-                <div class="dont-have">
-                    ليس لديك حساب..
-                    <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">سجل الأن</a>
-                </div>           
-            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-        </div>
-        
-        <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form" method="post" action="Register">
-                <div class="form-group text-center">
-                    <a href="" class="login-with-fb">
-                        <i class="fa fa-facebook"></i>
-                        التسجيل من خلال فيسبوك
-                    </a>
-                    <span class="or">أو </span>
-                </div><!--End form-group-->
-                <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأول" name="fname" type="text" required>
-                </div><!--End form-group-->
-                <div class="form-group">
-                    <input class="form-control" placeholder="الأسم الأخير" name="lname" type="text" required>
-                </div><!--End form-group-->
-                <div class="form-group">
-                    <input class="form-control" placeholder="البريد الالكترونى"  name="email"type="email" required>
-                </div><!--End form-group-->
-                <div class="form-group">
-                    <input class="form-control"  placeholder="كلمة السر" name="password" type="password" required>
-                </div><!--End form-group-->
-                <div class="notes">
-                    من خلال الضغط على زر تسحيل . فانك توافق على 
-                    <a href="">قواعد موقعنا</a> و 
-                    <a href="">الشروط والأحكام</a>
-                </div>
-                <button type="submit" class="custom-btn">تسجيل </button>
-            </form><!--End dialog-form-->
-            <div class="dont-have">
-                لديك حساب بالفعل ..
-                <a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">إدخل الأن</a>
-            </div>           
-        </div><!--End login-dialog-->
 
     </body>
 </html>

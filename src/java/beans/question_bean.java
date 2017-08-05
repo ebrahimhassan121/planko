@@ -5,17 +5,110 @@
  */
 package beans;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Base64;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author EHS
  */
 public class question_bean {
-    String  questionID,questionTitle,questionCategory,questionDate,OwnerID, LikesCount,Deleted,Question_text,translated;
+    String  questionID,questionTitle,questionCategory,OwnerID, LikesCount,Deleted="0",Question_text,Question_image,translated="0",commentsCount,dateInArabic;
+ 
+    java.sql.Timestamp questionDate;
 
+    public String getDateInArabic() {
+        return dateInArabic;
+    }
+
+    public void setDateInArabic(Timestamp dateInEnglish) {
+        String finalDate="";
+        try {
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+            long newT = timestamp.getTime() - dateInEnglish.getTime();
+            String questDateTime= dateInEnglish.toString();
+            String date_s =questDateTime.substring(0, questDateTime.length()-2 );
+            
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date = dt.parse(date_s);
+            
+            // *** same for the format String below
+            SimpleDateFormat dt1 = new SimpleDateFormat("EEEE  YYYY/MM/dd hh:mm a",new Locale("AR"));
+             finalDate=dt1.format(date);
+            if (newT < 86400000) {
+                int seconds = (int) (newT / 1000) % 60;
+                int minutes = (int) ((newT / (1000 * 60)) % 60);
+                int hours = (int) ((newT / (1000 * 60 * 60)) % 24);
+               if(hours>0){
+                   switch (hours) {
+                        case 1:
+                            this.dateInArabic = "منذ "+"ساعة واحدة";
+                            break;
+                        case 2:
+                            this.dateInArabic = "منذ "+"ساعتين";
+                            break;
+                        default:
+                            this.dateInArabic = "منذ "+hours+" ساعات";
+                            break;
+                    }
+                   return;
+               }else if(minutes>0){
+                    switch (minutes) {
+                        case 1:
+                            this.dateInArabic = "منذ "+"دقيقة واحدة";
+                            break;
+                        case 2:
+                            this.dateInArabic = "منذ "+"دقيقتين";
+                            break;
+                        default:
+                            this.dateInArabic = "منذ "+minutes+" دقائق";
+                            break;
+                    }
+                   return;
+               }else{
+                   this.dateInArabic = "الان";
+                   return;
+               }
+            }else{
+                
+            }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(question_bean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dateInArabic = finalDate;
+    }
+    
+    
     public void setQuestion_text(String Question_text) {
         this.Question_text = Question_text;
     }
- 
+
+    public void setQuestion_image(byte[] Question_image) {
+        try{
+        this.Question_image = "data:image/jpg;base64,"+Base64.getEncoder().encodeToString(Question_image);;
+        }catch(Exception ex){
+        this.Question_image=null;
+        }
+    
+    }
+
+    public String getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(String commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+        
+    
     public void setTranslated(String translated) {
         this.translated = translated;
     }
@@ -23,7 +116,7 @@ public class question_bean {
     public String getQuestion_text() {
         return Question_text;
     }
-
+    
     public String getTranslated() {
         return translated;
     }
@@ -40,7 +133,7 @@ public class question_bean {
         return questionCategory;
     }
 
-    public String getQuestionDate() {
+    public java.sql.Timestamp getQuestionDate() {
         return questionDate;
     }
 
@@ -56,6 +149,10 @@ public class question_bean {
         return Deleted;
     }
 
+    public String getQuestion_image() {
+        return Question_image;
+    }
+    
     public void setQuestionID(String questionID) {
         this.questionID = questionID;
     }
@@ -68,7 +165,8 @@ public class question_bean {
         this.questionCategory = questionCategory;
     }
 
-    public void setQuestionDate(String questionDate) {
+    public void setQuestionDate(java.sql.Timestamp questionDate) {
+        setDateInArabic(questionDate);
         this.questionDate = questionDate;
     }
 

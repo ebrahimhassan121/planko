@@ -13,6 +13,7 @@
             if (request.getAttribute("login") != null && request.getAttribute("login").equals("error")) {
                 login_error = true;
             }
+            
 
         %>
     </head>
@@ -131,7 +132,7 @@
         </div>
 
         <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
-            <form class="dialog-form" method="post" action="Register">
+            <form class="dialog-form" method="post" action="Register" autocomplete="off">
                 <div class="form-group text-center">
                     <a href="" class="login-with-fb">
                         <i class="fa fa-facebook"></i>
@@ -172,8 +173,8 @@ $(document).ready(function () {
 });
         <% }%>
 
-$('#email').on('keyup blur', function () {
-       $.get('AvailableEmail', {email: $('#email').val()}, function (responseText) {
+$('#email').on('keyup bulr', function () {
+       $.post('AvailableEmail', {email: $('#email').val()}, function (responseText) {
         if (responseText == "") {
             $('#email_hint').hide();
         } else if (responseText == "not_email") {
@@ -183,7 +184,6 @@ $('#email').on('keyup blur', function () {
             $('#email_hint').text("بريد الكتروني مستخدم بالفعل");
             $('#email_hint').show();
         } else if (responseText == "valid") {
-
             $('#email_hint').text("");
             $('#email_hint').hide();
         }

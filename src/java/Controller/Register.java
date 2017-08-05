@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -73,12 +74,15 @@ public class Register extends HttpServlet {
             user.setEmail(request.getParameter("email").toString());
             user.setPassword(request.getParameter("password").toString());
             user.setName(request.getParameter("fname").toString()+" "+request.getParameter("lname").toString());
+            user.setAbout("");
+            user.setAddress("");
             boolean  isInserted=users_model.insert_user(user, 1);
             System.out.println("----------"+isInserted+"------------");
             if(isInserted){
-                request.setAttribute("rigister", "true");
-                RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
+                request.setAttribute("register", user);
+                RequestDispatcher dispatcher=request.getRequestDispatcher("Profile.jsp");
                  dispatcher.forward(request, response);
+                 return;
             }else{
                 request.setAttribute("rigister", "false");
                 RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");

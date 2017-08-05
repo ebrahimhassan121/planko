@@ -1147,6 +1147,16 @@ img{
        -moz-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
 }
+.replay-comment-button{
+    float: left; 
+    top: 0;
+    cursor: pointer;
+    color: #00008B;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+
+}
 .comment-box .comment-content .content-info .replay:hover{
     color: #222;
 }
@@ -1854,6 +1864,7 @@ span.fileinput-new{
 }
 .ask-box:hover{
     border-color: #00008B;
+     cursor: pointer;
 }
 .ask-box .ask-box-head{
     margin-bottom: 5px;
@@ -1861,11 +1872,12 @@ span.fileinput-new{
 .ask-box .ask-box-body{
     font-size: 22px;
 }
-.ask-box .ask-box-body a{
+.ask-box .ask-box-body span{
     color: #9d9d9d;
 }
-.ask-box .ask-box-body a:hover{
+.ask-box .ask-box-body span:hover{
     color: #333;
+    cursor: pointer;
 }
 .account .account-img{
     width: 40px;

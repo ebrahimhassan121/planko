@@ -34,10 +34,15 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             HttpSession session=request.getSession();
-        session.removeAttribute("email");
-        session.removeAttribute("password");
-        response.sendRedirect("Home.jsp");
+            HttpSession session = request.getSession();
+            session.removeAttribute("email");
+            session.removeAttribute("password");
+            session.invalidate();
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+            response.sendRedirect("Home.jsp");
         }
     }
 

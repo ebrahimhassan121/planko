@@ -79,13 +79,17 @@ public class Login extends HttpServlet {
                 request.setAttribute("login", "error");
                 RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
                  dispatcher.forward(request, response);
+                 return;
             }
             HttpSession session=request.getSession();
-            System.out.println(user.getRole());
+          //  System.out.println(user.getRole());
             if("1".equals(user.getRole())){
                 session.setAttribute("email", user.getEmail());
                 session.setAttribute("password", password);
-                response.sendRedirect("Home.jsp");
+                session.setAttribute("avatar", user.getAvatar());
+                session.setAttribute("ID", user.getUserID());
+                response.sendRedirect(session.getAttribute("url").toString());
+                return;
             }
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

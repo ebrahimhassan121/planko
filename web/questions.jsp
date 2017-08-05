@@ -19,7 +19,7 @@
                     <%@include file="Header_1.jsp" %>
                 </div><!--End Container-->
             </div><!--End Top-Header-->
-            <%@include file="Header_2.jsp" %>
+            <%@include file="top-header.jsp" %>
             <div class="main" role="main">
 
                 <div class="page-head">

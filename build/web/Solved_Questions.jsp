@@ -71,7 +71,7 @@
                 </div>
             </div><!--End question-Content-->
             <div class="question-foot">
-                <a class="custom-btn pull-right" href="only-question.html">
+                <a class="custom-btn pull-right" href="only-question.jsp">
                     أكمل القراءة
                 </a>
                 <%@include file="share.jsp" %> 

@@ -4,14 +4,38 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+ 
     <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>addQuestion</servlet-name>
+        <servlet-class>Controller.addQuestion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <jsp-file>/Profile.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>question display</servlet-name>
+        <jsp-file>/question.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>question display</servlet-name>
+        <url-pattern>/question/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>cat</servlet-name>
+        <jsp-file>/cat.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cat</servlet-name>
+        <url-pattern>/cat/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addQuestion</servlet-name>
+        <url-pattern>/addQuestion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,6 +43,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>Home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

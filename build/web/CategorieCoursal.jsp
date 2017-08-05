@@ -4,6 +4,9 @@
     Author     : AHMED 50070
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="beans.Categories"%>
+<%@page import="Model.Categories_model"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,19 +15,29 @@
     </head>
     <body>
         <div class="carousel-2">
+            <% 
+                                Categories_model categories_model=new Categories_model();
+                                ArrayList<Categories> array_categories=categories_model.Select_ALL_Categories();
+                                for(int i=0;i<array_categories.size();i++){
+                                  String categoryID=array_categories.get(i).getCategoriesID();
+                                  String categoryName=array_categories.get(i).getCategoryNam();
+                                  String categoryPhoto=array_categories.get(i).getPhoto();;
+;
+                                
+                             %>
             <div class="widget-box">
                 <div class="widget-img">
-                    <img src="./assets/site/images/categories/16.jpg" alt="...">
+                    <img src="<%=categoryPhoto%>" alt="...">
                 </div><!--End widget-img-->
                 <div class="widget-name">
                     <h3 class="name">
-                        الطبيعة
+                        <%=categoryName%>
                     </h3>
                 </div><!--End widget-name-->
                 <div class="widget-hover">
                     <ul class="widget-hover-links">
                         <li>
-                            <a href="questions.jsp" title="مشاهدة">
+                            <a href="questions.jsp?cat=<%=categoryID%>" title="مشاهدة">
                                 <i class="fa fa-link"></i>
                             </a>
                         </li>
@@ -36,81 +49,7 @@
                     </ul>
                 </div><!--End Widget-hover-->
             </div><!---End Widget-box-->
-
-            <div class="widget-box">
-                <div class="widget-img">
-                    <img src="./assets/site/images/categories/35.jpg" alt="...">
-                </div><!--End widget-img-->
-                <div class="widget-name">
-                    <h3 class="name">
-                        الموسيقى
-                    </h3>
-                </div><!--End widget-name-->
-                <div class="widget-hover">
-                    <ul class="widget-hover-links">
-                        <li>
-                            <a href="#" title="مشاهدة">
-                                <i class="fa fa-link"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="متابعة">
-                                <i class="fa fa-feed"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div><!--End Widget-hover-->
-            </div><!---End Widget-box-->
-
-            <div class="widget-box">
-                <div class="widget-img">
-                    <img src="./assets/site/images/categories/14.jpg" alt="...">
-                </div><!--End widget-img-->
-                <div class="widget-name">
-                    <h3 class="name">
-                        السفر
-                    </h3>
-                </div><!--End widget-name-->
-                <div class="widget-hover">
-                    <ul class="widget-hover-links">
-                        <li>
-                            <a href="#" title="مشاهدة">
-                                <i class="fa fa-link"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="متابعة">
-                                <i class="fa fa-feed"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div><!--End Widget-hover-->
-            </div><!---End Widget-box-->
-
-            <div class="widget-box">
-                <div class="widget-img">
-                    <img src="./assets/site/images/categories/15.jpg" alt="...">
-                </div><!--End widget-img-->
-                <div class="widget-name">
-                    <h3 class="name">
-                        البرمجة
-                    </h3>
-                </div><!--End widget-name-->
-                <div class="widget-hover">
-                    <ul class="widget-hover-links">
-                        <li>
-                            <a href="#" title="مشاهدة">
-                                <i class="fa fa-link"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="متابعة">
-                                <i class="fa fa-feed"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div><!--End Widget-hover-->
-            </div><!---End Widget-box-->
+            <% } %>
         </div><!--End carousel-->
 
     </body>

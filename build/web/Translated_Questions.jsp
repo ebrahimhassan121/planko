@@ -4,6 +4,9 @@
     Author     : AHMED 50070
 --%>
 
+<%@page import="beans.question_bean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Questions_model"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +15,7 @@
     </head>
     <body>
       <div class="question solved">
+        
             <div class="question-head">
                 <a class="question-name title title-md" href="only-question.html">
                     كيف هى الحياة بدون الإنترنت؟
@@ -76,6 +80,7 @@
                 <%@include file="share.jsp" %> 
             </div>
             <!--End question-foot-->
+            
         </div><!--End question-->
     </body>
 </html>

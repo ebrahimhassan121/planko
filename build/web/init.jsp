@@ -8,9 +8,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%!String path = "./assets/site/";%>
+        
+        <% String path = "./assets/site/";
+            
+        %>
+        <%  session.setAttribute("url", request.getRequestURL());%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        
         <!-- Basic page needs
 		===========================-->
 		<title>Planko</title>
@@ -39,8 +43,9 @@
         <link rel="stylesheet" href="<%=path%>vendor/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="<%=path%>vendor/owl-carousel/css/owl.carousel.css">
         <link rel="stylesheet" href="<%=path%>vendor/owl-carousel/css/owl.theme.css">
-        <link rel="stylesheet" href="<%=path+"vendor/magnific-popup/css/magnific-popup.css"%>">
+        <link rel="stylesheet" href="<%=path%>vendor/magnific-popup/css/magnific-popup.css">
         <link rel="stylesheet" href="<%=path%>vendor/magnific-popup/css/custom.css">
+         <link href="<%=path%>/vendor/toastr-master/build/toastr.css" rel="stylesheet" type="text/css" />
         <!-- Site Style
 		===========================-->
         <link rel="stylesheet" href="<%=path%>css/style.css">
@@ -63,8 +68,11 @@
         <script src="<%=path%>vendor/magnific-popup/js/magnific-popup.js"></script>
         <!-- Custom js -->
         <script src="<%=path%>js/main.js"></script>
+        <script src="<%=path%>/vendor/toastr-master/toastr.js"></script>
 
         
         
+        
     </body>
+   
 </html>
