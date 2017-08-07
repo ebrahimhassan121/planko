@@ -6,6 +6,7 @@
 package Model;
 
 import beans.user_bean;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -89,14 +90,12 @@ public class Users_model {
         try {
             connect = cd.check();
             System.out.println(user.getEmail());
-            String query = "INSERT INTO `users`(`UserID`, `UserEmail`, `Password`, `role_id`, `Active`) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO `users`(`UserID`, `UserEmail`, `Password`, `role_id`) VALUES (?,?,?,?)";
             PreparedStatement preparedStatement = connect.prepareStatement(query);
             preparedStatement.setInt(1,0);
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
             preparedStatement.setInt(4, Role);
-            preparedStatement.setString(5,"");
-            preparedStatement.setInt(8,1);
             preparedStatement.execute();
             
             query="select `UserID` from `users` where `UserEmail` ='"+user.getEmail()+"'";
@@ -146,6 +145,27 @@ public class Users_model {
             ex.printStackTrace();
         }
           return isupdated;
+    }
+    public boolean updateAvatar(InputStream avatar,String userID){
+        try {
+             connect = cd.check();
+            if(avatar==null){System.out.println("---------------------");}
+            query="UPDATE `user_details` SET avatar=? WHERE UserDetails_ID=?";
+            
+            java.sql.PreparedStatement statement=connect.prepareStatement(query);
+            statement.setBlob(1, avatar);
+            statement.setString(2, userID);
+            int updateCheck=statement.executeUpdate();
+            return (updateCheck>0);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            try {
+                connect.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Users_model.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    return  false;
     }
     public user_bean Select_userByID(String userID){
         try {

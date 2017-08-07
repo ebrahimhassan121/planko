@@ -22,8 +22,8 @@
                 toasterMessageFlag = true;
             }
             if (request.getAttribute("register") != null) {
-               user_bean users_register=(user_bean) request.getAttribute("register");
-               user=users_model.select_user(users_register.getEmail(), users_register.getPassword());
+                user_bean users_register = (user_bean) request.getAttribute("register");
+                user = users_model.select_user(users_register.getEmail(), users_register.getPassword());
                 session.setAttribute("email", user.getEmail());
                 session.setAttribute("password", user.getPassword());
                 session.setAttribute("avatar", user.getAvatar());
@@ -184,65 +184,8 @@
                                                 الحساب
                                             </h2>
                                         </div><!--End Side-widget-title-->
-                                        <div class="side-widget-content">
-                                            <div class="card">
-                                                <form>
-                                                    <div class="card-img" >
-
-                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                            <div class="fileinput-preview" data-trigger="fileinput">
-                                                                <img src="./assets/site/images/avatars/team1.jpg" id="profile-image" alt="profile image">
-                                                            </div>
-                                                            <div class="image-hover">
-                                                                <span class="btn-file">
-                                                                    <span class="fileinput-new"> 
-                                                                        <i class="fa fa-camera" title="أختر صورة"></i>
-                                                                    </span> 
-                                                                    <input id="image-upload" type="file" name="..."> 
-                                                                </span>
-
-                                                            </div><!--End Image-hover-->
-
-                                                        </div><!--End Card-image-->
-                                                    </div>
-                                                    <div class="row">
-                                                        <button class="hidden custom-btn pull-right " id="reset-upload" type="reset" style="float: right !important;"><span class="glyphicon glyphicon-remove"></span></button>
-                                                        <button class="hidden custom-btn pull-right left" id="button-upload" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
-                                                    </div>
-                                                </form>
-                                                <div class="card-content">
-                                                    <h3 class="card-name">
-                                                        محمود اسماعيل
-                                                    </h3>
-                                                    <ul class="social">
-                                                        <li>
-                                                            <a href="#" target="_blank" class="facebook">
-                                                                <i class="fa fa-facebook"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" class="twitter">
-                                                                <i class="fa fa-twitter"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" class="linkedin">
-                                                                <i class="fa fa-linkedin"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" class="google-plus">
-                                                                <i class="fa fa-google-plus"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" class="youtube">
-                                                                <i class="fa fa-youtube"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div><!--End card-content-->
-                                            </div><!--End Card-->
+                                        <div class="side-widget-content" id="profile-avatar">
+                                            <%@include file="profile-avatar.jsp" %>
 
 
                                         </div><!--End Side-widget-content-->
@@ -275,21 +218,9 @@
         </div><!--End Wrapper-->
 
     </body>
- 
-<script type="text/javascript">
-  $(document).ready(function (){
-   /*   
-      if (<%=toasterMessageFlag%>) {
-          toastr.options.closeButton = false;
-          toastr.success('تم التحديث بنجاح', '');
-        }else{
-            toastr.error('خطأ في تحديث البيانات','');
-        }
-        
-     */   
-  });
-</script>
+
     <script>
+         var inputFile;
         function readURL(input) {
 
             if (input.files && input.files[0]) {
@@ -297,8 +228,8 @@
 
                 reader.onload = function (e) {
                     $('#profile-image').attr('src', e.target.result);
-                }
-
+                },
+                        inputFile = input.files[0];
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -308,6 +239,34 @@
             $('#button-upload').removeClass('hidden');
             $('#reset-upload').removeClass('hidden');
         });
-        
+        $('#reset-upload').click(function () {
+            $('#profile-image').attr('src', '<%=userAcount.getAvatar()%>');
+            $('#button-upload').addClass('hidden');
+            $('#reset-upload').addClass('hidden');
+        });
+        $('#button-upload').click(function (e) {
+            e.preventDefault();
+            var file_data = inputFile;   // Getting the properties of file from file field
+            var form_data = new FormData();                  // Creating object of FormData class
+            form_data.append("avatar", file_data);            // Appending parameter named file with properties of file_field to form_data
+            $.ajax({
+                url: "UploadAvatar",
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data, // Setting the data attribute of ajax with file_data
+                type: 'POST',
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var m = (jqXHR.responseText);
+                    if (m == "success") {
+                      location.reload();
+                    }
+                }
+            });
+
+
+        });
+
     </script>
 </html>
