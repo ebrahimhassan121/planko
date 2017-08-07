@@ -19,10 +19,13 @@
 <!DOCTYPE html>
 
 <%
+    String from=(request.getParameter("f")!=null)?request.getParameter("f"):"0";
+    String to=(request.getParameter("f")!=null)?request.getParameter("t"):"3";
     Questions_model questions_model = new Questions_model();
     user_bean owner;
     Users_model users_model = new Users_model();
-    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions("ALL",0,3);
+    String selection=(request.getParameter("selection")!=null)?request.getParameter("selection").toString():"";
+    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions(selection,from,to);
     for (int i = 0; i < AllQuestion.size(); i++) {
         owner = users_model.Select_userByID(AllQuestion.get(i).getOwnerID());
 
@@ -83,7 +86,7 @@
                 </span>
             </div>
             <div class="foot-info">
-                <button class="vote">
+                <button class="vote" onclick="addLIke<%=AllQuestion.get(i).getQuestionID()%>()">
                     <i class="fa fa-thumbs-o-up"></i>
                     <%=AllQuestion.get(i).getLikesCount()%> صوت
                 </button>
@@ -103,11 +106,11 @@
                                                         classFav = "added-to-wishlist";
                                                     }
                                                 %>
-                                                <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav();">
+                                                <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav<%=AllQuestion.get(i).getQuestionID()%>();">
                                                     <i class="fa fa-heart" id="heart"></i>
                                                 </span>
                                                 <script>
-                                                       function addLIke() {
+                                                       function addLIke<%=AllQuestion.get(i).getQuestionID()%>() {
                                                          $.post('addLike', {questionid: "<%=AllQuestion.get(i).getQuestionID()%>"
                                                         }, function (responseText) {
                                                             console.log(responseText);
@@ -118,12 +121,12 @@
                                                             }
                                                         });
                                                     }
-                                                    function addFav() {
+                                                    function addFav<%=AllQuestion.get(i).getQuestionID()%>() {
                                                          $.post('addFavourite', {questionid: "<%=AllQuestion.get(i).getQuestionID()%>"
                                                         }, function (responseText) {
                                                             console.log(responseText);
                                                             if (responseText === "fav-unfav") {
-                                                                //$('#favourite').toggleClass("added-to-wishlist");
+                                                                $('#top-header').load("top-header.jsp");
                                                             } else if (responseText === "login_required") {
                                                                 $("#login-dialog-link").click();
                                                             }

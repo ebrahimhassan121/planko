@@ -28,6 +28,9 @@
                 user = (new Users_model()).select_user(email, password);
                 if (user != null) {
         %>
+        <jsp:include page="Header_2.jsp">
+            <jsp:param name="userID" value="<%=user.getUserID()%>" />
+        </jsp:include>
         <%@include file="Header_2.jsp" %>
         <% }
             } else {%>

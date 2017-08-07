@@ -51,7 +51,10 @@
                     <%@include file="Header_1.jsp" %>
                 </div><!--End Container-->
             </div><!--End Top-Header-->
-            <%@include file="top-header.jsp" %>
+            <div id="top-header">
+                 <%@include file="top-header.jsp" %>
+            </div>
+           
             <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">
@@ -196,9 +199,9 @@
                                                     function addFav() {
                                                          $.post('addFavourite', {questionid: "<%=question.getQuestionID()%>"
                                                         }, function (responseText) {
-                                                            console.log(responseText);
+                                                            $('#top-header').load("top-header.jsp");
                                                             if (responseText === "fav-unfav") {
-                                                                //$('#favourite').toggleClass("added-to-wishlist");
+                                                                
                                                             } else if (responseText === "login_required") {
                                                                 $("#login-dialog-link").click();
                                                             }
@@ -215,7 +218,7 @@
                                                         document.execCommand('copy');
                                                     }
                                                 </script>
-                                                <span class="icon-share" title="مشاركة" onclick="copyStringToClipboard('<%=request.getRequestURL().toString()%>')">
+                                                <span class="icon-share" data-toggle="tooltip" data-placement="top" title="نسخ الرابط" onclick="copyStringToClipboard('<%=request.getRequestURL().toString()%>')">
                                                     <i class="fa fa-mail-reply"></i>
                                                 </span>
                                                 <ul class="social">
@@ -224,7 +227,7 @@
                                                             System.out.println(request.getRequestURL().toString());
                                                         %>
                                                         <a href="http://www.facebook.com/share.php?u=<%=request.getRequestURL().toString()%>/&title==Planko
-                                                           " target="_blank" class="facebook">
+                                                           " target="_blank" class="facebook" >
                                                             <i class="fa fa-facebook"></i>
                                                         </a>
                                                     </li>

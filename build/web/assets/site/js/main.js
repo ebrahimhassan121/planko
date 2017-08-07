@@ -52,7 +52,7 @@ $(document).ready(function () {
     "use strict";
 	$('.btn-wishlist').click(function () {
         $(this).toggleClass('added-to-wishlist');
-        $(this).attr("title", "حذف من المفضلة");
+       // $(this).attr("title", "حذف من المفضلة");
     });
    
 });
@@ -127,4 +127,8 @@ $(document).ready(function () {
         },
         midClick: true
     });
+    $('[data-toggle="tooltip"]').tooltip();   
+    
+    
+
 });

@@ -16,7 +16,7 @@
     <body>
 
         <div class="wrapper">
-            <%@include file="top-header.jsp" %>
+            <div id="top-header"  <%@include file="top-header.jsp" %> </div>
             <div class="main" role="main">
                 <div class="page-content">
                     <div class="container">
@@ -24,7 +24,7 @@
                             <div class="col-md-6 col-md-push-3">
                                 <%
                                     if (user != null) {
-                                        
+
 
                                 %>
 
@@ -87,18 +87,53 @@
 
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="all">
-                                        <div id="all_QuestionContent"> <%@include file="all-questions.jsp" %></div>
-                                        <%@include file="CategorieCoursal.jsp" %>
-                                    </div><!--End tab-panel-->
-                                    <div role="tabpanel" class="tab-pane fade " id="solved">
-                                        <%@include file="Solved_Questions.jsp" %>
+                                        <div id="all_QuestionContent">
+                                            <jsp:include page="all-questions.jsp" >
+                                                <jsp:param name="selection" value="ALL" />
+                                            </jsp:include>
+                                        </div>
+                                        <div>
+                                            <a href="#" onclick="loadNowPlaying(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                            <br>
+                                        </div>
+                                        <div id="categ"><%@include file="CategorieCoursal.jsp" %></div>
 
                                     </div><!--End tab-panel-->
+                                    <div role="tabpanel" class="tab-pane fade " id="solved">
+                                        <div id="all_solved">
+                                            <jsp:include page="all-questions.jsp" >
+                                                <jsp:param name="selection" value="Answerd" />
+                                            </jsp:include> 
+                                        </div>
+
+                                        <div>
+                                            <a href="" onclick="loadANSwerd(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                            <br>
+                                        </div>
+                                    </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="not-solved">
-                                        <%@include file="NotSolved_Question.jsp" %>
+                                        <div id="not_solved">
+                                            <jsp:include page="all-questions.jsp" >
+                                                <jsp:param name="selection" value="NotAnswerd" />
+                                            </jsp:include> 
+                                        </div>
+
+                                        <div>
+                                            <a href="" onclick="loadNotANSwerd(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                            <br>
+                                        </div>
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="translated">
-                                        <%@include file="Translated_Questions.jsp" %>
+                                        <div id="translated-div">
+                                            <jsp:include page="all-questions.jsp" >
+                                                <jsp:param name="selection" value="translated" />
+                                            </jsp:include> 
+                                        </div>
+
+                                        <div>
+                                            <a href="" onclick="loadTranslated(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                            <br>
+                                        </div>
                                     </div><!--End tab-panel-->
                                 </div><!--End tab-content-->
 
@@ -192,13 +227,65 @@
             </div><!--End main-->
         </div><!--End Wrapper-->
     </body>
+
     <script>
-        function loadNowPlaying(){
-  if($('#all-link').hasClass('active')){
-      $("#all_QuestionContent").load("all-questions.jsp");
-      console.log("updated");
-  }
-}
-setInterval(function(){loadNowPlaying();}, 15000);
+        var qf = 0;
+        var qt = 3;
+        var qfAnswerd = 0;
+        var qtAnswerd = 3;
+        function loadNowPlaying(e) {
+            qf = qf + 3;
+            // qt=qt+3;
+            var idQ = qf + '_' + qt;
+            var Url = 'all-questions.jsp?selection=ALL&&f=' + qf + '&&t=' + qt + '';
+            console.log(idQ + "," + Url);
+            e.preventDefault();
+            if ($('#all-link').hasClass('active')) {
+                $("#all_QuestionContent").append($('<div id="question' + idQ + '">').hide());
+                $('#question' + qf + '_' + qt + '').load(Url);
+                $('#question' + qf + '_' + qt + '').show(500);
+            }
+        }
+
+        function loadANSwerd(e) {
+            qfAnswerd = qfAnswerd + 3;
+            // qt=qt+3;
+            var solvedidQ = qfAnswerd + '_' + qtAnswerd;
+            var Url = 'all-questions.jsp?selection=Answerd&&f=' + qfAnswerd + '&&t=' + qtAnswerd + '';
+            console.log(solvedidQ + "," + Url);
+            e.preventDefault();
+            if ($('#solved-link').hasClass('active')) {
+                $("#all_solved").append($('<div id="solved' + solvedidQ + '">').hide());
+                $('#solved' + solvedidQ).load(Url);
+                $('#solved' + solvedidQ).show(500);
+            }
+        }
+        var qfNotAnswerd = 0;
+        function loadNotANSwerd(e) {
+            e.preventDefault();
+            qfNotAnswerd = qfNotAnswerd + 3;
+            var notsolvedidQ = qfNotAnswerd + '_' + qtAnswerd;
+            var Url = 'all-questions.jsp?selection=NotAnswerd&&f=' + qfNotAnswerd + '&&t=' + 3 + '';
+            console.log(notsolvedidQ + "," + Url);
+            if ($('#not-solved-link').hasClass('active')) {
+                $("#not_solved").append($('<div id="not-solved' + notsolvedidQ + '"></div>').hide());
+                $('#not-solved' + notsolvedidQ).load(Url);
+                $('#not-solved' + notsolvedidQ).show(500);
+            }
+        }
+        var qftrnaslated = 0;
+        function loadTranslated(e) {
+            e.preventDefault();
+            qftrnaslated = qftrnaslated + 3;
+            var translatedidQ = qftrnaslated + '_' + qtAnswerd;
+            var Url = 'all-questions.jsp?selection=translated&&f=' + qftrnaslated + '&&t=' + qtAnswerd + '';
+            console.log(translatedidQ + "," + Url);
+            if ($('#translated-link').hasClass('active')) {
+                $("#translated-div").append($('<div id="translated' + translatedidQ + '"></div>').hide());
+                $('#translated' + translatedidQ).load(Url);
+                $('#translated' + translatedidQ).show(500);
+            }
+        }
+
     </script>
 </html>

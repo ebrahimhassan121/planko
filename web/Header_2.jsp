@@ -4,6 +4,7 @@
     Author     : AHMED 50070
 --%>
 
+<%@page import="Model.Favourite_model"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,11 @@
                     <a href="Profile.jsp" class="saved-head">
                         <div class="saved-icon" title="المحفوظات">
                             <i class="fa fa-suitcase"></i>
-                            <span>5</span>
+                            <% 
+                                Model.Favourite_model favourite_model=new Favourite_model();
+                                String count=favourite_model.select_favouritCounteByQuestionIDANDUSERID((session.getAttribute("ID")!=null )? session.getAttribute("ID").toString():"");
+                            %>
+                            <span><%=count%></span>
                         </div><!--End cart-icon-->        
                     </a>
                 </div><!--End Header-Icons-->

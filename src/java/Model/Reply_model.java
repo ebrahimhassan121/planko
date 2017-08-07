@@ -23,6 +23,7 @@ public class Reply_model {
     Connection connect = null;
     ResultSet rs = null;
     String query;
+
     public Reply_model() {
         try {
             CheckDatabase cd = new CheckDatabase();
@@ -41,7 +42,7 @@ public class Reply_model {
             ps.setInt(1, Integer.parseInt(CommentID));
             rs = ps.executeQuery();
             while (rs.next()) {
-                beans.Reply reply=new Reply();
+                beans.Reply reply = new Reply();
                 reply.setCommentID(CommentID);
                 reply.setReply(rs.getString("Reply"));
                 reply.setReplyerID(rs.getString("ReplyerID"));
@@ -56,22 +57,25 @@ public class Reply_model {
         }
         return replys;
     }
-    public boolean insertReplay(Reply reply){
+
+    public boolean insertReplay(Reply reply) {
         try {
-            query="INSERT INTO `replay`( `Reply`, `CommentID`, `ReplyerID`) VALUES (?,?,?)";
-            PreparedStatement preparedStatement=connect.prepareStatement(query);
+            query = "INSERT INTO `replay`( `Reply`, `CommentID`, `ReplyerID`) VALUES (?,?,?)";
+            PreparedStatement preparedStatement = connect.prepareStatement(query);
             preparedStatement.setString(1, reply.getReply());
             preparedStatement.setString(2, reply.getCommentID());
             preparedStatement.setString(3, reply.getReplyerID());
-            int insertionCheck =preparedStatement.executeUpdate();
-             return (insertionCheck>0);
+            int insertionCheck = preparedStatement.executeUpdate();
+            return (insertionCheck > 0);
         } catch (SQLException ex) {
             Logger.getLogger(Reply_model.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             closeConnection();
         }
-         return false;
+        return false;
     }
+
+  
 
     private void closeConnection() {
         try {

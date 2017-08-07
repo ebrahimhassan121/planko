@@ -79,7 +79,22 @@ public class Favourite_model {
 
         }
     }
+    public String select_favouritCounteByQuestionIDANDUSERID( String userID) {
+        try {
+            query = "SELECT count(*) FROM `favourite` WHERE Deleted=0 AND favouriteUserID=? ";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, userID);
+            rs = statement.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            closeConnection();
+            return "error";
 
+        }
+    }
+    
     private void closeConnection() {
         try {
 //            rs.close();
