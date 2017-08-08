@@ -16,7 +16,7 @@
     <body>
 
         <div class="wrapper">
-            <div id="top-header"  <%@include file="top-header.jsp" %> </div>
+            <div id="top-header" > <%@include file="top-header.jsp" %> </div>
             <div class="main" role="main">
                 <div class="page-content">
                     <div class="container">
@@ -88,9 +88,7 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="all">
                                         <div id="all_QuestionContent">
-                                            <jsp:include page="all-questions.jsp" >
-                                                <jsp:param name="selection" value="ALL" />
-                                            </jsp:include>
+                                          
                                         </div>
                                         <div>
                                             <a href="#" onclick="loadNowPlaying(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
@@ -101,9 +99,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="solved">
                                         <div id="all_solved">
-                                            <jsp:include page="all-questions.jsp" >
-                                                <jsp:param name="selection" value="Answerd" />
-                                            </jsp:include> 
+                                           
                                         </div>
 
                                         <div>
@@ -113,9 +109,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="not-solved">
                                         <div id="not_solved">
-                                            <jsp:include page="all-questions.jsp" >
-                                                <jsp:param name="selection" value="NotAnswerd" />
-                                            </jsp:include> 
+                                            
                                         </div>
 
                                         <div>
@@ -125,9 +119,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="translated">
                                         <div id="translated-div">
-                                            <jsp:include page="all-questions.jsp" >
-                                                <jsp:param name="selection" value="translated" />
-                                            </jsp:include> 
+                                           
                                         </div>
 
                                         <div>
@@ -229,6 +221,23 @@
     </body>
 
     <script>
+        $(document).ready(function (){
+                $("#all_QuestionContent").append($('<div id="question0_3"></div>').hide());
+                $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
+                $('#question0_3').show();
+                //////////////////////////////////
+                $("#all_solved").append($('<div id="solved0_3"></div>').hide());
+                $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
+                $('#solved0_3').show();
+                /////////////////////////////
+                 $("#not_solved").append($('<div id="not-solved0_3"></div>').hide());
+                $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
+                $('#not-solved0_3').show();
+                ///////////////////////////////////////////////////////
+                $("#translated-div").append($('<div id="translated0_3"></div>').hide());
+                $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
+                $('#translated0_3').show();
+        });
         var qf = 0;
         var qt = 3;
         var qfAnswerd = 0;
@@ -241,7 +250,7 @@
             console.log(idQ + "," + Url);
             e.preventDefault();
             if ($('#all-link').hasClass('active')) {
-                $("#all_QuestionContent").append($('<div id="question' + idQ + '">').hide());
+                $("#all_QuestionContent").append($('<div id="question' + idQ + '"></div>').hide());
                 $('#question' + qf + '_' + qt + '').load(Url);
                 $('#question' + qf + '_' + qt + '').show(500);
             }
@@ -255,7 +264,7 @@
             console.log(solvedidQ + "," + Url);
             e.preventDefault();
             if ($('#solved-link').hasClass('active')) {
-                $("#all_solved").append($('<div id="solved' + solvedidQ + '">').hide());
+                $("#all_solved").append($('<div id="solved' + solvedidQ + '"></div>').hide());
                 $('#solved' + solvedidQ).load(Url);
                 $('#solved' + solvedidQ).show(500);
             }

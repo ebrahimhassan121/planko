@@ -26,17 +26,13 @@ public class Like_model {
     Categories categories = null;
 
     public Like_model() {
-        try {
-            CheckDatabase cd = new CheckDatabase();
-            connect = cd.check();
-        } catch (SQLException ex) {
-            Logger.getLogger(Categories_model.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     public boolean insert_Like(Likes Like) {
         try {
-
+            CheckDatabase cd = new CheckDatabase();
+            connect = cd.check();
             query = "INSERT INTO `likes`(`LikerID`, `questionID`) VALUES (?,?)";
             PreparedStatement statement = connect.prepareStatement(query);
             statement.setString(1, Like.getLikerID());
@@ -51,6 +47,8 @@ public class Like_model {
     }
       public boolean update_LikeByQuestionIDANDUSERID(String questionID, String userID) {
         try {
+            CheckDatabase cd = new CheckDatabase();
+            connect = cd.check();
             query = "UPDATE `likes` SET `Deleted`=(case when (Deleted =0) THEN 1 ELSE 0 END) Where `LikerID`=? AND `questionID`=?";
             PreparedStatement statement = connect.prepareStatement(query);
             statement.setString(1, userID);
@@ -65,8 +63,27 @@ public class Like_model {
         }
     }
 
-    public boolean select_LikeByQuestionIDANDUSERID(String questionID, String userID) {
+    public int select_LikeByQuestionID(String questionID) {
         try {
+            CheckDatabase cd = new CheckDatabase();
+            connect = cd.check();
+            query = "SELECT COUNT(*) FROM `likes` WHERE Deleted=0 AND likes.questionID=?";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, questionID);
+            rs = statement.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return 0;
+        }finally{
+            closeConnection();
+        }
+    }
+      public boolean select_LikeByQuestionIDANDUSERID(String questionID, String userID) {
+        try {
+            CheckDatabase cd = new CheckDatabase();
+            connect = cd.check();
             query = "SELECT  `LikerID`, `questionID` FROM `likes` WHERE Deleted=0 AND LikerID=? AND questionID=?";
             PreparedStatement statement = connect.prepareStatement(query);
             statement.setString(1, userID);
@@ -83,9 +100,10 @@ public class Like_model {
 
     private void closeConnection() {
         try {
-//            rs.close();
-            connect.close();
-        } catch (SQLException ex) {
+//          rs.close();
+           connect.close();
+            System.out.println("");
+        } catch (Exception ex) {
             Logger.getLogger(Questions_model.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

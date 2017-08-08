@@ -64,39 +64,8 @@
                 </div><!--End Side-Widget-Title-->
                 <div class="side-widget-content">
                     <ul class="side-widget-list">
-                        <li>
-                            <div class="side-article">
-                                <div class="side-article-img">
-                                    <img src="./assets/site/images/blog/article-1.jpg">
-                                </div>
-                                <div class="side-article-desc">
-                                    <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                    <span class="date">30 يناير 2015</span>
-                                </div>
-                            </div><!--End Side-article-->
-                        </li>
-                        <li>
-                            <div class="side-article">
-                                <div class="side-article-img">
-                                    <img src="./assets/site/images/blog/article-1.jpg">
-                                </div>
-                                <div class="side-article-desc">
-                                    <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                    <span class="date">30 يناير 2015</span>
-                                </div>
-                            </div><!--End Side-article-->
-                        </li>
-                        <li>
-                            <div class="side-article">
-                                <div class="side-article-img">
-                                    <img src="./assets/site/images/blog/article-1.jpg">
-                                </div>
-                                <div class="side-article-desc">
-                                    <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                    <span class="date">30 يناير 2015</span>
-                                </div>
-                            </div><!--End Side-article-->
-                        </li>
+                        <%@include  file="recentQuestions.jsp" %>
+                        
                     </ul><!--End Side-widget-list-->
                 </div><!--End Side-Widget-Content-->
             </div><!--End Side-Widget-->

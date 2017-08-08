@@ -31,7 +31,6 @@
         <jsp:include page="Header_2.jsp">
             <jsp:param name="userID" value="<%=user.getUserID()%>" />
         </jsp:include>
-        <%@include file="Header_2.jsp" %>
         <% }
             } else {%>
         <%@include file="Header_0.jsp" %>

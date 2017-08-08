@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Users_model;
+import beans.user_bean;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -95,6 +96,8 @@ public class UploadAvatar extends HttpServlet {
             Users_model users_model=new Users_model();
             boolean updateCheck=users_model.updateAvatar(inputStream, userID);
             response.setContentType("text/plain");
+            user_bean user=users_model.Select_userByID(userID);
+            if(updateCheck)session.setAttribute("avatar",user.getAvatar());
             response.getWriter().write((updateCheck)?"success":"failed");
         }
         }catch(Exception ex){

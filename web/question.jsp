@@ -22,7 +22,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="init.jsp" %>
         <%
-
             String url = request.getRequestURI();
             String URLquestionName = "";
             Questions_model questions_model = new Questions_model();
@@ -52,9 +51,9 @@
                 </div><!--End Container-->
             </div><!--End Top-Header-->
             <div id="top-header">
-                 <%@include file="top-header.jsp" %>
+                <%@include file="top-header.jsp" %>
             </div>
-           
+
             <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">
@@ -157,17 +156,32 @@
                                                 </div>
                                                 <div class="foot-info">
                                                     <%
-                                                    String colorLike = "";
-                                                    Model.Like_model like_model = new Like_model();
-                                                    String UserID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "";
-                                                    if (like_model.select_LikeByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
-                                                        colorLike = "#00008B";
-                                                    }
-                                                %>
-                                                <button class="vote" onclick="addLIke()" style="color:<%=colorLike%>">
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                        <%=question.getLikesCount()%>
-                                                    </button>
+                                                        String colorLike = "";
+                                                        Model.Like_model like_model = new Like_model();
+                                                        String UserID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "";
+                                                        if (like_model.select_LikeByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
+                                                            colorLike = "#00008B";
+                                                        }
+                                                    %>
+                                                    <div id="<%=question.getQuestionID()%>d">
+                                                        <jsp:include page="like.jsp" flush="true">
+                                                            <jsp:param name="QID" value="<%=question.getQuestionID()%>" />
+                                                        </jsp:include>
+                                                    </div>
+                                                    <script>
+                    function addLIke<%=question.getQuestionID()%>() {
+                         $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
+                        }, function (responseText) {
+                            console.log(responseText);
+                            if (responseText === "fav-unfav") {
+                                console.log("ddd");
+                                $('#<%=question.getQuestionID()%>d').load("./like.jsp?QID=<%=question.getQuestionID()%>");
+                            } else if (responseText === "login_required") {
+                                $("#login-dialog-link").click();
+                            }
+                        });
+                    }
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div><!--End question-Content-->
@@ -185,23 +199,12 @@
                                                     <i class="fa fa-heart" id="heart"></i>
                                                 </span>
                                                 <script>
-                                                       function addLIke() {
-                                                         $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
-                                                        }, function (responseText) {
-                                                            console.log(responseText);
-                                                            if (responseText === "fav-unfav") {
-                                                                location.reload();
-                                                            } else if (responseText === "login_required") {
-                                                                $("#login-dialog-link").click();
-                                                            }
-                                                        });
-                                                    }
                                                     function addFav() {
                                                          $.post('addFavourite', {questionid: "<%=question.getQuestionID()%>"
                                                         }, function (responseText) {
                                                             $('#top-header').load("top-header.jsp");
                                                             if (responseText === "fav-unfav") {
-                                                                
+
                                                             } else if (responseText === "login_required") {
                                                                 $("#login-dialog-link").click();
                                                             }

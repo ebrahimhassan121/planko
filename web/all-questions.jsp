@@ -86,10 +86,25 @@
                 </span>
             </div>
             <div class="foot-info">
-                <button class="vote" onclick="addLIke<%=AllQuestion.get(i).getQuestionID()%>()">
-                    <i class="fa fa-thumbs-o-up"></i>
-                    <%=AllQuestion.get(i).getLikesCount()%> صوت
-                </button>
+                <div id="<%=selection+AllQuestion.get(i).getQuestionID()%>d">
+                    <jsp:include page="like.jsp" >
+                    <jsp:param name="QID" value="<%=AllQuestion.get(i).getQuestionID()%>" />
+                    <jsp:param name="selection" value="<%=selection%>" />
+                </jsp:include>
+                </div>
+                <script>
+                     function addLIke<%=selection+AllQuestion.get(i).getQuestionID()%>() {
+                                                         $.post('addLike', {questionid: "<%=AllQuestion.get(i).getQuestionID()%>"
+                                                        }, function (responseText) {
+                                                            console.log(responseText);
+                                                            if (responseText === "fav-unfav") {
+                                                                $('#<%=selection+AllQuestion.get(i).getQuestionID()%>d').load("./like.jsp?selection=<%=selection%>&&QID=<%=AllQuestion.get(i).getQuestionID()%>");
+                                                            } else if (responseText === "login_required") {
+                                                                $("#login-dialog-link").click();
+                                                            }
+                                                        });
+                                                    }
+                </script>
             </div>
         </div>
     </div><!--End question-Content-->
@@ -104,24 +119,14 @@
                                                     String UserID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "";
                                                     if (favourite_model.select_favouriteByQuestionIDANDUSERID(AllQuestion.get(i).getQuestionID(), UserID)) {
                                                         classFav = "added-to-wishlist";
-                                                    }
+                                                    }   
                                                 %>
-                                                <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav<%=AllQuestion.get(i).getQuestionID()%>();">
+                                                <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav<%=selection+AllQuestion.get(i).getQuestionID()%>();$(this).toggleClass('added-to-wishlist')">
                                                     <i class="fa fa-heart" id="heart"></i>
                                                 </span>
                                                 <script>
-                                                       function addLIke<%=AllQuestion.get(i).getQuestionID()%>() {
-                                                         $.post('addLike', {questionid: "<%=AllQuestion.get(i).getQuestionID()%>"
-                                                        }, function (responseText) {
-                                                            console.log(responseText);
-                                                            if (responseText === "fav-unfav") {
-                                                                location.reload();
-                                                            } else if (responseText === "login_required") {
-                                                                $("#login-dialog-link").click();
-                                                            }
-                                                        });
-                                                    }
-                                                    function addFav<%=AllQuestion.get(i).getQuestionID()%>() {
+                                                      
+                                                    function addFav<%=selection+AllQuestion.get(i).getQuestionID()%>() {
                                                          $.post('addFavourite', {questionid: "<%=AllQuestion.get(i).getQuestionID()%>"
                                                         }, function (responseText) {
                                                             console.log(responseText);
@@ -146,7 +151,7 @@
                                                 <%
                                                     String QuestionURL="http://localhost:8080/planko/question/"+AllQuestion.get(i).getQuestionID()+"/"+AllQuestion.get(i).getQuestionTitle().replaceAll("\\s+", "-");
                                                 %>
-                                                <span class="icon-share" title="مشاركة" onclick="copyStringToClipboard('<%=QuestionURL%>')">
+                                                <span class="icon-share" title="نسخ الرابط" onclick="copyStringToClipboard('<%=QuestionURL%>')">
                                                     <i class="fa fa-mail-reply"></i>
                                                 </span>
                                                 <ul class="social">
