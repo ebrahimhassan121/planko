@@ -71,7 +71,7 @@ public class Questions_model {
         }
         return false;
     }
-
+  
     public ArrayList selectQuestions(String ALL_Answerd_NotAnswerd_Answerd_translated, String from, String to) {
         try {
             switch (ALL_Answerd_NotAnswerd_Answerd_translated) {
@@ -82,8 +82,8 @@ public class Questions_model {
                     query = "SELECT DISTINCT * , (SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID IN (SELECT comments.questionID FROM comments) ORDER BY `questions`.`questionDate` DESC Limit " + from + "," + to;
                     break;
                 case "NotAnswerd":
-                   // query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0 AND comments.questionID IN (SELECT questiondatails.questionID FROM questiondatails WHERE 1)) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory ORDER BY `questions`.`questionDate` DESC limit " + from + "," + to;
-                    query="SELECT *,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(comments.questionID)commentscount FROM comments WHERE comments.questionID=questions.questionID)commentscount FROM questions INNER JOIN questiondatails ON questiondatails.questionID=questions.questionID AND questiondatails.translated=0 INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID NOT IN (SELECT comments.questionID FROM comments WHERE Deleted=0) ORDER BY `questions`.`questionDate` DESC Limit " + from + "," + to;
+                    // query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0 AND comments.questionID IN (SELECT questiondatails.questionID FROM questiondatails WHERE 1)) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory ORDER BY `questions`.`questionDate` DESC limit " + from + "," + to;
+                    query = "SELECT *,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(comments.questionID)commentscount FROM comments WHERE comments.questionID=questions.questionID)commentscount FROM questions INNER JOIN questiondatails ON questiondatails.questionID=questions.questionID AND questiondatails.translated=0 INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID NOT IN (SELECT comments.questionID FROM comments WHERE Deleted=0) ORDER BY `questions`.`questionDate` DESC Limit " + from + "," + to;
                     break;
                 case "translated":
                     query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount , (SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 AND questiondatails.translated=1 INNER JOIN categories ON categories.categoriesID=questions.questionCategory ORDER BY `questions`.`questionDate` DESC limit " + from + "," + to;
@@ -196,7 +196,62 @@ public class Questions_model {
         closeConnection();
         return arrRecent;
     }
-        public ArrayList SearchQuestions(String keyword) {
+    public ArrayList selectQuestionsBYCAT(String catName,String ALL_Answerd_NotAnswerd_Answerd_translated,String from, String to) {
+       try {
+            switch (ALL_Answerd_NotAnswerd_Answerd_translated) {
+                case "ALL":
+                    query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? ";
+                    break;
+                case "Answerd":
+                    query = "SELECT DISTINCT * , (SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID IN (SELECT comments.questionID FROM comments) and categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? ";
+                    break;
+                case "NotAnswerd":
+                    // query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0 AND comments.questionID IN (SELECT questiondatails.questionID FROM questiondatails WHERE 1)) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory ORDER BY `questions`.`questionDate` DESC limit " + from + "," + to;
+                    query = "SELECT *,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(comments.questionID)commentscount FROM comments WHERE comments.questionID=questions.questionID)commentscount FROM questions INNER JOIN questiondatails ON questiondatails.questionID=questions.questionID AND questiondatails.translated=0 INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID NOT IN (SELECT comments.questionID FROM comments WHERE Deleted=0) and categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? " ;
+                    break;
+                case "translated":
+                    query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount , (SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 AND questiondatails.translated=1 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where categories.categoryName=? ORDER BY `questions`.`questionDate` DESC limit ?,?";
+                    break;
+                default:
+                    break;
+            }
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, catName);
+            statement.setInt(2, Integer.parseInt(from));
+            statement.setInt(3, Integer.parseInt(to));
+            rs = statement.executeQuery();
+            ArrayList<question_bean> arrQuestion = new ArrayList<>();
+            //`questionID`, `questionTitle`, `questionCategory`, `questionDate`,
+            //`OwnerID`, `Deleted` `questionID`, `questionsText`, `questionImage`, `translated`
+            while (rs.next()) {
+                question_bean question = new question_bean();
+                question.setQuestionID(rs.getInt("questionID") + "");
+                question.setQuestionTitle(rs.getString("questionTitle"));
+                question.setQuestionCategory(rs.getString("categoryName"));
+                question.setQuestionDate(rs.getTimestamp("questionDate"));
+                System.out.println(question.getQuestionDate());
+                question.setOwnerID(rs.getInt("OwnerID") + "");
+                question.setQuestion_text(rs.getString("questionsText"));
+                question.setTranslated(rs.getInt("translated") + "");
+                question.setCommentsCount(rs.getInt("commentscount") + "");
+                question.setLikesCount(rs.getInt("likescount") + "");
+                Blob questionImage = rs.getBlob("questionImage");
+                if (questionImage != null) {
+                    question.setQuestion_image(questionImage.getBytes(1, (int) questionImage.length()));
+                }
+                arrQuestion.add(question);
+            }
+            closeConnection();
+            return arrQuestion;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            closeConnection();
+        }
+        closeConnection();
+        return null;
+    }
+
+    public ArrayList SearchQuestions(String keyword) {
         try {
              query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where questions.questionTitle LIKE ? OR questiondatails.questionsText LIKE ? ORDER BY `questions`.`questionDate` DESC";
              PreparedStatement statement = connect.prepareStatement(query);

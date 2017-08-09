@@ -56,6 +56,23 @@ public class Categories_model {
         }
         return null;
     }
+       public ArrayList<String> Select_ALL_CategoriesNames(){
+        try {
+            ArrayList<String> arr_categoriesNames=new ArrayList<>();
+            query="SELECT `categoryName` FROM `categories` WHERE 1";
+            Statement ps = connect.createStatement();
+            rs=ps.executeQuery(query);
+            
+            while(rs.next()){
+            String catName=(rs.getString("categoryName"));
+             arr_categoriesNames.add(catName);
+            }
+            return arr_categoriesNames;
+        } catch (SQLException ex) {
+            Logger.getLogger(Categories_model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public String SelectCatByID(String id){
         try {
             query="select categoryName from categories where categoriesID="+id;

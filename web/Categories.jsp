@@ -76,15 +76,15 @@
                                     <div class="widget-hover">
                                         <ul class="widget-hover-links">
                                             <li>
-                                                <a href="questions.jsp?categories=<%=categoryID%>" title="مشاهدة">
+                                                <a href="cat/<%=categoryName%>" title="مشاهدة">
                                                     <i class="fa fa-link"></i>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <!--li>
                                                 <a href="#" title="متابعة">
                                                     <i class="fa fa-feed"></i>
                                                 </a>
-                                            </li>
+                                            </li-->
                                         </ul>
                                     </div><!--End Widget-hover-->
                                 </div><!---End Widget-box-->

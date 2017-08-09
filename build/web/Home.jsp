@@ -22,73 +22,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-md-push-3">
-                                <%
-                                    if (user != null) {
-
-
-                                %>
-
-                                <div class="ask-box" onclick="$('#ask').modal('show');">
-                                    <div class="ask-box-head">
-                                        <div class="account">
-                                            <div class="account-img">
-                                                <img src="<%=user.getAvatar()%>" alt="account image">
-                                            </div>
-                                            <div class="account-name">
-                                                <a href="my-account.html">
-                                                    <h5><%=user.getName()%></h5>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><!--End Ask-box-head-->
-                                    <div class="ask-box-body" >
-                                        <span  id="questions-add" class="" >
-                                            اسأل ما تريد
-                                        </span>
-                                    </div><!--End Ask-box-body-->
-                                </div><!--End Ask-box-->
-
-                                <div class="modal fade ask" id="ask" tabindex="-1" role="dialog" aria-labelledby="ask">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <form class="form" method="post" action="addQuestion">
-                                                <div class="modal-body">
-                                                    <div class="account">
-                                                        <div class="account-img">
-                                                            <img src="<%=user.getAvatar()%>" alt="account image">
-                                                        </div>
-
-                                                        <div class="account-name">
-                                                            <a href="my-account.html">
-                                                                <h5><%=user.getName()%></h5>
-                                                            </a>
-                                                        </div>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    </div>
-                                                    <div class="form-group" style="margin-bottom: 10px">
-                                                        <input type="text" class="form-control" style="height: 35px" name="title" placeholder="*العنوان (اجباري)" required/>
-                                                    </div><!--End Form-group-->
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="details_text" placeholder="التفاصيل (اختياري)"></textarea>
-                                                    </div><!--End Form-group-->
-                                                </div><!--End modal-body-->
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="custom-btn pull-right"> اسأل سؤال</button>
-                                                    <button type="submit" class="custom-btn pull-left">تفاصيل اكثر</button>
-                                                </div>
-                                            </form><!--End Form-->
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                                <% }%>
-
-
-
-
+                                <div id="ask-area">
+                                <%@include  file="ask.jsp" %>
+                                </div>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="all">
                                         <div id="all_QuestionContent">
-                                          
+
                                         </div>
                                         <div>
                                             <a href="#" onclick="loadNowPlaying(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
@@ -99,7 +39,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="solved">
                                         <div id="all_solved">
-                                           
+
                                         </div>
 
                                         <div>
@@ -109,7 +49,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="not-solved">
                                         <div id="not_solved">
-                                            
+
                                         </div>
 
                                         <div>
@@ -119,7 +59,7 @@
                                     </div><!--End tab-panel-->
                                     <div role="tabpanel" class="tab-pane fade " id="translated">
                                         <div id="translated-div">
-                                           
+
                                         </div>
 
                                         <div>
@@ -221,22 +161,22 @@
     </body>
 
     <script>
-        $(document).ready(function (){
-                $("#all_QuestionContent").append($('<div id="question0_3"></div>').hide());
-                $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
-                $('#question0_3').show();
-                //////////////////////////////////
-                $("#all_solved").append($('<div id="solved0_3"></div>').hide());
-                $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
-                $('#solved0_3').show();
-                /////////////////////////////
-                 $("#not_solved").append($('<div id="not-solved0_3"></div>').hide());
-                $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
-                $('#not-solved0_3').show();
-                ///////////////////////////////////////////////////////
-                $("#translated-div").append($('<div id="translated0_3"></div>').hide());
-                $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
-                $('#translated0_3').show();
+        $(document).ready(function () {
+            $("#all_QuestionContent").append($('<div id="question0_3"></div>').hide());
+            $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
+            $('#question0_3').show();
+            //////////////////////////////////
+            $("#all_solved").append($('<div id="solved0_3"></div>').hide());
+            $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
+            $('#solved0_3').show();
+            /////////////////////////////
+            $("#not_solved").append($('<div id="not-solved0_3"></div>').hide());
+            $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
+            $('#not-solved0_3').show();
+            ///////////////////////////////////////////////////////
+            $("#translated-div").append($('<div id="translated0_3"></div>').hide());
+            $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
+            $('#translated0_3').show();
         });
         var qf = 0;
         var qt = 3;

@@ -8,14 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%
-            boolean login_error = false;
-            if (request.getAttribute("login") != null && request.getAttribute("login").equals("error")) {
-                login_error = true;
-            }
-            
 
-        %>
     </head>
     <body>
         <header class="header">
@@ -97,7 +90,7 @@
         </div><!--End login-dialog-->
 
         <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box" >
-            <form class="dialog-form" method="post" action="Login">
+            <form class="dialog-form" id="login-form" method="post" action="Login">
                 <div class="form-group text-center">
                     <a href="" class="login-with-fb">
                         <i class="fa fa-facebook"></i>
@@ -105,14 +98,11 @@
                     </a>
                     <span class="or">أو </span>
                 </div><!--End form-group-->
-                <%                    if (login_error) {
 
-                %>
-
-                <div class="form-group">
+                <div class="form-group hidden" id="login-error" >
                     <span class="or"style="color: red;text-align: center" >معلومات دخول خاطئة</span>
                 </div>
-                <% } %>
+
                 <div class="form-group">
                     <input class="form-control" placeholder="البريد الالكترونى" type="email" name="email" required>
                 </div><!--End form-group-->
@@ -167,29 +157,48 @@
         </div><!--End login-dialog-->
 
     </body>
-    <script>    <% if (login_error) {%>
-$(document).ready(function () {
-    $("#login-dialog-link").click();
-});
-        <% }%>
+    <script>
 
-$('#email').on('keyup bulr', function () {
-       $.post('AvailableEmail', {email: $('#email').val()}, function (responseText) {
-        if (responseText == "") {
-            $('#email_hint').hide();
-        } else if (responseText == "not_email") {
-            $('#email_hint').text("بريد الكتروني خاطيء");
-            $('#email_hint').show();
-        } else if (responseText == "registerd") {
-            $('#email_hint').text("بريد الكتروني مستخدم بالفعل");
-            $('#email_hint').show();
-        } else if (responseText == "valid") {
-            $('#email_hint').text("");
-            $('#email_hint').hide();
-        }
-                        });
+        $('#login-form').submit(function (e) {
+            e.preventDefault();
+            $.post('Login',
+                    $('#login-form').serialize(),
+                    function (responseText) {
+                        console.log(responseText);
+                        if (responseText === "done") {
+                            $('#login-dialog .mfp-close').click();
+                            $('#top-header').load('top-header.jsp');
+                            var pathname = window.location.pathname;
+                            if(pathname.indexOf("Home") >= 0){
+                                $('#ask-area').load("ask.jsp");
+                            }
+                            
+                        } else if (responseText === "error") {
+                            $('#login-error').removeClass('hidden');
+                            $('#login-dialog-link').click();
+                        }
+                    }
+            );
+
+        });
+
+        $('#email').on('keyup bulr', function () {
+               $.post('AvailableEmail', {email: $('#email').val()}, function (responseText) {
+                if (responseText == "") {
+                    $('#email_hint').hide();
+                } else if (responseText == "not_email") {
+                    $('#email_hint').text("بريد الكتروني خاطيء");
+                    $('#email_hint').show();
+                } else if (responseText == "registerd") {
+                    $('#email_hint').text("بريد الكتروني مستخدم بالفعل");
+                    $('#email_hint').show();
+                } else if (responseText == "valid") {
+                    $('#email_hint').text("");
+                    $('#email_hint').hide();
+                }
+                                });
                 
 
-});
+        });
     </script>
 </html>

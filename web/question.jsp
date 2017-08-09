@@ -39,6 +39,10 @@
                 owner = users_model.Select_userByID(question.getOwnerID());
                 Model.Comments_model comments_model = new Comments_model();
                 arrComments = comments_model.selectCommentsBYQuetionID(question.getQuestionID());
+            }else{
+                response.sendRedirect("Home.jsp");
+                return;
+
             }
             session.setAttribute("url", request.getRequestURL());
         %>

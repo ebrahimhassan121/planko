@@ -75,11 +75,13 @@ public class Login extends HttpServlet {
             String password=request.getParameter("password");
             Model.Users_model users_model=new Users_model();
             beans.user_bean user=users_model.select_user(email, password);
+             response.setContentType("text/plain");
             if(user == null){
-                request.setAttribute("login", "error");
-                RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
-                 dispatcher.forward(request, response);
-                 return;
+//                request.setAttribute("login", "error");
+//                RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
+//                 dispatcher.forward(request, response);
+//                 return;
+            response.getWriter().write("error");
             }
             HttpSession session=request.getSession();
           //  System.out.println(user.getRole());
@@ -88,7 +90,8 @@ public class Login extends HttpServlet {
                 session.setAttribute("password", password);
                 session.setAttribute("avatar", user.getAvatar());
                 session.setAttribute("ID", user.getUserID());
-                response.sendRedirect(session.getAttribute("url").toString());
+                //response.sendRedirect(session.getAttribute("url").toString());
+                  response.getWriter().write("done");
                 return;
             }
         } catch (Exception ex) {

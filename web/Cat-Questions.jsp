@@ -1,4 +1,12 @@
 <%-- 
+    Document   : Cat-Questions
+    Created on : Aug 9, 2017, 3:42:02 AM
+    Author     : EHS
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%-- 
     Document   : all-questions
     Created on : Aug 2, 2017, 9:47:09 PM
     Author     : EHS
@@ -15,17 +23,18 @@
 <%@page import="Model.Users_model"%>
 <%@page import="beans.user_bean"%>
 <%@page import="Model.Questions_model"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <%
+    String catName=(request.getParameter("catName")!=null)?request.getParameter("catName"):"";
+    if(catName.equals("")){response.sendRedirect("Home.jsp");return;}
     String from=(request.getParameter("f")!=null)?request.getParameter("f"):"0";
     String to=(request.getParameter("f")!=null)?request.getParameter("t"):"3";
     Questions_model questions_model = new Questions_model();
     user_bean owner;
     Users_model users_model = new Users_model();
     String selection=(request.getParameter("selection")!=null)?request.getParameter("selection").toString():"";
-    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions(selection,from,to);
+    ArrayList<question_bean> AllQuestion = questions_model.selectQuestionsBYCAT(catName,selection,from,to);
     for (int i = 0; i < AllQuestion.size(); i++) {
         owner = users_model.Select_userByID(AllQuestion.get(i).getOwnerID());
 

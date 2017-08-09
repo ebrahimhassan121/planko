@@ -37,13 +37,8 @@
                 <div class="widget-hover">
                     <ul class="widget-hover-links">
                         <li>
-                            <a href="questions.jsp?cat=<%=categoryID%>" title="مشاهدة">
+                            <a href="cat/<%=categoryName%>" title="مشاهدة">
                                 <i class="fa fa-link"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" title="متابعة">
-                                <i class="fa fa-feed"></i>
                             </a>
                         </li>
                     </ul>

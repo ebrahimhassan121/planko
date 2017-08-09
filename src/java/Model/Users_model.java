@@ -105,7 +105,7 @@ public class Users_model {
             if(rs.next()){
                 user.setUserID(rs.getString("UserID"));
                 System.out.println(user.getUserID()+"--------------");
-            }else{System.out.println("errrrrrrrrrrrrror");}
+            }
             query="INSERT INTO `user_details`(`UserDetails_ID`, `Name`, `Address`, `about`) VALUES (?,?,?,?)";
             preparedStatement.close();
             preparedStatement=connect.prepareStatement(query);

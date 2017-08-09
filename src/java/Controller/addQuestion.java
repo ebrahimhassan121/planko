@@ -67,30 +67,35 @@ public class addQuestion extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setCharacterEncoding("UTF-8");
-            System.out.println("Controller.addQuestion.doPost()");
-        String title=request.getParameter("title");
-        String details_text=request.getParameter("details_text");
-        HttpSession session=request.getSession();
-           
-        if(title!=null){
-            question_bean question=new question_bean();
-            question.setQuestionTitle(title);
-            question.setQuestion_text((details_text==null)? "" : details_text);
-            question.setOwnerID(session.getAttribute("ID").toString());
-            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            question.setQuestionDate(date);
-            question.setQuestionCategory(0+"");
-            Questions_model questions_model=new Questions_model();
-            if(questions_model.insertQuestion(question)){
-                response.sendRedirect("Home.jsp");
-            }else{
-                System.out.println("not inserted");}
-        }else{
-               
-           response.sendRedirect("Home.jsp");
-        }
+            String title = request.getParameter("title");
+            String details_text = request.getParameter("details_text");
+            HttpSession session = request.getSession();
+             response.setContentType("text/plain");
+            if(session.getAttribute("ID")==null){
+                System.out.println("Controller.addQuestion.doPost()");
+                response.getWriter().write("login_required");
+                return;
+            }
+            if (title != null) {
+                question_bean question = new question_bean();
+                question.setQuestionTitle(title);
+                question.setQuestion_text((details_text == null) ? "" : details_text);
+                question.setOwnerID(session.getAttribute("ID").toString());
+                java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+                question.setQuestionDate(date);
+                question.setQuestionCategory(0 + "");
+                Questions_model questions_model = new Questions_model();
+                if (questions_model.insertQuestion(question)) {
+                    response.getWriter().write("done");
+                    return;
+                } else {
+                      response.getWriter().write("someThingERROR");
+                }
+            } else {
+                 response.getWriter().write("NOWAY");
+            }
         } catch (Exception e) {
-           response.sendRedirect("Home.jsp");
+            response.sendRedirect("Home.jsp");
         }
     }
 

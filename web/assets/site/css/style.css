@@ -1511,7 +1511,8 @@ span.fileinput-new{
     font-size: 18px;
 }
 .question .question-content .vote:hover{
-    color: #00008B;
+    /*color: #00008B;*/
+    color:#2f3239;
 }
 
 /***** .question.solved ******/

@@ -1,3 +1,5 @@
+<%@page import="Model.Categories_model"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : sidepar
     Created on : Jul 18, 2017, 4:53:37 PM
@@ -37,22 +39,19 @@
                     </h2>
                 </div><!--End Side-widget-title-->
                 <div class="side-widget-content">
+                    <% 
+                        Categories_model cm_Names=new Categories_model();
+                        ArrayList<String> arr_cat_Names=cm_Names.Select_ALL_CategoriesNames();
+                    %>
                     <ul class="tags">
+                        <%
+                            for(int i=0;i<arr_cat_Names.size();i++){
+                        %>
                         <li>
-                            <a href="#">رياضة</a>
+                            <a href="cat/<%=arr_cat_Names.get(i)%>"><%=arr_cat_Names.get(i)%></a>
                         </li>
-                        <li>
-                            <a href="#">فن</a>
-                        </li>
-                        <li>
-                            <a href="#">تصميم</a>
-                        </li>
-                        <li>
-                            <a href="#">موضة</a>
-                        </li>
-                        <li>
-                            <a href="#">سياسة</a>
-                        </li>
+                        <% }%>
+                      
                     </ul><!--End Side-widget-list-->
                 </div><!--End Side-widget-content-->
             </div><!--End Side-widget-->
