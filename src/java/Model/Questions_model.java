@@ -55,12 +55,13 @@ public class Questions_model {
                 rs = ps.getGeneratedKeys();
                 rs.next();
                 question.setQuestionID(rs.getInt(1) + "");
-                query = "INSERT INTO `questiondatails`( `questionID`, `questionsText`, `questionImage`, `translated`) VALUES (?,?,?,?)";
+                query = "INSERT INTO `questiondatails`( `questionID`, `questionsText`, `questionImage`, `translated`,`keywords`) VALUES (?,?,?,?,?)";
                 ps = connect.prepareStatement(query);
                 ps.setInt(1, Integer.parseInt(question.getQuestionID()));
                 ps.setString(2, question.getQuestion_text());
-                ps.setString(3, question.getQuestion_image());
+                ps.setBlob(3, question.getImage_input());
                 ps.setInt(4, Integer.parseInt(question.getTranslated()));
+                ps.setString(5,question.getKeywords());
                 insertionCheck = ps.executeUpdate();
                 closeConnection();
                 return (insertionCheck > 0);
@@ -123,7 +124,80 @@ public class Questions_model {
         closeConnection();
         return null;
     }
-
+/*SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where OwnerID=36 AND questions.questionID IN (SELECT favourite.favouriteQuestionID FROM favourite WHERE favourite.favouriteUserID=36) ORDER BY `questions`.`questionDate`*/
+    public ArrayList selectFavQuestions( String from, String to,String userID) {
+        try {
+            query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where  questions.questionID IN (SELECT favourite.favouriteQuestionID FROM favourite WHERE favourite.favouriteUserID=? AND favourite.Deleted=0) ORDER BY `questions`.`questionDate` DESC Limit ?,?";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, userID);
+            statement.setInt(2, Integer.parseInt(from));
+            statement.setInt(3, Integer.parseInt(to));
+            rs = statement.executeQuery();
+            ArrayList<question_bean> arrQuestion = new ArrayList<>();
+            while (rs.next()) {
+                question_bean question = new question_bean();
+                question.setQuestionID(rs.getInt("questionID") + "");
+                question.setQuestionTitle(rs.getString("questionTitle"));
+                question.setQuestionCategory(rs.getString("categoryName"));
+                question.setQuestionDate(rs.getTimestamp("questionDate"));
+                System.out.println(question.getQuestionDate());
+                question.setOwnerID(rs.getInt("OwnerID") + "");
+                question.setQuestion_text(rs.getString("questionsText"));
+                question.setTranslated(rs.getInt("translated") + "");
+                question.setCommentsCount(rs.getInt("commentscount") + "");
+                question.setLikesCount(rs.getInt("likescount") + "");
+                Blob questionImage = rs.getBlob("questionImage");
+                if (questionImage != null) {
+                    question.setQuestion_image(questionImage.getBytes(1, (int) questionImage.length()));
+                }
+                arrQuestion.add(question);
+            }
+            closeConnection();
+            return arrQuestion;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            closeConnection();
+        }
+        closeConnection();
+        return null;
+    }
+     public ArrayList selectOwnerQuestions( String from, String to,String userID) {
+        try {
+            query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where  questions.OwnerID=? ORDER BY `questions`.`questionDate` DESC Limit ?,?"; 
+             PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, userID);
+            statement.setInt(2, Integer.parseInt(from));
+            statement.setInt(3, Integer.parseInt(to));
+            rs = statement.executeQuery();
+            ArrayList<question_bean> arrQuestion = new ArrayList<>();
+            while (rs.next()) {
+                question_bean question = new question_bean();
+                question.setQuestionID(rs.getInt("questionID") + "");
+                question.setQuestionTitle(rs.getString("questionTitle"));
+                question.setQuestionCategory(rs.getString("categoryName"));
+                question.setQuestionDate(rs.getTimestamp("questionDate"));
+                System.out.println(question.getQuestionDate());
+                question.setOwnerID(rs.getInt("OwnerID") + "");
+                question.setQuestion_text(rs.getString("questionsText"));
+                question.setTranslated(rs.getInt("translated") + "");
+                question.setCommentsCount(rs.getInt("commentscount") + "");
+                question.setLikesCount(rs.getInt("likescount") + "");
+                Blob questionImage = rs.getBlob("questionImage");
+                if (questionImage != null) {
+                    question.setQuestion_image(questionImage.getBytes(1, (int) questionImage.length()));
+                }
+                arrQuestion.add(question);
+            }
+            closeConnection();
+            return arrQuestion;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            closeConnection();
+        }
+        closeConnection();
+        return null;
+    }
+  
     public question_bean selectQuestionsByID(String id) {
         try {
             query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID and deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory  WHERE questiondatails.questionID ='" + Integer.parseInt(id) + "'  ORDER BY `questions`.`questionDate` DESC";

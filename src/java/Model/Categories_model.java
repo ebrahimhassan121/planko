@@ -90,11 +90,10 @@ public class Categories_model {
             query="select categoriesID from categories where categoryName='"+name+"'";
             Statement statement=connect.createStatement();
             rs=statement.executeQuery(query);
-            rs.next();
-            return rs.getString(1);
+            if(rs.next())return rs.getString(1);
         } catch (SQLException ex) {
             Logger.getLogger(Categories_model.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return null;
+    return "0";
     }
 }

@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,9 +21,25 @@ import java.util.logging.Logger;
  * @author EHS
  */
 public class question_bean {
-    String  questionID,questionTitle,questionCategory,OwnerID, LikesCount,Deleted="0",Question_text,Question_image,translated="0",commentsCount,dateInArabic;
- 
+    String  questionID,questionTitle,questionCategory,OwnerID, LikesCount,Deleted="0",Question_text,Question_image,translated="0",commentsCount,dateInArabic,keywords;
+    InputStream image_input;
     java.sql.Timestamp questionDate;
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+    
+    public InputStream getImage_input() {
+        return image_input;
+    }
+
+    public void setImage_input(InputStream image_input) {
+        this.image_input = image_input;
+    }
 
     public String getDateInArabic() {
         return dateInArabic;

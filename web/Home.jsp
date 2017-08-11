@@ -180,9 +180,7 @@
         });
         var qf = 0;
         var qt = 3;
-        var qfAnswerd = 0;
-        var qtAnswerd = 3;
-        function loadNowPlaying(e) {
+          function loadNowPlaying(e) {
             qf = qf + 3;
             // qt=qt+3;
             var idQ = qf + '_' + qt;
@@ -196,6 +194,9 @@
             }
         }
 
+        var qfAnswerd = 0;
+        var qtAnswerd = 3;
+      
         function loadANSwerd(e) {
             qfAnswerd = qfAnswerd + 3;
             // qt=qt+3;

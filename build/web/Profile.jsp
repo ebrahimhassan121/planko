@@ -4,6 +4,9 @@
     Author     : AHMED 50070
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="beans.Categories"%>
+<%@page import="Model.Categories_model"%>
 <%@page import="Model.Users_model"%>
 <%@page import="beans.user_bean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +18,7 @@
 
         <%
             boolean register_flag = false;
-            user_bean user = null;
+            user_bean user_bean = null;
             Model.Users_model users_model = new Users_model();
             boolean toasterMessageFlag = false;
             if (request.getAttribute("toasterMessage") != null) {
@@ -23,17 +26,17 @@
             }
             if (request.getAttribute("register") != null) {
                 user_bean users_register = (user_bean) request.getAttribute("register");
-                user = users_model.select_user(users_register.getEmail(), users_register.getPassword());
-                session.setAttribute("email", user.getEmail());
-                session.setAttribute("password", user.getPassword());
-                session.setAttribute("avatar", user.getAvatar());
-                session.setAttribute("ID", user.getUserID());
+                user_bean = users_model.select_user(users_register.getEmail(), users_register.getPassword());
+                session.setAttribute("email", user_bean.getEmail());
+                session.setAttribute("password", user_bean.getPassword());
+                session.setAttribute("avatar", user_bean.getAvatar());
+                session.setAttribute("ID", user_bean.getUserID());
                 register_flag = true;
             } else if (session.getAttribute("email") != null || session.getAttribute("password") != null) {
                 String email = session.getAttribute("email").toString();
                 String password = session.getAttribute("password").toString();
-                user = users_model.select_user(email, password);
-                System.out.println(user.getEmail() + "/" + user.getName());
+                user_bean = users_model.select_user(email, password);
+                System.out.println(user_bean.getEmail() + "/" + user_bean.getName());
 
             } else {
                 response.sendRedirect("Home.jsp");
@@ -43,16 +46,20 @@
                 return;
             }
         %>
+        <script>
+            $(document).ready(function() {
+    
+                 var url = window.location.href;
+                 if (url.indexOf('?mq')!=-1){
+                     $('#my_link a').click();
+                 }
+});
+        </script>
     </head>
     <body>
 
         <div class="wrapper">
-            <div class="top-header">
-                <div class="container">
-                    <%@include file="Header_1.jsp" %>
-                </div><!--End Container-->
-            </div><!--End Top-Header-->
-            <%@include file="Header_2.jsp" %>
+            <div id="top-header" > <%@include file="top-header.jsp" %> </div>
             <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">
@@ -108,11 +115,11 @@
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">معلومات الحساب</a></li>
 
-                                        <li role="presentation"><a href="#wishlist" aria-controls="wishlist" role="tab" data-toggle="tab">المفضلة</a></li>
+                                        <li role="presentation"  id="wishlist_link"><a href="#wishlist" aria-controls="wishlist" role="tab" data-toggle="tab">المفضلة</a></li>
 
-                                        <li role="presentation"><a href="#my-questions" aria-controls="my-questions" role="tab" data-toggle="tab">أسئلتى</a></li>
+                                        <li role="presentation" id="my_link"><a href="#my-questions" aria-controls="my-questions" role="tab" data-toggle="tab">أسئلتى</a></li>
 
-                                        <li role="presentation"><a href="#my-answers" aria-controls="my-answers" role="tab" data-toggle="tab">إجاباتى</a></li>
+                                        <li role="presentation" id="my_Answers-link"><a href="#my-answers" aria-controls="my-answers" role="tab" data-toggle="tab">إجاباتى</a></li>
 
                                         <li role="presentation"><a href="#my-categories" aria-controls="my-categories" role="tab" data-toggle="tab">الفئات</a></li>
                                     </ul>
@@ -169,10 +176,73 @@
                                                 </div><!--End row-->
                                             </form><!--End Form-->
                                         </div><!--End tabpanel-->
-                                        <div role="tabpanel" class="tab-pane fade" id="wishlist">...</div><!--End tabpanel-->
-                                        <div role="tabpanel" class="tab-pane fade" id="my-questions">...</div><!--End tabpanel-->
-                                        <div role="tabpanel" class="tab-pane fade" id="my-answers">...</div><!--End tabpanel-->
-                                        <div role="tabpanel" class="tab-pane fade" id="my-categories">...</div><!--End tabpanel-->
+                                        <div role="tabpanel" class="tab-pane fade" id="wishlist">
+                                            <div id="all_QuestionContent">
+
+                                            </div>
+                                            <div>
+                                                <a href="" onclick="loadNowPlaying(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                                <br>
+                                            </div>
+
+                                        </div><!--End tabpanel-->
+                                        <div role="tabpanel" class="tab-pane fade" id="my-questions">
+                                            <div id="my_QuestionContent">
+
+                                            </div>
+                                            <div>
+                                                <a href="" onclick="loadmyPlaying(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                                <br>
+                                            </div>
+                                        </div><!--End tabpanel-->
+                                        <div role="tabpanel" class="tab-pane fade" id="my-answers">
+                                            <div id="my_Answers">
+
+                                            </div>
+                                            <div>
+                                                <a href="" onclick="loadAnswers(event)" class="center-block " style="text-align: center; background-color: #f6f6f6;padding: 0.55em;margin: 0.75em;" >عرض المزيد</a>
+                                                <br>
+                                            </div>
+                                        </div><!--End tabpanel-->
+                                        <div role="tabpanel" class="tab-pane fade" id="my-categories">
+                                            <%
+                                                Categories_model categories_model = new Categories_model();
+                                                ArrayList<Categories> array_categories = categories_model.Select_ALL_Categories();
+                                                for (int i = 0; i < array_categories.size(); i++) {
+                                                    String categoryID = array_categories.get(i).getCategoriesID();
+                                                    String categoryName = array_categories.get(i).getCategoryNam();
+                                                    String categoryPhoto = array_categories.get(i).getPhoto();
+
+                                            %>
+                                            <div class="col-md-3">
+                                                <div class="widget-box">
+                                                    <div class="widget-img">
+                                                        <img src="<%=categoryPhoto%>" alt="<%=categoryName%>">
+                                                    </div><!--End widget-img-->
+                                                    <div class="widget-name">
+                                                        <h3 class="name"><%=categoryName%></h3>
+                                                    </div><!--End widget-name-->
+                                                    <div class="widget-hover">
+                                                        <ul class="widget-hover-links">
+                                                            <li>
+                                                                <a href="cat/<%=categoryName%>" title="مشاهدة">
+                                                                    <i class="fa fa-link"></i>
+                                                                </a>
+                                                            </li>
+                                                            <!--li>
+                                                                <a href="#" title="متابعة">
+                                                                    <i class="fa fa-feed"></i>
+                                                                </a>
+                                                            </li-->
+                                                        </ul>
+                                                    </div><!--End Widget-hover-->
+                                                </div><!---End Widget-box-->
+                                            </div><!--END Col-md-3-->
+
+                                            <% }%>
+
+
+                                        </div><!--End tabpanel-->
                                     </div>
                                 </div><!--End Tabs-->
                             </div><!--End Col-md-6-->
@@ -217,56 +287,122 @@
             </div><!--End main-->
         </div><!--End Wrapper-->
 
-    </body>
-
-    <script>
-         var inputFile;
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#profile-image').attr('src', e.target.result);
-                },
-                        inputFile = input.files[0];
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#image-upload").change(function () {
-            readURL(this);
-            $('#button-upload').removeClass('hidden');
-            $('#reset-upload').removeClass('hidden');
-        });
-        $('#reset-upload').click(function () {
-            $('#profile-image').attr('src', '<%=userAcount.getAvatar()%>');
-            $('#button-upload').addClass('hidden');
-            $('#reset-upload').addClass('hidden');
-        });
-        $('#button-upload').click(function (e) {
-            e.preventDefault();
-            var file_data = inputFile;   // Getting the properties of file from file field
-            var form_data = new FormData();                  // Creating object of FormData class
-            form_data.append("avatar", file_data);            // Appending parameter named file with properties of file_field to form_data
-            $.ajax({
-                url: "UploadAvatar",
-                dataType: 'script',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data, // Setting the data attribute of ajax with file_data
-                type: 'POST',
-                error: function (jqXHR, textStatus, errorThrown) {
-                    var m = (jqXHR.responseText);
-                    if (m == "success") {
-                      location.reload();
-                    }
-                }
+        <script>
+            $(document).ready(function () {
+                $("#all_QuestionContent").append($('<div id="question0_3"></div>').hide());
+                $('#question0_3').load('fav.jsp?selection=ALL&&f=0&&t=3');
+                $('#question0_3').show();
+                $("#my_QuestionContent").append($('<div id="my0_3"></div>').hide());
+                $('#my0_3').load('my-question.jsp?selection=my&&f=0&&t=3');
+                $('#my0_3').show();
+                
+                $("#my_Answers").append($('<div id="myAnswers0_3"></div>').hide());
+                $('#myAnswers0_3').load('my-replys.jsp?f=0&&t=3');
+                $('#myAnswers0_3').show();
+                
             });
 
+            var qf = 0;
+            var qt = 3;
+            function loadNowPlaying(e) {
+                qf = qf + 3;
+                // qt=qt+3;
+                var idQ = qf + '_' + qt;
+                var Url = 'fav.jsp?selection=ALL&&f=' + qf + '&&t=' + qt + '';
+                console.log(idQ + "," + Url);
+                e.preventDefault();
+                if ($('#wishlist_link').hasClass('active')) {
+                    $("#all_QuestionContent").append($('<div id="question' + idQ + '"></div>').hide());
+                    $('#question' + qf + '_' + qt + '').load(Url);
+                    $('#question' + qf + '_' + qt + '').show(500);
+                }
+            }
 
-        });
 
-    </script>
+            var mqf = 0;
+            var mqt = 3;
+            function loadmyPlaying(e) {
+                mqf = mqf + 3;
+                // qt=qt+3;
+                var idQ = mqf + '_' + mqt;
+                var Url = 'my-question.jsp?selection=my&&f=' + mqf + '&&t=' + mqt + '';
+                console.log(idQ + "," + Url);
+                e.preventDefault();
+                if ($('#my_link').hasClass('active')) {
+                    $("#my_QuestionContent").append($('<div id="my' + idQ + '"></div>').hide());
+                    $('#my' + mqf + '_' + mqt + '').load(Url);
+                    $('#my' + mqf + '_' + mqt + '').show(500);
+                }
+            }
+            var myAnsF=0;
+            var myAnsT=3;
+            function loadAnswers(e){
+                   myAnsF = myAnsF + 3;
+                // qt=qt+3;
+                var idQ = myAnsF + '_' + myAnsT;
+                var Url = 'my-replys.jsp?f=' + myAnsF + '&&t=' + myAnsT + '';
+                console.log(idQ + "," + Url);
+                e.preventDefault();
+                if ($('#my_Answers-link').hasClass('active')) {
+                    $("#my_Answers").append($('<div id="myAns' + idQ + '"></div>').hide());
+                    $('#myAns' + myAnsF + '_' + myAnsT + '').load(Url);
+                    $('#myAns' + myAnsF + '_' + myAnsT + '').show(500);
+                }
+                
+            }
+
+
+            var inputFile;
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#profile-image').attr('src', e.target.result);
+                    },
+                            inputFile = input.files[0];
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#image-upload").change(function () {
+                readURL(this);
+                $('#button-upload').removeClass('hidden');
+                $('#reset-upload').removeClass('hidden');
+            });
+            $('#reset-upload').click(function () {
+                $('#profile-image').attr('src', '<%=userAcount.getAvatar()%>');
+                $('#button-upload').addClass('hidden');
+                $('#reset-upload').addClass('hidden');
+            });
+            $('#button-upload').click(function (e) {
+                e.preventDefault();
+                var file_data = inputFile;   // Getting the properties of file from file field
+                var form_data = new FormData();                  // Creating object of FormData class
+                form_data.append("avatar", file_data);            // Appending parameter named file with properties of file_field to form_data
+                $.ajax({
+                    url: "UploadAvatar",
+                    dataType: 'script',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data, // Setting the data attribute of ajax with file_data
+                    type: 'POST',
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        var m = (jqXHR.responseText);
+                        if (m == "success") {
+                            location.reload();
+                        } else {
+                            window.location = "Home.jsp";
+                        }
+                    }
+                });
+
+
+            });
+
+        </script>
+    </body>
+
 </html>

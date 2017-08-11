@@ -25,7 +25,7 @@
     user_bean owner;
     Users_model users_model = new Users_model();
     String selection=(request.getParameter("selection")!=null)?request.getParameter("selection").toString():"";
-    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions(selection,from,to);
+    ArrayList<question_bean> AllQuestion = questions_model.selectFavQuestions(from, to, session.getAttribute("ID").toString());
     for (int i = 0; i < AllQuestion.size(); i++) {
         owner = users_model.Select_userByID(AllQuestion.get(i).getOwnerID());
 

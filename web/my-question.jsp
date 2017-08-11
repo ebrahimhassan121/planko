@@ -1,4 +1,9 @@
 <%-- 
+    Document   : my-question
+    Created on : Aug 10, 2017, 10:12:24 PM
+    Author     : EHS
+--%>
+<%-- 
     Document   : all-questions
     Created on : Aug 2, 2017, 9:47:09 PM
     Author     : EHS
@@ -25,7 +30,7 @@
     user_bean owner;
     Users_model users_model = new Users_model();
     String selection=(request.getParameter("selection")!=null)?request.getParameter("selection").toString():"";
-    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions(selection,from,to);
+    ArrayList<question_bean> AllQuestion = questions_model.selectOwnerQuestions(from, to, session.getAttribute("ID").toString());
     for (int i = 0; i < AllQuestion.size(); i++) {
         owner = users_model.Select_userByID(AllQuestion.get(i).getOwnerID());
 
@@ -180,4 +185,5 @@
     <!--End question-foot-->
 </div><!--End question-->
 <%}%>
+
 

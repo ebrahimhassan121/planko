@@ -26,7 +26,7 @@ public class Users_model {
 
     CheckDatabase cd = new CheckDatabase();
 
-    Connection connect = null;
+    Connection connect;
     ResultSet re = null;
     String query;
 
@@ -169,10 +169,11 @@ public class Users_model {
     }
     public user_bean Select_userByID(String userID){
         try {
-            query="SELECT  `Name`, `Address`, `about`, `avatar`,`RegisterDate` FROM `user_details` WHERE `UserDetails_ID`=?";
+            query="SELECT  `Name`, `Address`, `about`, `avatar`,`RegisterDate` FROM `user_details` WHERE `UserDetails_ID`=? ";
            connect=cd.check();
             PreparedStatement statement=connect.prepareStatement(query);
-            statement.setString(1, userID);
+            if (userID.equals(""))userID="-1";
+            statement.setInt(1, Integer.parseInt(userID));
             re=statement.executeQuery();
             if(re.next()){
                 user_bean user=new user_bean();
@@ -187,7 +188,7 @@ public class Users_model {
                 return user;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Users_model.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     
     return null;

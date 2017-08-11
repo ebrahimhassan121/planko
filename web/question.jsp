@@ -147,7 +147,7 @@
                                                 </div>
                                                 <% }%>
                                                 <div class="foot-info">
-                                                    <a href="#" class="info">
+                                                    <a href="<%="cat/"+question.getQuestionCategory()%>" class="info">
                                                         <i class="fa fa-align-center"></i>
                                                         <%=question.getQuestionCategory()%>
                                                     </a>

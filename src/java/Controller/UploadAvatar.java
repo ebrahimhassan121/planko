@@ -91,14 +91,16 @@ public class UploadAvatar extends HttpServlet {
             System.out.println(filePart.getContentType());
             inputStream = filePart.getInputStream();
             HttpSession session=request.getSession();
+            if(session.getAttribute("ID")==null){response.sendRedirect("Home.jsp");return;}
             String userID=(session.getAttribute("ID")!=null)?session.getAttribute("ID").toString():"";
-            System.out.println(userID);
             Users_model users_model=new Users_model();
             boolean updateCheck=users_model.updateAvatar(inputStream, userID);
             response.setContentType("text/plain");
             user_bean user=users_model.Select_userByID(userID);
+            
             if(updateCheck)session.setAttribute("avatar",user.getAvatar());
-            response.getWriter().write((updateCheck)?"success":"failed");
+            
+            response.getWriter().write("success");
         }
         }catch(Exception ex){
             ex.printStackTrace();

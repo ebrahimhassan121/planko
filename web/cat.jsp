@@ -16,7 +16,8 @@
                 response.sendRedirect("Home.jsp");
                 return;
             } else if (url.contains("/cat/")) {
-                URLCatName = url.split("/")[3].toLowerCase();
+                String getcat=url.split("/")[3].trim();
+                URLCatName =(getcat.equals(""))?URLCatName:getcat ;
                 
             }else{
                 response.sendRedirect("Home.jsp");

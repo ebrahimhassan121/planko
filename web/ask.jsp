@@ -8,10 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    Users_model users_model3=new Users_model();
-    String ID=(session.getAttribute("ID")!=null)?session.getAttribute("ID").toString():"-1";
-    System.out.println("className.methodName()\t"+ID);
-    user_bean user3=users_model3.Select_userByID(ID);
+    Users_model users_model3 = new Users_model();
+    String ID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "-1";
+    user_bean user3 = users_model3.Select_userByID(ID);
     if (user3 == null) {
         user3 = new user_bean();
         //   user.setName("زائر");
@@ -65,6 +64,7 @@
                     </div><!--End Form-group-->
                 </div><!--End modal-body-->
                 <div class="modal-footer">
+                    <input type="reset" hidden="true" id="reset" />
                     <button type="submit" class="custom-btn pull-right"> اسأل سؤال</button>
                     <button type="submit" class="custom-btn pull-left">تفاصيل اكثر</button>
                 </div>
@@ -74,8 +74,24 @@
                     e.preventDefault();
                      $.post('addQuestion', $('#questions-form').serialize()
                             , function (responseText) {
+                                $('#ask .close').click();
+                                $('#reset').click();
                                 if (responseText === "done") {
-                                    console.log(responseText);
+                                    $("#all_QuestionContent").prepend($('<div id="question0_3"></div>').hide());
+                                    $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
+                                    $('#question0_3').show();
+                                    //////////////////////////////////
+                                    $("#all_solved").prepend($('<div id="solved0_3"></div>').hide());
+                                    $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
+                                    $('#solved0_3').show();
+                                    /////////////////////////////
+                                    $("#not_solved").prepend($('<div id="not-solved0_3"></div>').hide());
+                                    $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
+                                    $('#not-solved0_3').show();
+                                    ///////////////////////////////////////////////////////
+                                    $("#translated-div").prepend($('<div id="translated0_3"></div>').hide());
+                                    $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
+                                    $('#translated0_3').show();
                                 } else if (responseText === "login_required") {
                                     $("#ask .close").click();
                                     $("#login-dialog-link").click();

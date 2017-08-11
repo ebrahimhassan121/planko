@@ -111,6 +111,39 @@ public class Comments_model {
         closeConnection();
         return arrRecent;
     }
+      public ArrayList SelectmyReplys(int from,int to,String UserID) {
+        ArrayList<HashMap> arrRecent = new ArrayList<>();
+
+        try {
+            query = "SELECT questions.questionID,questions.questionTitle,comments.CommenDate,comments.Comment FROM questions INNER JOIN comments ON comments.questionID=questions.questionID INNER JOIN user_details ON user_details.UserDetails_ID=comments.CommenterID WHERE user_details.UserDetails_ID=? ORDER BY comments.CommenDate DESC Limit ?,?";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, UserID);
+            statement.setInt(2, from);
+            statement.setInt(3, to);
+            rs = statement.executeQuery();
+            user_bean user=new user_bean();
+            while (rs.next()) {
+                beans.Comment comment=new Comment();
+                String comm= rs.getString("Comment");
+                if(comm.length()>150){
+                 comm=comm.subSequence(0, 200).toString()+ "...................................";
+                }
+                comment.setCommenDate(rs.getTimestamp("CommenDate"));
+                HashMap questionComment = new HashMap();
+                questionComment.put("id", rs.getString("questionID"));
+                questionComment.put("title", rs.getString("questionTitle"));
+                questionComment.put("date", comment.getDateInArabic());
+                questionComment.put("comment",comm);
+                arrRecent.add(questionComment);
+                
+            }
+            rs=null;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        closeConnection();
+        return arrRecent;
+    }
     private void closeConnection() {
         try {
 //            rs.close();
