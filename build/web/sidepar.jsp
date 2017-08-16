@@ -21,9 +21,9 @@
                     </h2>
                 </div><!--End Side-widget-title-->
                 <div class="side-widget-content">
-                    <form class="" action="" method="">
+                    <form class="" action="search.jsp" method="get">
                         <div class="form-group">
-                            <input class="form-control" type="text" placeholder="ابحث هنا">
+                            <input class="form-control" name="k" type="text" placeholder="ابحث هنا">
                             <button class="search-icon-btn" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>

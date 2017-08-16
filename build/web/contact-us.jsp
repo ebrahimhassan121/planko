@@ -13,12 +13,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="top-header">
-                <div class="container">
-                    <%@include file="Header_1.jsp" %>
-                </div><!--End Container-->
-            </div><!--End Top-Header-->
-            <%@include file="Header_2.jsp" %>
+             <div id="top-header" > <%@include file="top-header.jsp" %> </div>
           <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">

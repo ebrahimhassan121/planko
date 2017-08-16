@@ -14,17 +14,22 @@
         <div class="row">
             <div class="col-xs-4">
                 <ul class="social">
-                    <li>
-                        <a href="#" target="_blank" class="facebook">
+                          <li>
+                        
+                         
+                              <a href="<%=(session.getAttribute("facebook")!=null)?session.getAttribute("facebook").toString():"#"%>"<%if(session.getAttribute("facebook")!=null){%>target="_blank"<%}%> class="facebook" >
                             <i class="fa fa-facebook"></i>
-                        </a>
+                        </a>   
+                            
+                        
                     </li>
                     <li>
-                        <a href="#" target="_blank" class="twitter">
+                       <a href="<%=(session.getAttribute("twitter")!=null)?session.getAttribute("twitter").toString():"#"%>" <%if(session.getAttribute("twitter")!=null){%>target="_blank"<%}%> class="twitter" />
                             <i class="fa fa-twitter"></i>
                         </a>
+                        
                     </li>
-                    <li>
+                    <!--li>
                         <a href="#" target="_blank" class="linkedin">
                             <i class="fa fa-linkedin"></i>
                         </a>
@@ -38,18 +43,19 @@
                         <a href="#" target="_blank" class="youtube">
                             <i class="fa fa-youtube"></i>
                         </a>
-                    </li>
+                    </li-->
                 </ul>
             </div><!--End Col-sm-4-->
             <div class="col-xs-8">
                 <ul class="top-header-info">
                     <li>
                         <i class="fa fa-envelope"></i>
-                        <span>Mohamed.ata148@gmail.com</span>
+                      
+                        <span><%=(session.getAttribute("email")!=null)?session.getAttribute("email").toString():"user@example.com"%></span>
                     </li>
                     <li>
                         <i class="fa fa-phone"></i>
-                        <span>+002 01018241944</span>
+                        <span><%=(session.getAttribute("phone")!=null)?session.getAttribute("phone").toString():"xx xxx xxx xxx"%></span>
                     </li>
                 </ul>
             </div><!--End Col-sm-8-->

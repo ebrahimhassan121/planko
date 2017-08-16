@@ -17,12 +17,8 @@
         
         <!-- Basic page needs
 		===========================-->
-		<title>Planko</title>
-		<meta charset="utf-8">
-		<meta name="author" content="M.Ata">
-		<meta name="description" content="">
-		<meta name="keywords" content="">        
-        
+        <meta charset="utf-8">
+		        
         <!-- Mobile specific metas
 		===========================-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">        
@@ -70,7 +66,6 @@
         <script src="<%=path%>js/main.js"></script>
         <script src="<%=path%>/vendor/toastr-master/toastr.js"></script>
 
-        
         
         
     </body>

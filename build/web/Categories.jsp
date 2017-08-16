@@ -15,6 +15,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%@include file="init.jsp" %>
+        <style>
+            
+/*category follow */
+.cat_follow {
+    background: #00008B !Important;
+}
+
+        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -23,7 +31,7 @@
                     <%@include file="Header_1.jsp" %>
                 </div><!--End Container-->
             </div><!--End Top-Header-->
-            <%@include file="top-header.jsp" %>
+            <div id="top-header" <%@include file="top-header.jsp" %></div>
             <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">
@@ -56,16 +64,17 @@
                 <div class="page-content">
                     <div class="container">
                         <div class="row">
-                            <% 
-                                Categories_model categories_model=new Categories_model();
-                                ArrayList<Categories> array_categories=categories_model.Select_ALL_Categories();
-                                for(int i=0;i<array_categories.size();i++){
-                                  String categoryID=array_categories.get(i).getCategoriesID();
-                                  String categoryName=array_categories.get(i).getCategoryNam();
-                                  String categoryPhoto=array_categories.get(i).getPhoto();
-                                
-                             %>
-                               <div class="col-md-3">
+                            <%
+                                Categories_model categories_model = new Categories_model();
+                                ArrayList<Categories> array_categories = categories_model.Select_ALL_Categories();
+                                for (int i = 0; i < array_categories.size(); i++) {
+                                    String categoryID = array_categories.get(i).getCategoriesID();
+                                    String categoryName = array_categories.get(i).getCategoryNam();
+                                    String categoryPhoto = array_categories.get(i).getPhoto();
+                                    String userID=(session.getAttribute("ID")!=null)?session.getAttribute("ID").toString():"-1";
+                                    String classColor=(categories_model.CheckISFavCategories(userID,categoryID))?"cat_follow":"";
+                            %>
+                            <div class="col-md-3">
                                 <div class="widget-box">
                                     <div class="widget-img">
                                         <img src="<%=categoryPhoto%>" alt="<%=categoryName%>">
@@ -80,16 +89,16 @@
                                                     <i class="fa fa-link"></i>
                                                 </a>
                                             </li>
-                                            <!--li>
-                                                <a href="#" title="متابعة">
+                                            <li>
+                                                <a onclick="followCat(this,<%=categoryID%>)" class="<%=classColor%>" title="متابعة">
                                                     <i class="fa fa-feed"></i>
                                                 </a>
-                                            </li-->
+                                            </li>
                                         </ul>
                                     </div><!--End Widget-hover-->
                                 </div><!---End Widget-box-->
                             </div><!--END Col-md-3-->
-                            
+
                             <% }%>
 
 
@@ -98,6 +107,25 @@
                 </div><!--End page-content-->
                 <%@include file="Footer.jsp" %>
             </div><!--Role Main-->
-    </div><!--End Wrapper-->
-</body>
+        </div><!--End Wrapper-->
+    </body>
+    <script>
+        function followCat(e,category) {
+          $(e).toggleClass('cat_follow');
+            $.post('ADDFavCat',
+                    {
+                        cat: category
+                    }
+            , function (responseText) {
+                console.log(responseText);
+                if (responseText === "login_required") {
+                    $(e).removeClass('cat_follow');
+                    $("#login-dialog-link").click();
+                }
+                else if(responseText === "done"){
+                    
+                }
+            });
+        }
+    </script>
 </html>

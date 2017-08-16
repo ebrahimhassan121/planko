@@ -61,7 +61,7 @@ public class Questions_model {
                 ps.setString(2, question.getQuestion_text());
                 ps.setBlob(3, question.getImage_input());
                 ps.setInt(4, Integer.parseInt(question.getTranslated()));
-                ps.setString(5,question.getKeywords());
+                ps.setString(5, question.getKeywords());
                 insertionCheck = ps.executeUpdate();
                 closeConnection();
                 return (insertionCheck > 0);
@@ -72,7 +72,7 @@ public class Questions_model {
         }
         return false;
     }
-  
+
     public ArrayList selectQuestions(String ALL_Answerd_NotAnswerd_Answerd_translated, String from, String to) {
         try {
             switch (ALL_Answerd_NotAnswerd_Answerd_translated) {
@@ -124,8 +124,9 @@ public class Questions_model {
         closeConnection();
         return null;
     }
-/*SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where OwnerID=36 AND questions.questionID IN (SELECT favourite.favouriteQuestionID FROM favourite WHERE favourite.favouriteUserID=36) ORDER BY `questions`.`questionDate`*/
-    public ArrayList selectFavQuestions( String from, String to,String userID) {
+
+    /*SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where OwnerID=36 AND questions.questionID IN (SELECT favourite.favouriteQuestionID FROM favourite WHERE favourite.favouriteUserID=36) ORDER BY `questions`.`questionDate`*/
+    public ArrayList selectFavQuestions(String from, String to, String userID) {
         try {
             query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where  questions.questionID IN (SELECT favourite.favouriteQuestionID FROM favourite WHERE favourite.favouriteUserID=? AND favourite.Deleted=0) ORDER BY `questions`.`questionDate` DESC Limit ?,?";
             PreparedStatement statement = connect.prepareStatement(query);
@@ -161,10 +162,11 @@ public class Questions_model {
         closeConnection();
         return null;
     }
-     public ArrayList selectOwnerQuestions( String from, String to,String userID) {
+
+    public ArrayList selectOwnerQuestions(String from, String to, String userID) {
         try {
-            query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where  questions.OwnerID=? ORDER BY `questions`.`questionDate` DESC Limit ?,?"; 
-             PreparedStatement statement = connect.prepareStatement(query);
+            query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where  questions.OwnerID=? ORDER BY `questions`.`questionDate` DESC Limit ?,?";
+            PreparedStatement statement = connect.prepareStatement(query);
             statement.setString(1, userID);
             statement.setInt(2, Integer.parseInt(from));
             statement.setInt(3, Integer.parseInt(to));
@@ -197,7 +199,7 @@ public class Questions_model {
         closeConnection();
         return null;
     }
-  
+
     public question_bean selectQuestionsByID(String id) {
         try {
             query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID and deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory  WHERE questiondatails.questionID ='" + Integer.parseInt(id) + "'  ORDER BY `questions`.`questionDate` DESC";
@@ -240,7 +242,7 @@ public class Questions_model {
     public ArrayList SelectRecentQuestions(int from, int to) {
         ArrayList<HashMap> arrRecent = new ArrayList<>();
         try {
-            query = "SELECT comments.questionID ,COUNT(comments.questionID)c,questions.questionTitle,questions.questionDate,user_details.avatar FROM comments INNER JOIN questions ON questions.questionID=comments.questionID INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID GROUP BY questionID ORDER BY c DESC Limit "+from+","+to;
+            query = "SELECT comments.questionID ,COUNT(comments.questionID)c,questions.questionTitle,questions.questionDate,user_details.avatar FROM comments INNER JOIN questions ON questions.questionID=comments.questionID INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID GROUP BY questionID ORDER BY c DESC Limit " + from + "," + to;
             PreparedStatement statement = connect.prepareStatement(query);
             rs = statement.executeQuery();
             user_bean user = new user_bean();
@@ -255,11 +257,12 @@ public class Questions_model {
                     questionComment.put("avatar", avatar);
                 } else {
                     questionComment.put("avatar", "./assets/site/images/avatars/default-user-icon-profile.png");
-                } System.out.println("---------->");
-                question_bean q=new question_bean();
+                }
+                System.out.println("---------->");
+                question_bean q = new question_bean();
                 q.setQuestionDate(rs.getTimestamp("questionDate"));
-               
-                questionComment.put("date",q.getDateInArabic());
+
+                questionComment.put("date", q.getDateInArabic());
                 arrRecent.add(questionComment);
 
             }
@@ -270,8 +273,9 @@ public class Questions_model {
         closeConnection();
         return arrRecent;
     }
-    public ArrayList selectQuestionsBYCAT(String catName,String ALL_Answerd_NotAnswerd_Answerd_translated,String from, String to) {
-       try {
+
+    public ArrayList selectQuestionsBYCAT(String catName, String ALL_Answerd_NotAnswerd_Answerd_translated, String from, String to) {
+        try {
             switch (ALL_Answerd_NotAnswerd_Answerd_translated) {
                 case "ALL":
                     query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? ";
@@ -281,7 +285,7 @@ public class Questions_model {
                     break;
                 case "NotAnswerd":
                     // query = "SELECT * ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0 AND comments.questionID IN (SELECT questiondatails.questionID FROM questiondatails WHERE 1)) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory ORDER BY `questions`.`questionDate` DESC limit " + from + "," + to;
-                    query = "SELECT *,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(comments.questionID)commentscount FROM comments WHERE comments.questionID=questions.questionID)commentscount FROM questions INNER JOIN questiondatails ON questiondatails.questionID=questions.questionID AND questiondatails.translated=0 INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID NOT IN (SELECT comments.questionID FROM comments WHERE Deleted=0) and categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? " ;
+                    query = "SELECT *,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(comments.questionID)commentscount FROM comments WHERE comments.questionID=questions.questionID)commentscount FROM questions INNER JOIN questiondatails ON questiondatails.questionID=questions.questionID AND questiondatails.translated=0 INNER JOIN user_details ON user_details.UserDetails_ID=questions.OwnerID INNER JOIN categories ON categories.categoriesID=questions.questionCategory WHERE questions.questionID NOT IN (SELECT comments.questionID FROM comments WHERE Deleted=0) and categories.categoryName=? ORDER BY `questions`.`questionDate` DESC Limit ? , ? ";
                     break;
                 case "translated":
                     query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount , (SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 AND questiondatails.translated=1 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where categories.categoryName=? ORDER BY `questions`.`questionDate` DESC limit ?,?";
@@ -325,13 +329,17 @@ public class Questions_model {
         return null;
     }
 
-    public ArrayList SearchQuestions(String keyword) {
+    public ArrayList SearchQuestions(String keyword, String from, String to) {
         try {
-             query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where questions.questionTitle LIKE ? OR questiondatails.questionsText LIKE ? ORDER BY `questions`.`questionDate` DESC";
-             PreparedStatement statement = connect.prepareStatement(query);
-             statement.setString(1,("%"+keyword+"%") );
-             statement.setString(2,("%"+keyword+"%") );
-            rs = statement.executeQuery(query);
+            query = "SELECT *  ,(SELECT COUNT(*) FROM likes WHERE questions.questionID=likes.questionID AND likes.Deleted=0)as likescount ,(SELECT COUNT(*) FROM comments WHERE questions.questionID=comments.questionID and comments.deleted=0) AS commentscount FROM `questiondatails` JOIN `questions` ON questiondatails.questionID=questions.questionID AND questions.Deleted=0 INNER JOIN categories ON categories.categoriesID=questions.questionCategory where questiondatails.keywords LIKE ? OR questions.questionTitle LIKE ? OR questiondatails.questionsText LIKE ? ORDER BY `questions`.`questionDate` DESC Limit ? , ? ";
+            PreparedStatement statement = connect.prepareStatement(query);
+            keyword = keyword.replaceAll("\\+", " ");
+            statement.setString(1, ("%" + keyword + "%"));
+            statement.setString(2, ("%" + keyword + "%"));
+            statement.setString(3, ("%" + keyword + "%"));
+            statement.setInt(4, Integer.parseInt(from));
+            statement.setInt(5, Integer.parseInt(to));
+            rs = statement.executeQuery();
             ArrayList<question_bean> arrQuestion = new ArrayList<>();
             //`questionID`, `questionTitle`, `questionCategory`, `questionDate`,
             //`OwnerID`, `Deleted` `questionID`, `questionsText`, `questionImage`, `translated`
@@ -363,6 +371,23 @@ public class Questions_model {
         return null;
     }
 
+    public int[] statics() {
+        int[] statics = new int[3];
+        try {
+            query = "SELECT COUNT(questionID) questionsCount,(SELECT COUNT(questiondatails.translated) FROM questiondatails WHERE translated=1) translatedCount, (SELECT COUNT(comments.CommentID) FROM comments WHERE 1)commentsCount FROM questiondatails WHERE 1";
+            Statement statement = connect.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                statics[0] = rs.getInt("questionsCount");
+                statics[1] = rs.getInt("translatedCount");
+                statics[2] = rs.getInt("commentsCount");
+            }
+        } catch (Exception ex) {
+
+        }
+
+        return statics;
+    }
 
 //    public static void main(String[] args) {
 //        Questions_model q=new Questions_model();

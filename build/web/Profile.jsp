@@ -20,10 +20,6 @@
             boolean register_flag = false;
             user_bean user_bean = null;
             Model.Users_model users_model = new Users_model();
-            boolean toasterMessageFlag = false;
-            if (request.getAttribute("toasterMessage") != null) {
-                toasterMessageFlag = true;
-            }
             if (request.getAttribute("register") != null) {
                 user_bean users_register = (user_bean) request.getAttribute("register");
                 user_bean = users_model.select_user(users_register.getEmail(), users_register.getPassword());
@@ -46,14 +42,23 @@
                 return;
             }
         %>
+        <style>
+
+            /*category follow */
+            .cat_follow {
+                background: #00008B !Important;
+            }
+
+        </style>
         <script>
-            $(document).ready(function() {
-    
-                 var url = window.location.href;
-                 if (url.indexOf('?mq')!=-1){
-                     $('#my_link a').click();
-                 }
-});
+            $(document).ready(function () {
+
+                var url = window.location.href;
+                if (url.indexOf('?mq') != -1) {
+                    $('#my_link a').click();
+                }
+               
+            });
         </script>
     </head>
     <body>
@@ -154,13 +159,13 @@
                                                     </div><!--End Col-->
                                                     <div class="col-md-4">
                                                         <div class="form-group has-icon">
-                                                            <input class="form-control" type="text" placeholder="حساب فيسبوك" value="<%=user.getFacebook()%>" name="facebook">
+                                                            <input class="form-control" type="text" placeholder="رابط حساب فيسبوك" value="<%=user.getFacebook()%>" name="facebook">
                                                             <i class="fa fa-facebook"></i>
                                                         </div><!--End Form-group-->
                                                     </div><!--End Col-->
                                                     <div class="col-md-4">
                                                         <div class="form-group has-icon">
-                                                            <input class="form-control" type="text" placeholder="حساب تويتر" value="<%=user.getTwitter()%>" name="twitter">
+                                                            <input class="form-control" type="text" placeholder="رابط حساب تويتر" value="<%=user.getTwitter()%>" name="twitter">
                                                             <i class="fa fa-twitter"></i>
                                                         </div><!--End Form-group-->
                                                     </div><!--End Col-->
@@ -205,9 +210,10 @@
                                             </div>
                                         </div><!--End tabpanel-->
                                         <div role="tabpanel" class="tab-pane fade" id="my-categories">
+
                                             <%
                                                 Categories_model categories_model = new Categories_model();
-                                                ArrayList<Categories> array_categories = categories_model.Select_ALL_Categories();
+                                                ArrayList<Categories> array_categories = categories_model.Select_ALL_CategoriesByUserID(session.getAttribute("ID").toString());
                                                 for (int i = 0; i < array_categories.size(); i++) {
                                                     String categoryID = array_categories.get(i).getCategoriesID();
                                                     String categoryName = array_categories.get(i).getCategoryNam();
@@ -229,11 +235,11 @@
                                                                     <i class="fa fa-link"></i>
                                                                 </a>
                                                             </li>
-                                                            <!--li>
-                                                                <a href="#" title="متابعة">
+                                                            <li>
+                                                                <a onclick="followCat(this,<%=categoryID%>)" class="cat_follow" title="متابعة">
                                                                     <i class="fa fa-feed"></i>
                                                                 </a>
-                                                            </li-->
+                                                            </li>
                                                         </ul>
                                                     </div><!--End Widget-hover-->
                                                 </div><!---End Widget-box-->
@@ -295,11 +301,11 @@
                 $("#my_QuestionContent").append($('<div id="my0_3"></div>').hide());
                 $('#my0_3').load('my-question.jsp?selection=my&&f=0&&t=3');
                 $('#my0_3').show();
-                
+
                 $("#my_Answers").append($('<div id="myAnswers0_3"></div>').hide());
                 $('#myAnswers0_3').load('my-replys.jsp?f=0&&t=3');
                 $('#myAnswers0_3').show();
-                
+
             });
 
             var qf = 0;
@@ -334,10 +340,10 @@
                     $('#my' + mqf + '_' + mqt + '').show(500);
                 }
             }
-            var myAnsF=0;
-            var myAnsT=3;
-            function loadAnswers(e){
-                   myAnsF = myAnsF + 3;
+            var myAnsF = 0;
+            var myAnsT = 3;
+            function loadAnswers(e) {
+                myAnsF = myAnsF + 3;
                 // qt=qt+3;
                 var idQ = myAnsF + '_' + myAnsT;
                 var Url = 'my-replys.jsp?f=' + myAnsF + '&&t=' + myAnsT + '';
@@ -348,7 +354,7 @@
                     $('#myAns' + myAnsF + '_' + myAnsT + '').load(Url);
                     $('#myAns' + myAnsF + '_' + myAnsT + '').show(500);
                 }
-                
+
             }
 
 
@@ -401,6 +407,20 @@
 
 
             });
+            function followCat(e, category) {
+                $(e).toggleClass('cat_follow');
+                $.post('ADDFavCat',
+                        {
+                            cat: category
+                        }
+                , function (responseText) {
+                    console.log(responseText);
+                    if (responseText === "login_required") {
+                        $(e).removeClass('cat_follow');
+                        $("#login-dialog-link").click();
+                    }
+                });
+            }
 
         </script>
     </body>

@@ -12,13 +12,15 @@
         <%@include file="init.jsp" %>
     </head>
     <body>
-
+        <script>
+            $(document).ready(function () {
+                var url = window.location.href;
+                if (url.indexOf('?new-question')>-1) {
+                    $('#add-question-link').click();
+                }
+            });
+        </script>
         <div class="wrapper">
-            <div class="top-header">
-                <div class="container">
-                    <%@include file="Header_1.jsp" %>
-                </div><!--End Container-->
-            </div><!--End Top-Header-->
             <div id="top-header" >  <%@include file="top-header.jsp" %></div>
             <div class="main" role="main">
 
@@ -63,7 +65,7 @@
                                         <li role="presentation" id="all-link" class="active"><a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">أسئلة متنوعة</a></li>
                                         <li role="presentation" id="not-solved-link"><a href="#not-solved" aria-controls="not-solved" role="tab" data-toggle="tab">غير مجابة</a></li>
                                         <li role="presentation" id="translated-link"><a href="#translated-questions" aria-controls="solved-quetions" role="tab" data-toggle="tab">أسئلة مترجمة</a></li>
-                                        <li role="presentation" id=""><a href="#add-question" aria-controls="add-question" role="tab" data-toggle="tab">أضف سؤال</a></li>
+                                        <li role="presentation" ><a id="add-question-link" href="#add-question" aria-controls="add-question" role="tab" data-toggle="tab">أضف سؤال</a></li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">

@@ -5,11 +5,9 @@
  */
 package Controller;
 
-import Model.Users_model;
-import beans.user_bean;
+import Model.Categories_model;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author EHS
  */
-@WebServlet(name = "UpdateProfile", urlPatterns = {"/UpdateProfile"})
-public class UpdateProfile extends HttpServlet {
+@WebServlet(name = "ADDFavCat", urlPatterns = {"/ADDFavCat"})
+public class ADDFavCat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,8 +35,16 @@ public class UpdateProfile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("Home.jsp");
-            return;
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ADDFavCat</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ADDFavCat at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -54,7 +60,7 @@ public class UpdateProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("Home.jsp");
     }
 
     /**
@@ -68,45 +74,28 @@ public class UpdateProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+         response.setContentType("text/plain");
         try {
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session=request.getSession();
-        String name,email,phone,address,facebook,twitter,about;
-        name=request.getParameter("name");
-        email=request.getParameter("email").trim();
-        phone=request.getParameter("phone");
-        facebook=request.getParameter("facebook");
-        twitter=request.getParameter("twitter");
-        address=request.getParameter("address");
-        about=request.getParameter("about");
-        if(name==null || email==null || phone==null || facebook==null || twitter==null || address==null||about==null){
-            throw new Exception("paramater error");
-        }
-        user_bean user= new user_bean();
-        user.setPassword((String) session.getAttribute("password"));
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setName(name);
-        user.setFacebook(facebook);
-        user.setTwitter(twitter);
-        user.setAddress(address);user.setAbout(about);
-        Model.Users_model users_model=new Users_model();
-        if(users_model.update_user(user,session.getAttribute("email").toString())){
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("phone", phone);
-            session.setAttribute("facebook", facebook);
-            session.setAttribute("twitter", twitter);
-            
-            request.setAttribute("toasterMessage", "updateDone");
-            RequestDispatcher dispatcher=request.getRequestDispatcher("Profile.jsp");
-                 dispatcher.forward(request, response);
-                 
-       // response.sendRedirect("Profile.jsp");
-        return;
-        } 
-        } catch (Exception e) {
-            response.sendRedirect("profile");
+            String CatID = request.getParameter("cat").toString();
+            HttpSession session = request.getSession();
+            if(session.getAttribute("ID")==null){
+                response.getWriter().write("login_required");
+                return;
+            }
+            String UserID = session.getAttribute("ID").toString();
+            Model.Categories_model categories_model = new Categories_model();
+           if (categories_model.insertFavCategories(UserID, CatID)) {
+                String message = "done";
+                response.getWriter().write(message);
+                return;
+            } else {
+                String message = "error";
+                response.getWriter().write(message);
+                return;
+            }
+        } catch (Exception ex) {
+            response.sendRedirect("Home.jsp");
+
         }
     }
 

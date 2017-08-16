@@ -17,10 +17,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
-        <base href="/planko/" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="init.jsp" %>
+         <base href="/planko/" />
+         <%@include file="init.jsp" %>
         <%
             String url = request.getRequestURI();
             String URLquestionName = "";
@@ -39,13 +39,31 @@
                 owner = users_model.Select_userByID(question.getOwnerID());
                 Model.Comments_model comments_model = new Comments_model();
                 arrComments = comments_model.selectCommentsBYQuetionID(question.getQuestionID());
-            }else{
+            } else {
                 response.sendRedirect("Home.jsp");
                 return;
 
             }
             session.setAttribute("url", request.getRequestURL());
         %>
+        <meta charset="UTF-8" />
+        <meta name="fb:app_id" content="1007698446038457" />
+        <meta name="og:title" charset="UTF-8" content="<%=question.getQuestionTitle().toString()%>" />
+        <meta name="og:type"  content="article" />
+        <meta name="og:description" charset="UTF-8" content="<%=question.getQuestion_text()%>" />
+       
+        <title><%=question.getQuestionTitle()%></title>
+        <meta name="type" content="article"/>
+        <meta property="og:title"  content="<%=question.getQuestionTitle().toString()%>/" />
+        <meta property="fb:app_id" content="1007698446038457">
+        <meta property="og:type" charset="UTF-8" content="article" />
+        <meta property="og:description" content="<%=question.getQuestion_text()%>" />
+        <meta property="og:type"  content="article" />
+        <meta property="og:url" charset="UTF-8" content="<%=request.getRequestURL().toString()%>/" />
+        <meta property="og:title" charset="UTF-8" content="<%=question.getQuestionTitle().toString()%>" />
+        <meta property="og:description" charset="UTF-8" content="<%=question.getQuestion_text()%>" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
     </head>
     <body>
         <div class="wrapper">
@@ -147,7 +165,7 @@
                                                 </div>
                                                 <% }%>
                                                 <div class="foot-info">
-                                                    <a href="<%="cat/"+question.getQuestionCategory()%>" class="info">
+                                                    <a href="<%="cat/" + question.getQuestionCategory()%>" class="info">
                                                         <i class="fa fa-align-center"></i>
                                                         <%=question.getQuestionCategory()%>
                                                     </a>
@@ -173,18 +191,18 @@
                                                         </jsp:include>
                                                     </div>
                                                     <script>
-                    function addLIke<%=question.getQuestionID()%>() {
-                         $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
-                        }, function (responseText) {
-                            console.log(responseText);
-                            if (responseText === "fav-unfav") {
-                                console.log("ddd");
-                                $('#<%=question.getQuestionID()%>d').load("./like.jsp?QID=<%=question.getQuestionID()%>");
-                            } else if (responseText === "login_required") {
-                                $("#login-dialog-link").click();
-                            }
-                        });
-                    }
+                                                        function addLIke<%=question.getQuestionID()%>() {
+                                                             $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
+                                                            }, function (responseText) {
+                                                                console.log(responseText);
+                                                                if (responseText === "fav-unfav") {
+                                                                    console.log("ddd");
+                                                                    $('#<%=question.getQuestionID()%>d').load("./like.jsp?QID=<%=question.getQuestionID()%>");
+                                                                } else if (responseText === "login_required") {
+                                                                    $("#login-dialog-link").click();
+                                                                }
+                                                            });
+                                                        }
                                                     </script>
                                                 </div>
                                             </div>
@@ -233,8 +251,7 @@
                                                         <%
                                                             System.out.println(request.getRequestURL().toString());
                                                         %>
-                                                        <a href="http://www.facebook.com/share.php?u=<%=request.getRequestURL().toString()%>/&title==Planko
-                                                           " target="_blank" class="facebook" >
+                                                        <a href="http://www.facebook.com/share.php?u=<%=request.getRequestURL().toString()%>/" target="_blank" class="facebook" >
                                                             <i class="fa fa-facebook"></i>
                                                         </a>
                                                     </li>

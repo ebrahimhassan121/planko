@@ -11,6 +11,12 @@
 <!DOCTYPE html>
 <html>
     <%
+        String facebook=(!session.getAttribute("facebook").equals(""))?session.getAttribute("facebook").toString().trim().toString():"";    
+        String twitter=(!session.getAttribute("twitter").toString().trim().equals(""))?session.getAttribute("twitter").toString():"";    
+      
+        %>
+        
+    <%
         String userID = (session.getAttribute("ID").toString() != null) ? session.getAttribute("ID").toString() : "";
         Users_model u = new Users_model();
         user_bean userAcount = u.Select_userByID(userID);
@@ -50,16 +56,29 @@
                 </h3>
                 <ul class="social">
                     <li>
-                        <a href="#" target="_blank" class="facebook">
+                        <% 
+                            if(!facebook.equals("")){%>
+                         
+                        <a href="<%=facebook%>"target="_blank" class="facebook" >
                             <i class="fa fa-facebook"></i>
-                        </a>
+                        </a>   
+                            
+                        <%   
+                            }
+                        %>
                     </li>
                     <li>
-                        <a href="#" target="_blank" class="twitter">
+                        <% 
+                            if(!twitter.equals("")){%>
+                            
+                        <a href="<%=twitter%>" target="_blank" class="twitter" />
                             <i class="fa fa-twitter"></i>
                         </a>
+                        <%   
+                            }
+                        %>
                     </li>
-                    <li>
+                    <!--li>
                         <a href="#" target="_blank" class="linkedin">
                             <i class="fa fa-linkedin"></i>
                         </a>
@@ -73,7 +92,7 @@
                         <a href="#" target="_blank" class="youtube">
                             <i class="fa fa-youtube"></i>
                         </a>
-                    </li>
+                    </li--!>
                 </ul>
             </div><!--End card-content-->
         </div><!--End Card-->

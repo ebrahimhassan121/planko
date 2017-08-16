@@ -66,7 +66,7 @@
                 <div class="modal-footer">
                     <input type="reset" hidden="true" id="reset" />
                     <button type="submit" class="custom-btn pull-right"> اسأل سؤال</button>
-                    <button type="submit" class="custom-btn pull-left">تفاصيل اكثر</button>
+                    <a class="custom-btn pull-left" href="questions.jsp?new-question">تفاصيل اكثر</a>
                 </div>
             </form><!--End Form-->
             <script>

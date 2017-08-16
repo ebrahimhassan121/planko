@@ -25,8 +25,16 @@
     user_bean owner;
     Users_model users_model = new Users_model();
     String selection=(request.getParameter("selection")!=null)?request.getParameter("selection").toString():"";
-    ArrayList<question_bean> AllQuestion = questions_model.selectQuestions(selection,from,to);
-    for (int i = 0; i < AllQuestion.size(); i++) {
+   ArrayList<question_bean> AllQuestion = null;
+   
+    if(request.getParameter("k")!=null){
+     String keyword=request.getParameter("k").toString();
+    AllQuestion=questions_model.SearchQuestions(keyword,from,to);
+    }else {
+    AllQuestion=questions_model.selectQuestions(selection,from,to);
+    
+    }
+     for (int i = 0; i < AllQuestion.size(); i++) {
         owner = users_model.Select_userByID(AllQuestion.get(i).getOwnerID());
 
         
@@ -36,10 +44,12 @@
         <a class="question-name title title-md" href="question/<%=AllQuestion.get(i).getQuestionID()+"/"+AllQuestion.get(i).getQuestionTitle().replaceAll("\\s+","-")%>">
             <%=AllQuestion.get(i).getQuestionTitle()%>
         </a>
+        
         <a href="cat/<%=AllQuestion.get(i).getQuestionCategory()%>" class="category-question">
             <i class="fa fa-align-center"></i>
             <%=AllQuestion.get(i).getQuestionCategory()%>
         </a>
+        
         <div class="question-author">
             <div class="question-author-img">
                 <img src="<%=owner.getAvatar()%>">
@@ -51,6 +61,7 @@
                 <span class="time">
                     <%=AllQuestion.get(i).getDateInArabic()%>
                 </span>
+                
                 <span class="type ask">
                     <i class="fa fa-question"></i>
                     سؤال
@@ -62,6 +73,7 @@
             </div><!--End question-author-cont-->
         </div><!--End question-author-->
     </div><!--End question-head-->
+      
     <div class="question-content">
         <div>
             <p class="custom-p">
@@ -149,7 +161,7 @@
                                                     }
                                                 </script>
                                                 <%
-                                                    String QuestionURL="http://localhost:8080/planko/question/"+AllQuestion.get(i).getQuestionID()+"/"+AllQuestion.get(i).getQuestionTitle().replaceAll("\\s+", "-");
+                                                    String QuestionURL=request.getRequestURL().toString()+"/question/"+AllQuestion.get(i).getQuestionID()+"/"+AllQuestion.get(i).getQuestionTitle().replaceAll("\\s+", "-");
                                                 %>
                                                 <span class="icon-share" title="نسخ الرابط" onclick="copyStringToClipboard('<%=QuestionURL%>')">
                                                     <i class="fa fa-mail-reply"></i>
@@ -157,8 +169,7 @@
                                                 <ul class="social">
                                                     <li>
                                                         
-                                                        <a href="http://www.facebook.com/share.php?u=<%=QuestionURL%>/&title==Planko
-                                                           " target="_blank" class="facebook">
+                                                        <a href="http://www.facebook.com/share.php?u=<%=QuestionURL%>&title=<%=AllQuestion.get(i).getQuestionTitle()%>&&description==<%=AllQuestion.get(i).getQuestion_text()%>&&image==<%=AllQuestion.get(i).getQuestion_image()%>" target="_blank" class="facebook">
                                                             <i class="fa fa-facebook"></i>
                                                         </a>
                                                     </li>

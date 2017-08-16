@@ -90,6 +90,11 @@ public class Login extends HttpServlet {
                 session.setAttribute("password", password);
                 session.setAttribute("avatar", user.getAvatar());
                 session.setAttribute("ID", user.getUserID());
+                session.setAttribute("phone", user.getPhone());
+                session.setAttribute("facebook", user.getFacebook());
+                session.setAttribute("twitter", user.getTwitter());
+               
+               
                 //response.sendRedirect(session.getAttribute("url").toString());
                   response.getWriter().write("done");
                 return;

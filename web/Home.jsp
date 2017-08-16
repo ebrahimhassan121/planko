@@ -70,8 +70,9 @@
                                 </div><!--End tab-content-->
 
                             </div><!--End Col-md-6-->
-
+                            
                             <div class="col-md-3 col-md-pull-6">
+                                
                                 <div class="side-widget">
                                     <div class="side-widget-content">
                                         <!-- Nav tabs -->
@@ -83,6 +84,8 @@
                                         </ul>
                                     </div><!--End Side-widget-content-->
                                 </div><!--End Side-widget-->
+                                
+                                <%@include file="ads.jsp" %>
                                 <div class="side-widget">
                                     <div class="side-widget-title">
                                         <h2 class="title title-sm has-after">
@@ -91,19 +94,22 @@
                                     </div><!--End Side-widget-title-->
                                     <div class="side-widget-content">
                                         <div class="item-wrapper">
+                                            <%
+                                            int statics[]=new Model.Questions_model().statics();
+                                            %>
                                             <div class="item">
                                                 <i class="fa fa-pencil-square-o"></i>
-                                                <span class="num timer" data-to="235" data-speed="2500">0</span>
+                                                <span class="num timer" data-to="<%=statics[0]%>" data-speed="2500">0</span>
                                                 <p>مقالة</p>
                                             </div>
                                             <div class="item">
                                                 <i class="fa fa-question"></i>
-                                                <span class="num timer" data-to="216" data-speed="2500">0</span>
+                                                <span class="num timer" data-to="<%=statics[1]%>" data-speed="2500">0</span>
                                                 <p>سؤال</p>
                                             </div>
                                             <div class="item">
                                                 <i class="fa fa-comments"></i>
-                                                <span class="num timer" data-to="235" data-speed="2500">0</span>
+                                                <span class="num timer" data-to="<%=statics[2]%>" data-speed="2500">0</span>
                                                 <p>متابعة</p>
                                             </div>
                                         </div>
@@ -148,7 +154,6 @@
                                         </ul><!--End Side-social-->
                                     </div><!--End Side-widget-content-->
                                 </div><!--End Side-widget-->
-                                <%@include file="ads.jsp" %>
                             </div><!--End Col-md-3-->
                             <%@include file="sidepar.jsp" %>
                         </div><!--End Row-->

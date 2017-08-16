@@ -35,11 +35,6 @@
     <body>
 
         <div class="wrapper">
-            <div class="top-header">
-                <div class="container">
-                    <%@include file="Header_1.jsp" %>
-                </div><!--End Container-->
-            </div><!--End Top-Header-->
             <div id="top-header" >  <%@include file="top-header.jsp" %></div>
             <div class="main" role="main">
 
@@ -51,7 +46,7 @@
                         <div class="container">
                             <div class="page-title">
                                 <h3 class="title">
-                                    الأسئلة
+                                    الفئات
                                 </h3>
                             </div><!--End Page-Title-->
                             <div class="page-breadcrumb">
@@ -64,7 +59,7 @@
                                     </li>
                                     <li class="active">
                                         <i class="fa fa-question"></i>
-                                        الأسئلة
+                                        الفئات
                                     </li>
                                 </ol>
                             </div><!--End page-breadcrumb-->
