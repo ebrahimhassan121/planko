@@ -28,7 +28,7 @@
                         <div class="container">
                             <div class="page-title">
                                 <h3 class="title">
-                                    الأسئلة
+                                    بحث
                                 </h3>
                             </div><!--End Page-Title-->
                             <div class="page-breadcrumb">
@@ -41,7 +41,7 @@
                                     </li>
                                     <li class="active">
                                         <i class="fa fa-question"></i>
-                                        الأسئلة
+                                        بحث
                                     </li>
                                 </ol>
                             </div><!--End page-breadcrumb-->

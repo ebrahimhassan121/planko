@@ -129,8 +129,4 @@ $(document).ready(function () {
         midClick: true
     });
     $('[data-toggle="tooltip"]').tooltip();   
-    
-    
-      
-
 });
