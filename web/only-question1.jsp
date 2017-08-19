@@ -1,92 +1,70 @@
+<%-- 
+    Document   : oQ
+    Created on : Aug 16, 2017, 1:33:26 PM
+    Author     : EHS
+--%>
+
+<%-- 
+    Document   : search
+    Created on : Aug 15, 2017, 6:53:52 PM
+    Author     : EHS
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Basic page needs
-		===========================-->
-		<title>Planko</title>
-		<meta charset="utf-8">
-		<meta name="author" content="M.Ata">
-		<meta name="description" content="">
-		<meta name="keywords" content="">        
-                <base href="/planko/assests/site" />
-        <!-- Mobile specific metas
-		===========================-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">        
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <!-- Favicon
-		===========================-->
-		<link rel="shortcut icon" type="image/x-icon" href="">
-        
-        <!-- Google Web Fonts 
-		===========================-->        
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
-        
-
-        <!-- Css Base And Vendor 
-		===========================-->
-        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-arabic.css">
-        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="vendor/magnific-popup/css/magnific-popup.css">
-        <link rel="stylesheet" href="vendor/magnific-popup/css/custom.css">
-        <!-- Site Style
-		===========================-->
-        <link rel="stylesheet" href="css/style.css">
-         
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="init.jsp" %>
     </head>
     <body>
         <div class="wrapper">
             <div class="top-header">
-                   <div class="container">
-                       <div class="row">
-                           <div class="col-xs-4">
-                               <ul class="social">
-                                   <li>
-                                       <a href="#" target="_blank" class="facebook">
-                                           <i class="fa fa-facebook"></i>
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#" target="_blank" class="twitter">
-                                           <i class="fa fa-twitter"></i>
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#" target="_blank" class="linkedin">
-                                           <i class="fa fa-linkedin"></i>
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#" target="_blank" class="google-plus">
-                                           <i class="fa fa-google-plus"></i>
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a href="#" target="_blank" class="youtube">
-                                           <i class="fa fa-youtube"></i>
-                                       </a>
-                                   </li>
-                               </ul>
-                           </div><!--End Col-sm-4-->
-                           <div class="col-xs-8">
-                               <ul class="top-header-info">
-                                  <li>
-                                      <i class="fa fa-envelope"></i>
-                                       <span>Mohamed.ata148@gmail.com</span>
-                                   </li>
-                                   <li>
-                                     <i class="fa fa-phone"></i>
-                                      <span>+002 01018241944</span>
-                                   </li>
-                               </ul>
-                           </div><!--End Col-sm-8-->
-                       </div><!--End Row-->
-                   </div><!--End Container-->
-               </div><!--End Top-Header-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <ul class="social">
+                                <li>
+                                    <a href="#" target="_blank" class="facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="twitter">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="linkedin">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="google-plus">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="youtube">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--End Col-sm-4-->
+                        <div class="col-xs-8">
+                            <ul class="top-header-info">
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <span>Mohamed.ata148@gmail.com</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <span>+002 01018241944</span>
+                                </li>
+                            </ul>
+                        </div><!--End Col-sm-8-->
+                    </div><!--End Row-->
+                </div><!--End Container-->
+            </div><!--End Top-Header-->
             <header class="header">
                 <div class="container">
                     <a href="index.html" class="logo">
@@ -101,19 +79,19 @@
                     <div class="header-icons">
                         <div class="dropdown">
                             <a href="my-account.html" class="my-account dropdwon">
-                               <img src="images/avatars/team1.jpg" alt="profile">                                
+                                <img src="images/avatars/team1.jpg" alt="profile">                                
                             </a><!--End my-account-->
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"> التسجيل</a>
+                                    <a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"> ???????</a>
                                 </li>
                                 <li>
-                                    <a href="#">تسجيل الخروج</a>
+                                    <a href="#">????? ??????</a>
                                 </li>
                             </ul>
                         </div><!--End Dropdown-->
                         <a href="my-account.html" class="saved-head">
-                            <div class="saved-icon" title="المحفوظات">
+                            <div class="saved-icon" title="?????????">
                                 <i class="fa fa-suitcase"></i>
                                 <span>5</span>
                             </div><!--End cart-icon-->        
@@ -127,25 +105,25 @@
                                 <li>
                                     <a href="index.html">
                                         <i class="fa fa-home"></i>
-                                        الرئيسية
+                                        ????????
                                     </a>
                                 </li>
                                 <li class="active">
                                     <a href="questions.html">
                                         <i class="fa fa-question"></i>
-                                        أسئلة
+                                        ?????
                                     </a>
                                 </li>
                                 <li>
                                     <a href="Categories.html">
                                         <i class="fa fa-list"></i>
-                                        الفئات
+                                        ??????
                                     </a>
                                 </li>
                                 <li>
                                     <a href="contact-us.html">
                                         <i class="fa fa-envelope-o"></i>
-                                        اتصل بنا
+                                        ???? ???
                                     </a>
                                 </li>
                             </ul>
@@ -153,97 +131,97 @@
                     </div><!--End container-->
                 </div><!--End Navbar-collapse-->
             </header><!--End Header-->
-            
+
             <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
                 <form class="dialog-form">
                     <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                        <input class="form-control" placeholder="?????? ??????????" type="email">
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control"  placeholder="كلمة السر" type="password">
+                        <input class="form-control"  placeholder="???? ????" type="password">
                     </div><!--End form-group-->
                     <a class="popup-text forget" href="#password-recover-dialog" data-effect="mfp-zoom-out">
-                        نسيت كلمة السر؟
+                        ???? ???? ?????
                     </a>
-                    <button type="submit" class="custom-btn">تسجيل دخول</button>
+                    <button type="submit" class="custom-btn">????? ????</button>
                 </form><!--End dialog-form-->
                 <div class="dont-have">
-                    ليس لديك حساب..
-                    <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">سجل الأن</a>
+                    ??? ???? ????..
+                    <a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">??? ????</a>
                 </div>           
             </div><!--End login-dialog-->
             <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
                 <form class="dialog-form">
                     <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                        <input class="form-control" placeholder="?????? ??????????" type="email">
                     </div><!--End form-group-->
-                    <button type="submit" class="custom-btn">إسترجاع كلمة المرور</button>
+                    <button type="submit" class="custom-btn">??????? ???? ??????</button>
                 </form><!--End dialog-form-->
             </div><!--End login-dialog-->
             <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog dialog-box">
                 <form class="dialog-form">
                     <div class="form-group text-center">
                         <a href="" class="login-with-fb">
-                           <i class="fa fa-facebook"></i>
-                            التسجيل من خلال فيسبوك
+                            <i class="fa fa-facebook"></i>
+                            ??????? ?? ???? ??????
                         </a>
-                        <span class="or">أو </span>
+                        <span class="or">?? </span>
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control" placeholder="الأسم الأول" type="text">
+                        <input class="form-control" placeholder="????? ?????" type="text">
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control" placeholder="الأسم الأخير" type="text">
+                        <input class="form-control" placeholder="????? ??????" type="text">
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control" placeholder="البريد الالكترونى" type="email">
+                        <input class="form-control" placeholder="?????? ??????????" type="email">
                     </div><!--End form-group-->
                     <div class="form-group">
-                        <input class="form-control"  placeholder="كلمة السر" type="password">
+                        <input class="form-control"  placeholder="???? ????" type="password">
                     </div><!--End form-group-->
                     <div class="notes">
-                    من خلال الضغط على زر تسحيل . فانك توافق على 
-                        <a href="">قواعد موقعنا</a> و 
-                        <a href="">الشروط والأحكام</a>
+                        ?? ???? ????? ??? ?? ????? . ???? ????? ??? 
+                        <a href="">????? ??????</a> ? 
+                        <a href="">?????? ????????</a>
                     </div>
-                    <button type="submit" class="custom-btn">تسجيل </button>
+                    <button type="submit" class="custom-btn">????? </button>
                 </form><!--End dialog-form-->
                 <div class="dont-have">
-                    لديك حساب بالفعل ..
-                    <a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">إدخل الأن</a>
+                    ???? ???? ?????? ..
+                    <a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">???? ????</a>
                 </div>           
             </div><!--End login-dialog-->
-            
+
             <div class="main" role="main">
                 <div class="page-head">
                     <div class="page-head-img">
-                       <img src="images/blog/blog-page-head-1.jpg" alt="...">
+                        <img src="images/blog/blog-page-head-1.jpg" alt="...">
                     </div>
                     <div class="overlay">
                         <div class="container">
                             <div class="page-title">
                                 <h3 class="title">
-                                    الأسئلة
+                                    ???????
                                 </h3>
                             </div><!--End Page-Title-->
                             <div class="page-breadcrumb">
                                 <ol class="breadcrumb">
-                                  <li>
-                                      <a href="index.html">
-                                        <i class="fa fa-home"></i>
-                                          الرئيسية
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="Blogs.html">
-                                        <i class="fa fa-pencil-square-o"></i>
-                                            الأسئلة
-                                      </a>
-                                  </li>
-                                  <li class="active">
-                                      <i class="fa "></i>
-                                          اسم السؤال
-                                  </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <i class="fa fa-home"></i>
+                                            ????????
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="Blogs.html">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            ???????
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <i class="fa "></i>
+                                        ??? ??????
+                                    </li>
                                 </ol>
                             </div><!--End page-breadcrumb-->
                         </div><!--End Container-->
@@ -252,12 +230,12 @@
                 <div class="page-content">
                     <div class="container">
                         <div class="row">
-                           <div class="col-md-9">
+                            <div class="col-md-9">
                                 <div class="center-colume-lg-right">
                                     <div class="question only-question">
                                         <div class="question-head">
                                             <a class="question-name title title-md" href="only-question.html">
-                                                كيف هى الحياة بدون الإنترنت؟
+                                                ??? ?? ?????? ???? ?????????
                                             </a>
                                             <div class="question-author">
                                                 <div class="question-author-img">
@@ -265,35 +243,35 @@
                                                 </div>
                                                 <div class="question-author-cont">
                                                     <h4 class="author-name">
-                                                         محمود اسماعيل
+                                                        ????? ???????
                                                     </h4>
                                                     <span class="time">
-                                                        مند 5 ساعات
+                                                        ??? 5 ?????
                                                     </span>
                                                     <span class="type ask">
                                                         <i class="fa fa-question"></i>
-                                                         سؤال
+                                                        ????
                                                     </span>
                                                     <span class="type survay">
                                                         <i class="fa fa-bar-chart"></i>
-                                                        استطلاع رأى
+                                                        ??????? ???
                                                     </span>
                                                 </div><!--End question-author-cont-->
                                             </div><!--End question-author-->
-                                            <div class="admin-action" data-toggle="tooltip" data-placement="right" title=" تعديل أو مسح السؤال">
+                                            <div class="admin-action" data-toggle="tooltip" data-placement="right" title=" ????? ?? ??? ??????">
                                                 <div class="dropdown">
                                                     <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                         <i class="fa fa-ellipsis-h"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                         <li><a href="#">
-                                                            <i class="fa fa-edit"></i>
-                                                            تعديل
-                                                        </a></li>
+                                                                <i class="fa fa-edit"></i>
+                                                                تعديل
+                                                            </a></li>
                                                         <li><a href="#">
-                                                            <i class="fa fa-trash"></i>
-                                                            مسح
-                                                        </a></li>
+                                                                <i class="fa fa-trash"></i>
+                                                                مسح
+                                                            </a></li>
                                                     </ul>
                                                 </div>
                                             </div><!--End Admin-Action-->
@@ -301,30 +279,30 @@
                                         <div class="question-content">
                                             <div>
                                                 <p class="custom-p">
-                                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
-                                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
+                                                    ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
+                                                    ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
                                                 </p>
                                                 <img src="images/ideas/idea.jpg">
                                             </div>
                                             <div>
-                                               <div class="foot-info wait">
+                                                <div class="foot-info wait">
                                                     <i class="fa fa-clock-o"></i>
-                                                        بإنتظار الحل
+                                                    ??????? ????
                                                 </div>
                                                 <div class="foot-info solved">
                                                     <i class="fa fa-check"></i>
-                                                        تم الحل
+                                                    ?? ????
                                                 </div>
                                                 <div class="foot-info">
                                                     <a href="#" class="info">
                                                         <i class="fa fa-align-center"></i>
-                                                        الأمن المعلوماتى
+                                                        ????? ??????????
                                                     </a>
                                                 </div>
                                                 <div class="foot-info">
                                                     <span class="info">
                                                         <i class="fa fa-comments"></i>
-                                                        15 تعليق
+                                                        15 ?????
                                                     </span>
                                                 </div>
                                                 <div class="foot-info">
@@ -337,40 +315,40 @@
                                         </div><!--End question-Content-->
                                         <div class="question-foot">
                                             <a class="custom-btn pull-right" href="only-question.html">
-                                                أكمل القراءة
+                                                ???? ???????
                                             </a>
                                             <div class="share-box">
-                                                <span class="btn-wishlist" title="إضافة اللى المفضلة">
-                                                   <i class="fa fa-heart"></i>
+                                                <span class="btn-wishlist" title="????? ???? ???????">
+                                                    <i class="fa fa-heart"></i>
                                                 </span>
-                                                <span class="icon-share" title="مشاركة">
+                                                <span class="icon-share" title="??????">
                                                     <i class="fa fa-mail-reply"></i>
                                                 </span>
                                                 <ul class="social">
                                                     <li>
                                                         <a href="#" target="_blank" class="facebook">
-                                                           <i class="fa fa-facebook"></i>
+                                                            <i class="fa fa-facebook"></i>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#" target="_blank" class="twitter">
-                                                           <i class="fa fa-twitter"></i>
+                                                            <i class="fa fa-twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#" target="_blank" class="linkedin">
-                                                           <i class="fa fa-linkedin"></i>
+                                                            <i class="fa fa-linkedin"></i>
                                                         </a>
                                                     </li>
-                                               </ul>
+                                                </ul>
                                             </div><!--End question-share-->
                                         </div><!--End question-foot-->
                                     </div><!--End question-->
                                     <div class="commentes">
                                         <div class="comments-title">
-                                           <h2 class="title title-md has-after">
-                                                عن الكاتب
-                                           </h2>
+                                            <h2 class="title title-md has-after">
+                                                ?? ??????
+                                            </h2>
                                         </div>
                                         <div class="comment-box author">
                                             <div class="comment-img">
@@ -380,30 +358,30 @@
                                                 <div class="content-info">
                                                     <div class="content-title">
                                                         <a href="#" >
-                                                             محمود اسماعيل
+                                                            ????? ???????
                                                         </a>
                                                     </div>
                                                     <div class="content-time">
                                                         <span>
-                                                            18 مايو 2017
+                                                            18 ???? 2017
                                                         </span>
                                                         <span>
-                                                            فى 11:16 مساءا
+                                                            ?? 11:16 ?????
                                                         </span>
                                                     </div>
                                                 </div><!--End Content-info-->
                                                 <div class="content-body">
                                                     <p>
-                                                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
+                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
                                                     </p>
                                                 </div><!--End Contwnt-body-->
                                             </div><!--End Comment--content-->
                                         </div><!--End Comment-box-->
-                                       <div class="comments-title">
-                                           <h2 class="title title-md has-after">
-                                               الإجابات (5)
-                                           </h2>
-                                       </div>
+                                        <div class="comments-title">
+                                            <h2 class="title title-md has-after">
+                                                ???????? (5)
+                                            </h2>
+                                        </div>
                                         <div class="comment-box">
                                             <div class="comment-img">
                                                 <img src="images/avatars/team1.jpg" alt="...">
@@ -412,42 +390,119 @@
                                                 <div class="content-info">
                                                     <div class="content-title">
                                                         <a href="#" >
-                                                             محمود اسماعيل
+                                                            ????? ???????
                                                         </a>
                                                     </div>
                                                     <div class="content-time">
                                                         <span>
-                                                            18 مايو 2017
+                                                            18 ???? 2017
                                                         </span>
                                                         <span>
-                                                            فى 11:16 مساءا
+                                                            ?? 11:16 ?????
                                                         </span>
                                                     </div>
-                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="تعديل أو مسح">
+                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
                                                         <div class="dropdown">
                                                             <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                 <i class="fa fa-ellipsis-h"></i>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                <li><a href="#">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    تعديل
-                                                                </a></li>
-                                                                <li><a href="#">
-                                                                    <i class="fa fa-trash"></i>
-                                                                    مسح
-                                                                </a></li>
+                                                                <li><a href="#edit" onclick="$('#edit').modal('show');">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        ?????
+                                                                    </a>
+
+                                                                
+                                                                </li>
+                                                                <li><a href="#delete" onclick="$('#delete').modal('show');">
+                                                                        <i class="fa fa-trash"></i>
+                                                                        ???
+                                                                    </a></li>
                                                             </ul>
                                                         </div>
+                                                            <div class="modal fade ask" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <form class="form" method="post" action="addQuestion" id="questions-form">
+                                                                                    <div class="modal-body">
+                                                                                        <div class="account">
+                                                                                            <div class="account-name">
+                                                                                                
+                                                                                                <a href="my-account.html">
+                                                                                                   <h3 class="center-block">??? ?? ?????? ???? ?????????</h3>
+                                                                                           
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                        </div>
+                                                                                       <div class="form-group">
+                                                                                            <textarea class="form-control" name="details_text" placeholder="???????? (???????)"></textarea>
+                                                                                        </div><!--End Form-group-->
+                                                                                    </div><!--End modal-body-->
+                                                                                    <div class="modal-footer">
+                                                                                        <input type="reset" hidden="true" id="reset" />
+                                                                                        <a class="custom-btn pull-right" href="questions.jsp?new-question">?????</a>
+                                                                                    </div>
+                                                                                </form><!--End Form-->
+                                                                                <script>
+                                                                                    $('#questions-form').submit(function (e) {
+                                                                                        e.preventDefault();
+                                                                                        �$.post('addQuestion', $('#questions-form').serialize()
+                                                                                                , function (responseText) {
+                                                                                                    $('#ask .close').click();
+                                                                                                    $('#reset').click();
+                                                                                                    if (responseText === "done") {
+                                                                                                        $("#all_QuestionContent").prepend($('<div id="question0_3"></div>').hide());
+                                                                                                        $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
+                                                                                                        $('#question0_3').show();
+                                                                                                        //////////////////////////////////
+                                                                                                        $("#all_solved").prepend($('<div id="solved0_3"></div>').hide());
+                                                                                                        $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
+                                                                                                        $('#solved0_3').show();
+                                                                                                        /////////////////////////////
+                                                                                                        $("#not_solved").prepend($('<div id="not-solved0_3"></div>').hide());
+                                                                                                        $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
+                                                                                                        $('#not-solved0_3').show();
+                                                                                                        ///////////////////////////////////////////////////////
+                                                                                                        $("#translated-div").prepend($('<div id="translated0_3"></div>').hide());
+                                                                                                        $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
+                                                                                                        $('#translated0_3').show();
+                                                                                                    } else if (responseText === "login_required") {
+                                                                                                        $("#ask .close").click();
+                                                                                                        $("#login-dialog-link").click();
+                                                                                                    }
+                                                                                                },
+                                                                                                );
+                                                                                    });
+                                                                                </script>
+                                                                            </div><!-- /.modal-content -->
+                                                                        </div><!-- /.modal-dialog -->
+                                                                    </div><!-- /.modal -->
+                                                         <div class="modal fade ask" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete">
+                                                                        <div class="modal-dialog" role="document">
+                                                                       <div class="modal-content">
+            <div class="modal-header">
+                ??? ?????
+            </div>
+            <div class="modal-body">
+                ??? ??????  ??? ??? ?? ????? ?????? ???? ??? ????
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">?????</button>
+                <a class="btn btn-danger btn-ok">???</a>
+            </div>
+        </div>
+                                                                    </div><!-- /.modal -->
+
                                                     </div><!--End Comment-action-->
                                                     <div class="replay" data-toggle="collapse" data-target="#replay-box" aria-expanded="false" aria-controls="collapseExample">
-                                                       رد
+                                                        ??
                                                         <i class="fa fa-mail-reply"></i>
                                                     </div><!--End replay-->
                                                 </div><!--End Content-info-->
                                                 <div class="content-body">
                                                     <p>
-                                                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
+                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
                                                     </p>
                                                 </div><!--End Contwnt-body-->
                                             </div><!--End Comment--content-->
@@ -461,25 +516,25 @@
                                                     <div class="content-info">
                                                         <div class="content-title">
                                                             <a href="#" >
-                                                                 محمود اسماعيل
+                                                                ????? ???????
                                                             </a>
                                                         </div>
                                                         <div class="content-time">
                                                             <span>
-                                                                18 مايو 2017
+                                                                18 ???? 2017
                                                             </span>
                                                             <span>
-                                                                فى 11:16 مساءا
+                                                                ?? 11:16 ?????
                                                             </span>
                                                         </div>
                                                     </div><!--End Content-info-->
                                                     <div class="content-body">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" placeholder="أضف رد" rows="2"></textarea>
+                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                           <button type="submit" class="custom-btn btn-submit">
-                                                                ارسال
+                                                            <button type="submit" class="custom-btn btn-submit">
+                                                                ?????
                                                             </button>
                                                         </div>
                                                     </div><!--End Contwnt-body-->
@@ -494,42 +549,42 @@
                                                 <div class="content-info">
                                                     <div class="content-title">
                                                         <a href="#" >
-                                                             محمود اسماعيل
+                                                            ????? ???????
                                                         </a>
                                                     </div>
                                                     <div class="content-time">
                                                         <span>
-                                                            18 مايو 2017
+                                                            18 ???? 2017
                                                         </span>
                                                         <span>
-                                                            فى 11:16 مساءا
+                                                            ?? 11:16 ?????
                                                         </span>
                                                     </div>
-                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="تعديل أو مسح">
+                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
                                                         <div class="dropdown">
                                                             <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                 <i class="fa fa-ellipsis-h"></i>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                                 <li><a href="#">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    تعديل
-                                                                </a></li>
+                                                                        <i class="fa fa-edit"></i>
+                                                                        ?????
+                                                                    </a></li>
                                                                 <li><a href="#">
-                                                                    <i class="fa fa-trash"></i>
-                                                                    مسح
-                                                                </a></li>
+                                                                        <i class="fa fa-trash"></i>
+                                                                        ???
+                                                                    </a></li>
                                                             </ul>
                                                         </div>
                                                     </div><!--End Comment-action-->
                                                     <div class="replay" data-toggle="collapse" data-target="#replay-box-2" aria-expanded="false" aria-controls="collapseExample">
-                                                       رد
+                                                        ??
                                                         <i class="fa fa-mail-reply"></i>
                                                     </div><!--End replay-->
                                                 </div><!--End Content-info-->
                                                 <div class="content-body">
                                                     <p>
-                                                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
+                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
                                                     </p>
                                                 </div><!--End Contwnt-body-->
                                             </div><!--End Comment--content-->
@@ -543,25 +598,25 @@
                                                     <div class="content-info">
                                                         <div class="content-title">
                                                             <a href="#" >
-                                                                 محمود اسماعيل
+                                                                ????? ???????
                                                             </a>
                                                         </div>
                                                         <div class="content-time">
                                                             <span>
-                                                                18 مايو 2017
+                                                                18 ???? 2017
                                                             </span>
                                                             <span>
-                                                                فى 11:16 مساءا
+                                                                ?? 11:16 ?????
                                                             </span>
                                                         </div>
                                                     </div><!--End Content-info-->
                                                     <div class="content-body">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" placeholder="أضف رد" rows="2"></textarea>
+                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                           <button type="submit" class="custom-btn btn-submit">
-                                                                ارسال
+                                                            <button type="submit" class="custom-btn btn-submit">
+                                                                ?????
                                                             </button>
                                                         </div>
                                                     </div><!--End Contwnt-body-->
@@ -576,42 +631,42 @@
                                                 <div class="content-info">
                                                     <div class="content-title">
                                                         <a href="#" >
-                                                             محمود اسماعيل
+                                                            ????? ???????
                                                         </a>
                                                     </div>
                                                     <div class="content-time">
                                                         <span>
-                                                            18 مايو 2017
+                                                            18 ???? 2017
                                                         </span>
                                                         <span>
-                                                            فى 11:16 مساءا
+                                                            ?? 11:16 ?????
                                                         </span>
                                                     </div>
-                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="تعديل أو مسح">
+                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
                                                         <div class="dropdown" >
                                                             <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                                 <i class="fa fa-ellipsis-h"></i>
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                                 <li><a href="#">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    تعديل
-                                                                </a></li>
+                                                                        <i class="fa fa-edit"></i>
+                                                                        ?????
+                                                                    </a></li>
                                                                 <li><a href="#">
-                                                                    <i class="fa fa-trash"></i>
-                                                                    مسح
-                                                                </a></li>
+                                                                        <i class="fa fa-trash"></i>
+                                                                        ???
+                                                                    </a></li>
                                                             </ul>
                                                         </div>
                                                     </div><!--End Comment-action-->
                                                     <div class="replay" data-toggle="collapse" data-target="#replay-box-3" aria-expanded="false" aria-controls="collapseExample">
-                                                       رد
+                                                        ??
                                                         <i class="fa fa-mail-reply"></i>
                                                     </div><!--End replay-->
                                                 </div><!--End Content-info-->
                                                 <div class="content-body">
                                                     <p>
-                                                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.ولذلك يتم استخدام طريقة لوريم إيبسوم .
+                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
                                                     </p>
                                                 </div><!--End Contwnt-body-->
                                             </div><!--End Comment--content-->
@@ -625,25 +680,25 @@
                                                     <div class="content-info">
                                                         <div class="content-title">
                                                             <a href="#" >
-                                                                 محمود اسماعيل
+                                                                ????? ???????
                                                             </a>
                                                         </div>
                                                         <div class="content-time">
                                                             <span>
-                                                                18 مايو 2017
+                                                                18 ???? 2017
                                                             </span>
                                                             <span>
-                                                                فى 11:16 مساءا
+                                                                ?? 11:16 ?????
                                                             </span>
                                                         </div>
                                                     </div><!--End Content-info-->
                                                     <div class="content-body">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" placeholder="أضف رد" rows="2"></textarea>
+                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                           <button type="submit" class="custom-btn btn-submit">
-                                                                ارسال
+                                                            <button type="submit" class="custom-btn btn-submit">
+                                                                ?????
                                                             </button>
                                                         </div>
                                                     </div><!--End Contwnt-body-->
@@ -651,20 +706,20 @@
                                             </div><!--End Comment-box-->
                                         </div><!--End Collapse-->                      
                                         <div class="comments-title">
-                                           <h2 class="title title-md has-after">
-                                                أضف حل
-                                           </h2>
-                                       </div>
+                                            <h2 class="title title-md has-after">
+                                                ??? ??
+                                            </h2>
+                                        </div>
                                         <div class="comments-form">
                                             <form class="form" action="" method="">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" placeholder="أكتب اجابة هنا" rows="7"></textarea>
+                                                            <textarea class="form-control" placeholder="???? ????? ???" rows="7"></textarea>
                                                         </div><!--End Form-group-->
                                                         <div class="form-group">
                                                             <button type="submit" class="custom-btn btn-submit">
-                                                                ارسال
+                                                                ?????
                                                             </button>
                                                         </div><!--End Form-group-->
                                                     </div>
@@ -672,9 +727,9 @@
                                             </form><!--End Form-->
                                         </div><!--End Comments-form-->
                                     </div><!--End Comments-->
-                                    
-                                    
-                                    
+
+
+
                                 </div><!--End Center-colume-->
                             </div><!--End Col-md-6-->
                             <div class="col-md-3">
@@ -682,13 +737,13 @@
                                     <div class="side-widget">
                                         <div class="side-widget-title">
                                             <h2 class="title title-sm has-after">
-                                                البحث
+                                                ?????
                                             </h2>
                                         </div><!--End Side-widget-title-->
                                         <div class="side-widget-content">
                                             <form class="" action="" method="">
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="ابحث هنا">
+                                                    <input class="form-control" type="text" placeholder="???? ???">
                                                     <button class="search-icon-btn" type="submit">
                                                         <i class="fa fa-search"></i>
                                                     </button>
@@ -696,40 +751,40 @@
                                             </form><!--End Form-->
                                         </div><!--End Side-widget-content-->
                                     </div><!--End Side-widget-->
-                                    
+
                                     <div class="side-widget">
                                         <div class="side-widget-title">
                                             <h2 class="title title-sm has-after">
-                                                الفئات
+                                                ??????
                                             </h2>
                                         </div><!--End Side-widget-title-->
                                         <div class="side-widget-content">
                                             <ul class="side-widget-list">
                                                 <li>
-                                                    <a href="#">رياضة</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">فن</a>
+                                                    <a href="#">??</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">تصميم</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">موضة</a>
+                                                    <a href="#">????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">سياسة</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                             </ul><!--End Side-widget-list-->
                                             <a class="custom-btn pull-right" href="Categories.html">
-                                                كل الفئات
+                                                ?? ??????
                                             </a>
                                         </div><!--End Side-widget-content-->
                                     </div><!--End Side-widget-->
                                     <div class="side-widget">
                                         <div class="side-widget-title">
                                             <h2 class="title title-sm has-after">
-                                                مقالات شائعة
+                                                ?????? ?????
                                             </h2>
                                         </div><!--End Side-Widget-Title-->
                                         <div class="side-widget-content">
@@ -740,8 +795,8 @@
                                                             <img src="images/blog/article-1.jpg">
                                                         </div>
                                                         <div class="side-article-desc">
-                                                            <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                                            <span class="date">30 يناير 2015</span>
+                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                            <span class="date">30 ????? 2015</span>
                                                         </div>
                                                     </div><!--End Side-article-->
                                                 </li>
@@ -751,8 +806,8 @@
                                                             <img src="images/blog/article-1.jpg">
                                                         </div>
                                                         <div class="side-article-desc">
-                                                            <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                                            <span class="date">30 يناير 2015</span>
+                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                            <span class="date">30 ????? 2015</span>
                                                         </div>
                                                     </div><!--End Side-article-->
                                                 </li>
@@ -762,47 +817,47 @@
                                                             <img src="images/blog/article-1.jpg">
                                                         </div>
                                                         <div class="side-article-desc">
-                                                            <a href="#" class="name">الحياة قبل اختراع الإنترنت</a>
-                                                            <span class="date">30 يناير 2015</span>
+                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                            <span class="date">30 ????? 2015</span>
                                                         </div>
                                                     </div><!--End Side-article-->
                                                 </li>
                                             </ul><!--End Side-widget-list-->
                                             <a class="custom-btn pull-right" href="Blogs.html">
-                                                كل المقالات
+                                                ?? ????????
                                             </a>
                                         </div><!--End Side-Widget-Content-->
                                     </div><!--End Side-Widget-->
                                     <div class="side-widget">
                                         <div class="side-widget-title">
                                             <h2 class="title title-sm has-after">
-                                                الوسوم
+                                                ??????
                                             </h2>
                                         </div><!--End Side-widget-title-->
                                         <div class="side-widget-content">
                                             <ul class="tags">
                                                 <li>
-                                                    <a href="#">رياضة</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">فن</a>
+                                                    <a href="#">??</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">تصميم</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">موضة</a>
+                                                    <a href="#">????</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">سياسة</a>
+                                                    <a href="#">?????</a>
                                                 </li>
                                             </ul><!--End Side-widget-list-->
                                         </div><!--End Side-widget-content-->
                                     </div><!--End Side-widget-->
                                 </div><!--End Side-colume-->
                             </div><!--End Col-md-3-->
-                            
-                            
+
+
                         </div><!--End Row-->
                     </div><!--End Container-->
                 </div><!--End page-content-->
@@ -810,28 +865,21 @@
                     <div class="container">
                         <div class="copyright">
                             <p>
-                                جميع الحقوق محفوظة <span>&copy;</span> كونسيلز 2017
+                                ???? ?????? ?????? <span>&copy;</span> ??????? 2017
                             </p>
                         </div><!--End Copyright-->
-                        
+
                         <div class="design-by">
                             <p>
-                                تصميم <a href="#" target="_blank">Mohamed Ata</a>
+                                ????? <a href="#" target="_blank">Mohamed Ata</a>
                             </p>
                         </div><!--End Copyright-->
                     </div><!--End Container-->
                 </footer><!--End Footer-->                
             </div><!--End main-->
         </div><!--End Wrapper-->
-        
-        
-        <!--Scripts Plugins-->
-        <script src="vendor/jquery/jquery.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="vendor/nicescroll/jquery.nicescroll.min.js"></script>
-        <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script>
-        <script src="vendor/magnific-popup/js/magnific-popup.js"></script>
-        <!-- Custom js -->
-        <script src="js/main.js"></script>
+
+
     </body>
-</html>    
+
+</html>

@@ -52,7 +52,7 @@
                                         <h2 class="title title-md has-after"> تواصل معنا</h2>
                                     </div><!--End Widget-title-->
                                     <div class="widget-content">
-                                        <form class="form" method="" action="">
+                                        <form class="contact-form" method="" action="">
                                             <div class="col-md-5 col-sm-6">
                                                 <div class="form-group has-icon">
                                                     <input class="form-control" type="text" placeholder="اسم المستخدم">

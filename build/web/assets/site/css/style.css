@@ -57,7 +57,12 @@ body{
     overflow: hidden;
     width: 100%;
     top: 120px;
-    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+}
+.main.scrolled{
+    top: 73px;
 }
 .page-content {
     position: relative;
@@ -317,7 +322,7 @@ a:focus {
 }
 .form-group textarea.form-control{
     resize: none;
-    height: 205px;
+    height: auto;
     padding-top: 10px;
 }
 .form-group .form-control:hover,
@@ -346,9 +351,9 @@ a:focus {
     margin-top: 5px;
     color: #848991;
 }
-/*** Input-file ***/
-.form-group input[type="file"]{
-    
+/*contact-form*/
+.contact-form .form-group textarea.form-control{
+    height: 205px;
 }
 /* File Upload
 ====================*/
@@ -453,7 +458,6 @@ img{
     top: 48px;
     width: 100%;
     border-bottom: 1px solid #ddd;
-    
     z-index: 999;
     background-color: #fff;
     -webkit-transition: all .3s ease-in-out;
@@ -489,13 +493,10 @@ img{
 }
 .header .logo{
     display: block;
-    height: 60px;
-    line-height: 60px;
-    font-size: 25px;
     float: right;
 }
-.header .logo:first-letter{
-    color: #ffa500;
+.header .logo img{
+    width: 170px;
 }
 .header > .container .header-icons{
     float: left;
@@ -1052,6 +1053,50 @@ img{
 .question.only-question .question-foot .custom-btn{
     display: none;
 }
+/*Dropdown*/
+.admin-action{
+    position: absolute;
+    top: 0;
+    left: 0.75em;
+}
+.comment-action{
+    position: absolute;
+    top: 0;
+    left: 0.75em;
+}
+.dropdown .dots-menu{
+    border: 0;
+    background-color: transparent;
+    font-size: 17px;
+    color: #aaa;
+}
+.dropdown .dots-menu:hover,
+.dropdown .dots-menu:active{
+    color: darkblue;
+}
+.admin-action .dropdown-menu,
+.comment-action .dropdown-menu{
+    left: 0;
+    right: auto;
+    min-width: 120px;
+}
+.admin-action .dropdown-menu>li>a,
+.comment-action .dropdown-menu>li>a{
+    padding: 7px 10px;
+}
+.admin-action .dropdown-menu>li>a i,
+.comment-action .dropdown-menu>li>a i{
+    font-size: 16px;
+    margin-left: 5px;
+    color: darkblue;   
+}
+@media (max-width:380px){
+    .admin-action {
+        position: absolute;
+        top: 30px;
+        left: 0;
+    }
+}
 /***** Home Articles******/
 .article.article-sm.home-article .article-head-info .head-info:nth-child(3){
     display: none;
@@ -1146,16 +1191,6 @@ img{
     -webkit-transition: all .3s ease-in-out;
        -moz-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
-}
-.replay-comment-button{
-    float: left; 
-    top: 0;
-    cursor: pointer;
-    color: #00008B;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-
 }
 .comment-box .comment-content .content-info .replay:hover{
     color: #222;
@@ -1511,8 +1546,7 @@ span.fileinput-new{
     font-size: 18px;
 }
 .question .question-content .vote:hover{
-    /*color: #00008B;*/
-    color:#2f3239;
+    color: #00008B;
 }
 
 /***** .question.solved ******/
@@ -1865,7 +1899,6 @@ span.fileinput-new{
 }
 .ask-box:hover{
     border-color: #00008B;
-     cursor: pointer;
 }
 .ask-box .ask-box-head{
     margin-bottom: 5px;
@@ -1873,12 +1906,11 @@ span.fileinput-new{
 .ask-box .ask-box-body{
     font-size: 22px;
 }
-.ask-box .ask-box-body span{
+.ask-box .ask-box-body a{
     color: #9d9d9d;
 }
-.ask-box .ask-box-body span:hover{
+.ask-box .ask-box-body a:hover{
     color: #333;
-    cursor: pointer;
 }
 .account .account-img{
     width: 40px;

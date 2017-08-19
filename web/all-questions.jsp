@@ -40,6 +40,7 @@
         
 %>
 <div class="question solved">
+    
     <div class="question-head">
         <a class="question-name title title-md" href="question/<%=AllQuestion.get(i).getQuestionID()+"/"+AllQuestion.get(i).getQuestionTitle().replaceAll("\\s+","-")%>">
             <%=AllQuestion.get(i).getQuestionTitle()%>
@@ -71,6 +72,7 @@
                     استطلاع رأى
                 </span>
             </div><!--End question-author-cont-->
+            
         </div><!--End question-author-->
     </div><!--End question-head-->
       

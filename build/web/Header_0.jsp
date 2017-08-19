@@ -14,7 +14,8 @@
         <header class="header">
             <div class="container">
                 <a href="Home.jsp" class="logo">
-                    Planko
+                    
+                    <img  src="assets/site/images/logo.png" alt="logo"/>
                 </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav-main-collapse" aria-expanded="false">
                     <span class="sr-only">Toggle Navigation</span>

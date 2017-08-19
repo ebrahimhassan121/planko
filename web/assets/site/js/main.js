@@ -5,7 +5,6 @@
 /* Nice Scroll
 ===============================*/
 $(document).ready(function () {
-      $('[data-toggle="popover"]').popover(); 
     "use strict";
 	$("html").niceScroll({
         scrollspeed: 60,
@@ -40,11 +39,6 @@ $(document).ready(function () {
         } else {
             $('.header,.main,.top-header').removeClass('scrolled');
         }
-//        if (current_offset >= main_offset) {
-//            $('.main').addClass('relative');
-//        } else {
-//            $('.main').removeClass('relative');
-//        }
     });
 });
 
@@ -53,9 +47,10 @@ $(document).ready(function () {
     "use strict";
 	$('.btn-wishlist').click(function () {
         $(this).toggleClass('added-to-wishlist');
-       // $(this).attr("title", "حذف من المفضلة");
+        $(this).attr("title", "حذف من المفضلة");
     });
-   
+    
+    $('[data-toggle="tooltip"]').tooltip()
 });
 
 
@@ -128,5 +123,4 @@ $(document).ready(function () {
         },
         midClick: true
     });
-    $('[data-toggle="tooltip"]').tooltip();   
 });

@@ -144,6 +144,20 @@ public class Comments_model {
         closeConnection();
         return arrRecent;
     }
+      public boolean updateComment(String commentID,String commentText){
+         
+          try{
+              query="UPDATE `comments` SET `Comment`=?  WHERE comments.CommentID=?";
+             PreparedStatement statement=connect.prepareStatement(query);
+             statement.setString(1, commentText);
+             statement.setString(2, commentID);
+             int updateCheck=statement.executeUpdate();
+             return (updateCheck>0);
+          }catch(Exception ex){
+              return false;
+          }
+      
+      }
     private void closeConnection() {
         try {
 //            rs.close();

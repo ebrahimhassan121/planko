@@ -37,13 +37,14 @@ public class Reply_model {
         ArrayList<beans.Reply> replys = new ArrayList<>();
         try {
 
-            query = "SELECT `Reply`,`ReplyerID`, `ReplyDate`FROM `replay` WHERE `Deleted`=0 AND `CommentID` =?";
+            query = "SELECT `ReplyID`, `Reply`,`ReplyerID`, `ReplyDate`FROM `replay` WHERE `Deleted`=0 AND `CommentID` =?";
             PreparedStatement ps = connect.prepareStatement(query);
             ps.setInt(1, Integer.parseInt(CommentID));
             rs = ps.executeQuery();
             while (rs.next()) {
                 beans.Reply reply = new Reply();
                 reply.setCommentID(CommentID);
+                reply.setReplyID(rs.getString("ReplyID"));
                 reply.setReply(rs.getString("Reply"));
                 reply.setReplyerID(rs.getString("ReplyerID"));
                 reply.setReplyDate(rs.getTimestamp("ReplyDate"));
@@ -74,6 +75,20 @@ public class Reply_model {
         }
         return false;
     }
+    public boolean updateReply(String ReplyID,String ReplyText){
+         
+          try{
+              query="UPDATE `replay` SET `Reply`=? WHERE ReplyID=?";
+             PreparedStatement statement=connect.prepareStatement(query);
+             statement.setString(1, ReplyText);
+             statement.setString(2, ReplyID);
+             int updateCheck=statement.executeUpdate();
+             return (updateCheck>0);
+          }catch(Exception ex){
+              return false;
+          }
+      
+      }
 
   
 

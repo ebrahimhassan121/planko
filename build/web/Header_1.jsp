@@ -5,12 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
+
         <div class="row">
             <div class="col-xs-4">
                 <ul class="social">
@@ -24,7 +19,7 @@
                         
                     </li>
                     <li>
-                       <a href="<%=(session.getAttribute("twitter")!=null)?session.getAttribute("twitter").toString():"#"%>" <%if(session.getAttribute("twitter")!=null){%>target="_blank"<%}%> class="twitter" />
+                       <a href="<%=(session.getAttribute("twitter")!=null)?session.getAttribute("twitter").toString():"#"%>" <%if(session.getAttribute("twitter")!=null){%>target="_blank"<%}%> class="twitter" >
                             <i class="fa fa-twitter"></i>
                         </a>
                         
@@ -60,5 +55,3 @@
                 </ul>
             </div><!--End Col-sm-8-->
         </div><!--End Row-->
-    </body>
-</html>

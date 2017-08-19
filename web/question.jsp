@@ -17,10 +17,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
-         <base href="/planko/" />
-         <%@include file="init.jsp" %>
+        <base href="/planko/" />
+        <%@include file="init.jsp" %>
         <%
             String url = request.getRequestURI();
             String URLquestionName = "";
@@ -51,7 +51,7 @@
         <meta name="og:title" charset="UTF-8" content="<%=question.getQuestionTitle().toString()%>" />
         <meta name="og:type"  content="article" />
         <meta name="og:description" charset="UTF-8" content="<%=question.getQuestion_text()%>" />
-       
+
         <title><%=question.getQuestionTitle()%></title>
         <meta name="type" content="article"/>
         <meta property="og:title"  content="<%=question.getQuestionTitle().toString()%>/" />
@@ -63,7 +63,7 @@
         <meta property="og:title" charset="UTF-8" content="<%=question.getQuestionTitle().toString()%>" />
         <meta property="og:description" charset="UTF-8" content="<%=question.getQuestion_text()%>" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+
     </head>
     <body>
         <div class="wrapper">
@@ -142,6 +142,11 @@
                                                     </span>
                                                 </div><!--End question-author-cont-->
                                             </div><!--End question-author-->
+                                            <% if (session.getAttribute("ID") != null && question.getOwnerID().equals(session.getAttribute("ID").toString())) {%>
+                                            <jsp:include page="postAction.jsp">
+                                                <jsp:param name="id" value="<%=question.getQuestionID()%>" />
+                                            </jsp:include>
+                                            <%}%>
                                         </div><!--End question-head-->
                                         <div class="question-content">
                                             <div>
@@ -296,6 +301,7 @@
                                                             فى 11:16 مساءا
                                                         </span-->
                                                     </div>
+
                                                     <div class="replay">
                                                         <label for="comment-Input">رد</label>
                                                         <i class="fa fa-mail-reply"></i>
@@ -318,10 +324,10 @@
                                                 user_bean commentUser = users_model.Select_userByID(arrComments.get(i).getCommenterID());
                                                 Reply_model reply_model = new Reply_model();
                                         %>
-                                        <div style="background-color: rgba(221, 221, 221, 0.12);margin-bottom: 50px;padding: 1.85em 0;">
+                                        <div style="background-color: rgba(221, 221, 221, 0.12);margin-bottom: 50px;padding: 1.85em 0.75em;margin: 0.75em">
                                             <div class="comment-box">
                                                 <div class="comment-img">
-                                                    <img src="<%=commentUser.getAvatar()%>" alt="...">
+                                                    <img src="<%=commentUser.getAvatar()%>" alt="owner">
                                                 </div><!--Comment-image-->
                                                 <div class="comment-content">
                                                     <div class="content-info">
@@ -338,16 +344,37 @@
                                                                 فى 11:16 مساءا
                                                             </span -->
                                                         </div>
+                                                        <% if (session.getAttribute("ID") != null && arrComments.get(i).getCommenterID().equals(session.getAttribute("ID").toString())) {%>
+                                                        <jsp:include page="commentAction.jsp">
+                                                            <jsp:param name="id" value="<%=arrComments.get(i).getCommentID()%>" />
+                                                            <jsp:param name="type" value="comment" />
+                                                        </jsp:include>
+                                                        <%}%>
+
                                                         <!--div class="replay" onclick="$('#comment-Input').focus();">
                                                         <span for="comment-Input"> رد
                                                             <i class="fa fa-mail-reply"></i>
                                                         </span>
                                                     </div--><!--End replay-->
                                                     </div><!--End Content-info-->
+
                                                     <div class="content-body">
-                                                        <p>
-                                                            <%=arrComments.get(i).getComment()%>
+                                                        <p style="padding-left: 0.75em">
+                                                            <span id="sct<%=arrComments.get(i).getCommentID()%>">
+                                                                <%=arrComments.get(i).getComment()%>
+                                                            </span>
+                                                            <% if (session.getAttribute("ID") != null && arrComments.get(i).getCommenterID().equals(session.getAttribute("ID").toString())) {%>
+                                                            <span class=" hidden" id="sce<%=arrComments.get(i).getCommentID()%>">
+                                                                <jsp:include page="commentEdit.jsp">
+                                                                    <jsp:param name="type" value="comment" />
+                                                                    <jsp:param name="text" value="<%=arrComments.get(i).getComment()%>" />
+                                                                    <jsp:param name="id" value="<%=arrComments.get(i).getCommentID()%>" />
+                                                                </jsp:include>
+                                                            </span>
+                                                            <%}%>
                                                         </p>
+
+
                                                     </div><!--End Contwnt-body-->
                                                 </div><!--End Comment--content-->
 
@@ -374,19 +401,40 @@
                                                         <div class="content-time">
                                                             <span>
                                                                 <%=replys.get(r_counter).getDateInArabic()%>
+                                                           
                                                             </span>
                                                             <!--span>
                                                                 فى 11:16 مساءا
                                                             </span-->
                                                         </div>
+
+                                                        <% if (session.getAttribute("ID") != null && replys.get(i).getReplyerID().equals(session.getAttribute("ID").toString())) {%>
+                                                        <jsp:include page="commentAction.jsp">
+                                                            <jsp:param name="id" value="<%=replys.get(i).getReplyID()%>" />
+                                                            <jsp:param name="type" value="reply" />
+                                                        </jsp:include>
+                                                        <%}%>
+
+
+
                                                         <!--div class="replay">
                                                             رد
                                                             <i class="fa fa-mail-reply"></i>
                                                         </div--><!--End replay-->
                                                     </div><!--End Content-info-->
+
                                                     <div class="content-body">
                                                         <p>
-                                                            <%=replys.get(r_counter).getReply()%>
+                                                            <span id="srt<%=replys.get(i).getReplyID()%>">  <%=replys.get(r_counter).getReply()%></span>
+                                                            <% if (session.getAttribute("ID") != null && replys.get(i).getReplyerID().equals(session.getAttribute("ID").toString())) {%>
+                                                            <span class=" hidden" id="sre<%=replys.get(i).getReplyID()%>">
+                                                                <jsp:include page="commentEdit.jsp">
+                                                                    <jsp:param name="type" value="reply" />
+                                                                    <jsp:param name="text" value="<%=replys.get(i).getReply()%>" />
+                                                                    <jsp:param name="id" value="<%=replys.get(i).getReplyID()%>" />
+                                                                </jsp:include>
+                                                            </span>
+                                                            <%}%>
                                                         </p>
                                                     </div><!--End Contwnt-body-->
                                                 </div><!--End Comment--content-->
