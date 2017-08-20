@@ -412,7 +412,7 @@
                                                                         ?????
                                                                     </a>
 
-                                                                
+
                                                                 </li>
                                                                 <li><a href="#delete" onclick="$('#delete').modal('show');">
                                                                         <i class="fa fa-trash"></i>
@@ -420,94 +420,209 @@
                                                                     </a></li>
                                                             </ul>
                                                         </div>
-                                                            <div class="modal fade ask" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
-                                                                        <div class="modal-dialog" role="document">
-                                                                            <div class="modal-content">
-                                                                                <form class="form" method="post" action="addQuestion" id="questions-form">
-                                                                                    <div class="modal-body">
-                                                                                        <div class="account">
-                                                                                            <div class="account-name">
-                                                                                                
-                                                                                                <a href="my-account.html">
-                                                                                                   <h3 class="center-block">??? ?? ?????? ???? ?????????</h3>
-                                                                                           
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                        </div>
-                                                                                       <div class="form-group">
-                                                                                            <textarea class="form-control" name="details_text" placeholder="???????? (???????)"></textarea>
-                                                                                        </div><!--End Form-group-->
-                                                                                    </div><!--End modal-body-->
-                                                                                    <div class="modal-footer">
-                                                                                        <input type="reset" hidden="true" id="reset" />
-                                                                                        <a class="custom-btn pull-right" href="questions.jsp?new-question">?????</a>
-                                                                                    </div>
-                                                                                </form><!--End Form-->
-                                                                                <script>
-                                                                                    $('#questions-form').submit(function (e) {
-                                                                                        e.preventDefault();
-                                                                                        �$.post('addQuestion', $('#questions-form').serialize()
-                                                                                                , function (responseText) {
-                                                                                                    $('#ask .close').click();
-                                                                                                    $('#reset').click();
-                                                                                                    if (responseText === "done") {
-                                                                                                        $("#all_QuestionContent").prepend($('<div id="question0_3"></div>').hide());
-                                                                                                        $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
-                                                                                                        $('#question0_3').show();
-                                                                                                        //////////////////////////////////
-                                                                                                        $("#all_solved").prepend($('<div id="solved0_3"></div>').hide());
-                                                                                                        $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
-                                                                                                        $('#solved0_3').show();
-                                                                                                        /////////////////////////////
-                                                                                                        $("#not_solved").prepend($('<div id="not-solved0_3"></div>').hide());
-                                                                                                        $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
-                                                                                                        $('#not-solved0_3').show();
-                                                                                                        ///////////////////////////////////////////////////////
-                                                                                                        $("#translated-div").prepend($('<div id="translated0_3"></div>').hide());
-                                                                                                        $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
-                                                                                                        $('#translated0_3').show();
-                                                                                                    } else if (responseText === "login_required") {
-                                                                                                        $("#ask .close").click();
-                                                                                                        $("#login-dialog-link").click();
-                                                                                                    }
-                                                                                                },
-                                                                                                );
-                                                                                    });
-                                                                                </script>
-                                                                            </div><!-- /.modal-content -->
-                                                                        </div><!-- /.modal-dialog -->
-                                                                    </div><!-- /.modal -->
-                                                         <div class="modal fade ask" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete">
-                                                                        <div class="modal-dialog" role="document">
-                                                                       <div class="modal-content">
-            <div class="modal-header">
-                ??? ?????
-            </div>
-            <div class="modal-body">
-                ??? ??????  ??? ??? ?? ????? ?????? ???? ??? ????
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">?????</button>
-                <a class="btn btn-danger btn-ok">???</a>
-            </div>
-        </div>
-                                                                    </div><!-- /.modal -->
+                                                        <div class="modal fade ask" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <form class="form" method="post" action="addQuestion" id="questions-form">
+                                                                        <div class="modal-body">
+                                                                            <div class="account">
+                                                                                <div class="account-name">
 
-                                                    </div><!--End Comment-action-->
-                                                    <div class="replay" data-toggle="collapse" data-target="#replay-box" aria-expanded="false" aria-controls="collapseExample">
-                                                        ??
-                                                        <i class="fa fa-mail-reply"></i>
-                                                    </div><!--End replay-->
-                                                </div><!--End Content-info-->
-                                                <div class="content-body">
-                                                    <p>
-                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
-                                                    </p>
-                                                </div><!--End Contwnt-body-->
-                                            </div><!--End Comment--content-->
-                                        </div><!--End Comment-box-->
-                                        <div class="collapse" id="replay-box">
+                                                                                    <a href="my-account.html">
+                                                                                        <h3 class="center-block">??? ?? ?????? ???? ?????????</h3>
+
+                                                                                    </a>
+                                                                                </div>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <textarea class="form-control" name="details_text" placeholder="???????? (???????)"></textarea>
+                                                                            </div><!--End Form-group-->
+                                                                        </div><!--End modal-body-->
+                                                                        <div class="modal-footer">
+                                                                            <input type="reset" hidden="true" id="reset" />
+                                                                            <a class="custom-btn pull-right" href="questions.jsp?new-question">?????</a>
+                                                                        </div>
+                                                                    </form><!--End Form-->
+                                                                    <script>
+                                                                        $('#questions-form').submit(function (e) {
+                                                                            e.preventDefault();
+                                                                            �$.post('addQuestion', $('#questions-form').serialize()
+                                                                                    , function (responseText) {
+                                                                                        $('#ask .close').click();
+                                                                                        $('#reset').click();
+                                                                                        if (responseText === "done") {
+                                                                                            $("#all_QuestionContent").prepend($('<div id="question0_3"></div>').hide());
+                                                                                            $('#question0_3').load('all-questions.jsp?selection=ALL&&f=0&&t=3');
+                                                                                            $('#question0_3').show();
+                                                                                            //////////////////////////////////
+                                                                                            $("#all_solved").prepend($('<div id="solved0_3"></div>').hide());
+                                                                                            $('#solved0_3').load('all-questions.jsp?selection=Answerd&&f=0&&t=3');
+                                                                                            $('#solved0_3').show();
+                                                                                            /////////////////////////////
+                                                                                            $("#not_solved").prepend($('<div id="not-solved0_3"></div>').hide());
+                                                                                            $('#not-solved0_3').load('all-questions.jsp?selection=NotAnswerd&&f=0&&t=3');
+                                                                                            $('#not-solved0_3').show();
+                                                                                            ///////////////////////////////////////////////////////
+                                                                                            $("#translated-div").prepend($('<div id="translated0_3"></div>').hide());
+                                                                                            $('#translated0_3').load('all-questions.jsp?selection=translated&&f=0&&t=3');
+                                                                                            $('#translated0_3').show();
+                                                                                        } else if (responseText === "login_required") {
+                                                                                            $("#ask .close").click();
+                                                                                            $("#login-dialog-link").click();
+                                                                                        }
+                                                                                    },
+                                                                                    );
+                                                                        });
+                                                                    </script>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+                                                        <div class="modal fade ask" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        ??? ?????
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        ??? ??????  ??? ??? ?? ????? ?????? ???? ??? ????
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">?????</button>
+                                                                        <a class="btn btn-danger btn-ok">???</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- /.modal -->
+
+                                                        </div><!--End Comment-action-->
+                                                        <div class="replay" data-toggle="collapse" data-target="#replay-box" aria-expanded="false" aria-controls="collapseExample">
+                                                            ??
+                                                            <i class="fa fa-mail-reply"></i>
+                                                        </div><!--End replay-->
+                                                    </div><!--End Content-info-->
+                                                    <div class="content-body">
+                                                        <p>
+                                                            ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
+                                                        </p>
+                                                    </div><!--End Contwnt-body-->
+                                                </div><!--End Comment--content-->
+                                            </div><!--End Comment-box-->
+                                            <div class="collapse" id="replay-box">
+                                                <div class="comment-box replay-comment">
+                                                    <div class="comment-img">
+                                                        <img src="images/avatars/team1.jpg" alt="...">
+                                                    </div><!--Comment-image-->
+                                                    <div class="comment-content">
+                                                        <div class="content-info">
+                                                            <div class="content-title">
+                                                                <a href="#" >
+                                                                    ????? ???????
+                                                                </a>
+                                                            </div>
+                                                            <div class="content-time">
+                                                                <span>
+                                                                    18 ???? 2017
+                                                                </span>
+                                                                <span>
+                                                                    ?? 11:16 ?????
+                                                                </span>
+                                                            </div>
+                                                        </div><!--End Content-info-->
+                                                        <div class="content-body">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="custom-btn btn-submit">
+                                                                    ?????
+                                                                </button>
+                                                            </div>
+                                                        </div><!--End Contwnt-body-->
+                                                    </div><!--End Comment--content-->
+                                                </div><!--End Comment-box-->
+                                            </div><!--End Collapse-->                      
+                                            <div class="comment-box">
+                                                <div class="comment-img">
+                                                    <img src="images/avatars/team1.jpg" alt="...">
+                                                </div><!--Comment-image-->
+                                                <div class="comment-content">
+                                                    <div class="content-info">
+                                                        <div class="content-title">
+                                                            <a href="#" >
+                                                                ????? ???????
+                                                            </a>
+                                                        </div>
+                                                        <div class="content-time">
+                                                            <span>
+                                                                18 ???? 2017
+                                                            </span>
+                                                            <span>
+                                                                ?? 11:16 ?????
+                                                            </span>
+                                                        </div>
+                                                        <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
+                                                            <div class="dropdown">
+                                                                <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <li><a href="#">
+                                                                            <i class="fa fa-edit"></i>
+                                                                            ?????
+                                                                        </a></li>
+                                                                    <li><a href="#">
+                                                                            <i class="fa fa-trash"></i>
+                                                                            ???
+                                                                        </a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div><!--End Comment-action-->
+                                                        <div class="replay" data-toggle="collapse" data-target="#replay-box-2" aria-expanded="false" aria-controls="collapseExample">
+                                                            ??
+                                                            <i class="fa fa-mail-reply"></i>
+                                                        </div><!--End replay-->
+                                                    </div><!--End Content-info-->
+                                                    <div class="content-body">
+                                                        <p>
+                                                            ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
+                                                        </p>
+                                                    </div><!--End Contwnt-body-->
+                                                </div><!--End Comment--content-->
+                                            </div><!--End Comment-box-->
+                                            <div class="collapse" id="replay-box-2">
+                                                <div class="comment-box replay-comment">
+                                                    <div class="comment-img">
+                                                        <img src="images/avatars/team1.jpg" alt="...">
+                                                    </div><!--Comment-image-->
+                                                    <div class="comment-content">
+                                                        <div class="content-info">
+                                                            <div class="content-title">
+                                                                <a href="#" >
+                                                                    ????? ???????
+                                                                </a>
+                                                            </div>
+                                                            <div class="content-time">
+                                                                <span>
+                                                                    18 ???? 2017
+                                                                </span>
+                                                                <span>
+                                                                    ?? 11:16 ?????
+                                                                </span>
+                                                            </div>
+                                                        </div><!--End Content-info-->
+                                                        <div class="content-body">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="custom-btn btn-submit">
+                                                                    ?????
+                                                                </button>
+                                                            </div>
+                                                        </div><!--End Contwnt-body-->
+                                                    </div><!--End Comment--content-->
+                                                </div><!--End Comment-box-->
+                                            </div><!--End Collapse-->                      
                                             <div class="comment-box replay-comment">
                                                 <div class="comment-img">
                                                     <img src="images/avatars/team1.jpg" alt="...">
@@ -527,357 +642,242 @@
                                                                 ?? 11:16 ?????
                                                             </span>
                                                         </div>
+                                                        <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
+                                                            <div class="dropdown" >
+                                                                <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <li><a href="#">
+                                                                            <i class="fa fa-edit"></i>
+                                                                            ?????
+                                                                        </a></li>
+                                                                    <li><a href="#">
+                                                                            <i class="fa fa-trash"></i>
+                                                                            ???
+                                                                        </a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div><!--End Comment-action-->
+                                                        <div class="replay" data-toggle="collapse" data-target="#replay-box-3" aria-expanded="false" aria-controls="collapseExample">
+                                                            ??
+                                                            <i class="fa fa-mail-reply"></i>
+                                                        </div><!--End replay-->
                                                     </div><!--End Content-info-->
                                                     <div class="content-body">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="custom-btn btn-submit">
-                                                                ?????
-                                                            </button>
-                                                        </div>
+                                                        <p>
+                                                            ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
+                                                        </p>
                                                     </div><!--End Contwnt-body-->
                                                 </div><!--End Comment--content-->
                                             </div><!--End Comment-box-->
-                                        </div><!--End Collapse-->                      
-                                        <div class="comment-box">
-                                            <div class="comment-img">
-                                                <img src="images/avatars/team1.jpg" alt="...">
-                                            </div><!--Comment-image-->
-                                            <div class="comment-content">
-                                                <div class="content-info">
-                                                    <div class="content-title">
-                                                        <a href="#" >
-                                                            ????? ???????
-                                                        </a>
-                                                    </div>
-                                                    <div class="content-time">
-                                                        <span>
-                                                            18 ???? 2017
-                                                        </span>
-                                                        <span>
-                                                            ?? 11:16 ?????
-                                                        </span>
-                                                    </div>
-                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                <i class="fa fa-ellipsis-h"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                <li><a href="#">
-                                                                        <i class="fa fa-edit"></i>
-                                                                        ?????
-                                                                    </a></li>
-                                                                <li><a href="#">
-                                                                        <i class="fa fa-trash"></i>
-                                                                        ???
-                                                                    </a></li>
-                                                            </ul>
+                                            <div class="collapse" id="replay-box-3">
+                                                <div class="comment-box replay-comment">
+                                                    <div class="comment-img">
+                                                        <img src="images/avatars/team1.jpg" alt="...">
+                                                    </div><!--Comment-image-->
+                                                    <div class="comment-content">
+                                                        <div class="content-info">
+                                                            <div class="content-title">
+                                                                <a href="#" >
+                                                                    ????? ???????
+                                                                </a>
+                                                            </div>
+                                                            <div class="content-time">
+                                                                <span>
+                                                                    18 ???? 2017
+                                                                </span>
+                                                                <span>
+                                                                    ?? 11:16 ?????
+                                                                </span>
+                                                            </div>
+                                                        </div><!--End Content-info-->
+                                                        <div class="content-body">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="custom-btn btn-submit">
+                                                                    ?????
+                                                                </button>
+                                                            </div>
+                                                        </div><!--End Contwnt-body-->
+                                                    </div><!--End Comment--content-->
+                                                </div><!--End Comment-box-->
+                                            </div><!--End Collapse-->                      
+                                            <div class="comments-title">
+                                                <h2 class="title title-md has-after">
+                                                    ??? ??
+                                                </h2>
+                                            </div>
+                                            <div class="comments-form">
+                                                <form class="form" action="" method="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" placeholder="???? ????? ???" rows="7"></textarea>
+                                                            </div><!--End Form-group-->
+                                                            <div class="form-group">
+                                                                <button type="submit" class="custom-btn btn-submit">
+                                                                    ?????
+                                                                </button>
+                                                            </div><!--End Form-group-->
                                                         </div>
-                                                    </div><!--End Comment-action-->
-                                                    <div class="replay" data-toggle="collapse" data-target="#replay-box-2" aria-expanded="false" aria-controls="collapseExample">
-                                                        ??
-                                                        <i class="fa fa-mail-reply"></i>
-                                                    </div><!--End replay-->
-                                                </div><!--End Content-info-->
-                                                <div class="content-body">
-                                                    <p>
-                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
-                                                    </p>
-                                                </div><!--End Contwnt-body-->
-                                            </div><!--End Comment--content-->
-                                        </div><!--End Comment-box-->
-                                        <div class="collapse" id="replay-box-2">
-                                            <div class="comment-box replay-comment">
-                                                <div class="comment-img">
-                                                    <img src="images/avatars/team1.jpg" alt="...">
-                                                </div><!--Comment-image-->
-                                                <div class="comment-content">
-                                                    <div class="content-info">
-                                                        <div class="content-title">
-                                                            <a href="#" >
-                                                                ????? ???????
-                                                            </a>
-                                                        </div>
-                                                        <div class="content-time">
-                                                            <span>
-                                                                18 ???? 2017
-                                                            </span>
-                                                            <span>
-                                                                ?? 11:16 ?????
-                                                            </span>
-                                                        </div>
-                                                    </div><!--End Content-info-->
-                                                    <div class="content-body">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="custom-btn btn-submit">
-                                                                ?????
-                                                            </button>
-                                                        </div>
-                                                    </div><!--End Contwnt-body-->
-                                                </div><!--End Comment--content-->
-                                            </div><!--End Comment-box-->
-                                        </div><!--End Collapse-->                      
-                                        <div class="comment-box replay-comment">
-                                            <div class="comment-img">
-                                                <img src="images/avatars/team1.jpg" alt="...">
-                                            </div><!--Comment-image-->
-                                            <div class="comment-content">
-                                                <div class="content-info">
-                                                    <div class="content-title">
-                                                        <a href="#" >
-                                                            ????? ???????
-                                                        </a>
-                                                    </div>
-                                                    <div class="content-time">
-                                                        <span>
-                                                            18 ???? 2017
-                                                        </span>
-                                                        <span>
-                                                            ?? 11:16 ?????
-                                                        </span>
-                                                    </div>
-                                                    <div class="comment-action" data-toggle="tooltip" data-placement="top" title="????? ?? ???">
-                                                        <div class="dropdown" >
-                                                            <button class="dropdown-toggle dots-menu" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                <i class="fa fa-ellipsis-h"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                <li><a href="#">
-                                                                        <i class="fa fa-edit"></i>
-                                                                        ?????
-                                                                    </a></li>
-                                                                <li><a href="#">
-                                                                        <i class="fa fa-trash"></i>
-                                                                        ???
-                                                                    </a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div><!--End Comment-action-->
-                                                    <div class="replay" data-toggle="collapse" data-target="#replay-box-3" aria-expanded="false" aria-controls="collapseExample">
-                                                        ??
-                                                        <i class="fa fa-mail-reply"></i>
-                                                    </div><!--End replay-->
-                                                </div><!--End Content-info-->
-                                                <div class="content-body">
-                                                    <p>
-                                                        ???? ????? ????? ??? ??? ???? ??? ?? ??????? ??????? ????? ?? ????? ?????? ?? ??????? ??? ????? ??????? ???? ?? ??? ???? ??????? ?? ?????? ???? ??????.????? ??? ??????? ????? ????? ?????? .
-                                                    </p>
-                                                </div><!--End Contwnt-body-->
-                                            </div><!--End Comment--content-->
-                                        </div><!--End Comment-box-->
-                                        <div class="collapse" id="replay-box-3">
-                                            <div class="comment-box replay-comment">
-                                                <div class="comment-img">
-                                                    <img src="images/avatars/team1.jpg" alt="...">
-                                                </div><!--Comment-image-->
-                                                <div class="comment-content">
-                                                    <div class="content-info">
-                                                        <div class="content-title">
-                                                            <a href="#" >
-                                                                ????? ???????
-                                                            </a>
-                                                        </div>
-                                                        <div class="content-time">
-                                                            <span>
-                                                                18 ???? 2017
-                                                            </span>
-                                                            <span>
-                                                                ?? 11:16 ?????
-                                                            </span>
-                                                        </div>
-                                                    </div><!--End Content-info-->
-                                                    <div class="content-body">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" placeholder="??? ??" rows="2"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="custom-btn btn-submit">
-                                                                ?????
-                                                            </button>
-                                                        </div>
-                                                    </div><!--End Contwnt-body-->
-                                                </div><!--End Comment--content-->
-                                            </div><!--End Comment-box-->
-                                        </div><!--End Collapse-->                      
-                                        <div class="comments-title">
-                                            <h2 class="title title-md has-after">
-                                                ??? ??
-                                            </h2>
-                                        </div>
-                                        <div class="comments-form">
-                                            <form class="form" action="" method="">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" placeholder="???? ????? ???" rows="7"></textarea>
-                                                        </div><!--End Form-group-->
-                                                        <div class="form-group">
-                                                            <button type="submit" class="custom-btn btn-submit">
-                                                                ?????
-                                                            </button>
-                                                        </div><!--End Form-group-->
-                                                    </div>
-                                                </div><!--End Row-->
-                                            </form><!--End Form-->
-                                        </div><!--End Comments-form-->
-                                    </div><!--End Comments-->
+                                                    </div><!--End Row-->
+                                                </form><!--End Form-->
+                                            </div><!--End Comments-form-->
+                                        </div><!--End Comments-->
 
 
 
-                                </div><!--End Center-colume-->
-                            </div><!--End Col-md-6-->
-                            <div class="col-md-3">
-                                <div class="side-colume-right">
-                                    <div class="side-widget">
-                                        <div class="side-widget-title">
-                                            <h2 class="title title-sm has-after">
-                                                ?????
-                                            </h2>
-                                        </div><!--End Side-widget-title-->
-                                        <div class="side-widget-content">
-                                            <form class="" action="" method="">
-                                                <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="???? ???">
-                                                    <button class="search-icon-btn" type="submit">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </div><!--End Form-group-->
-                                            </form><!--End Form-->
-                                        </div><!--End Side-widget-content-->
-                                    </div><!--End Side-widget-->
+                                    </div><!--End Center-colume-->
+                                </div><!--End Col-md-6-->
+                                <div class="col-md-3">
+                                    <div class="side-colume-right">
+                                        <div class="side-widget">
+                                            <div class="side-widget-title">
+                                                <h2 class="title title-sm has-after">
+                                                    ?????
+                                                </h2>
+                                            </div><!--End Side-widget-title-->
+                                            <div class="side-widget-content">
+                                                <form class="" action="" method="">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" placeholder="???? ???">
+                                                        <button class="search-icon-btn" type="submit">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </div><!--End Form-group-->
+                                                </form><!--End Form-->
+                                            </div><!--End Side-widget-content-->
+                                        </div><!--End Side-widget-->
 
-                                    <div class="side-widget">
-                                        <div class="side-widget-title">
-                                            <h2 class="title title-sm has-after">
-                                                ??????
-                                            </h2>
-                                        </div><!--End Side-widget-title-->
-                                        <div class="side-widget-content">
-                                            <ul class="side-widget-list">
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">??</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                            </ul><!--End Side-widget-list-->
-                                            <a class="custom-btn pull-right" href="Categories.html">
-                                                ?? ??????
-                                            </a>
-                                        </div><!--End Side-widget-content-->
-                                    </div><!--End Side-widget-->
-                                    <div class="side-widget">
-                                        <div class="side-widget-title">
-                                            <h2 class="title title-sm has-after">
-                                                ?????? ?????
-                                            </h2>
-                                        </div><!--End Side-Widget-Title-->
-                                        <div class="side-widget-content">
-                                            <ul class="side-widget-list">
-                                                <li>
-                                                    <div class="side-article">
-                                                        <div class="side-article-img">
-                                                            <img src="images/blog/article-1.jpg">
-                                                        </div>
-                                                        <div class="side-article-desc">
-                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
-                                                            <span class="date">30 ????? 2015</span>
-                                                        </div>
-                                                    </div><!--End Side-article-->
-                                                </li>
-                                                <li>
-                                                    <div class="side-article">
-                                                        <div class="side-article-img">
-                                                            <img src="images/blog/article-1.jpg">
-                                                        </div>
-                                                        <div class="side-article-desc">
-                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
-                                                            <span class="date">30 ????? 2015</span>
-                                                        </div>
-                                                    </div><!--End Side-article-->
-                                                </li>
-                                                <li>
-                                                    <div class="side-article">
-                                                        <div class="side-article-img">
-                                                            <img src="images/blog/article-1.jpg">
-                                                        </div>
-                                                        <div class="side-article-desc">
-                                                            <a href="#" class="name">?????? ??? ?????? ????????</a>
-                                                            <span class="date">30 ????? 2015</span>
-                                                        </div>
-                                                    </div><!--End Side-article-->
-                                                </li>
-                                            </ul><!--End Side-widget-list-->
-                                            <a class="custom-btn pull-right" href="Blogs.html">
-                                                ?? ????????
-                                            </a>
-                                        </div><!--End Side-Widget-Content-->
-                                    </div><!--End Side-Widget-->
-                                    <div class="side-widget">
-                                        <div class="side-widget-title">
-                                            <h2 class="title title-sm has-after">
-                                                ??????
-                                            </h2>
-                                        </div><!--End Side-widget-title-->
-                                        <div class="side-widget-content">
-                                            <ul class="tags">
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">??</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">????</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">?????</a>
-                                                </li>
-                                            </ul><!--End Side-widget-list-->
-                                        </div><!--End Side-widget-content-->
-                                    </div><!--End Side-widget-->
-                                </div><!--End Side-colume-->
-                            </div><!--End Col-md-3-->
+                                        <div class="side-widget">
+                                            <div class="side-widget-title">
+                                                <h2 class="title title-sm has-after">
+                                                    ??????
+                                                </h2>
+                                            </div><!--End Side-widget-title-->
+                                            <div class="side-widget-content">
+                                                <ul class="side-widget-list">
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">??</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                </ul><!--End Side-widget-list-->
+                                                <a class="custom-btn pull-right" href="Categories.html">
+                                                    ?? ??????
+                                                </a>
+                                            </div><!--End Side-widget-content-->
+                                        </div><!--End Side-widget-->
+                                        <div class="side-widget">
+                                            <div class="side-widget-title">
+                                                <h2 class="title title-sm has-after">
+                                                    ?????? ?????
+                                                </h2>
+                                            </div><!--End Side-Widget-Title-->
+                                            <div class="side-widget-content">
+                                                <ul class="side-widget-list">
+                                                    <li>
+                                                        <div class="side-article">
+                                                            <div class="side-article-img">
+                                                                <img src="images/blog/article-1.jpg">
+                                                            </div>
+                                                            <div class="side-article-desc">
+                                                                <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                                <span class="date">30 ????? 2015</span>
+                                                            </div>
+                                                        </div><!--End Side-article-->
+                                                    </li>
+                                                    <li>
+                                                        <div class="side-article">
+                                                            <div class="side-article-img">
+                                                                <img src="images/blog/article-1.jpg">
+                                                            </div>
+                                                            <div class="side-article-desc">
+                                                                <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                                <span class="date">30 ????? 2015</span>
+                                                            </div>
+                                                        </div><!--End Side-article-->
+                                                    </li>
+                                                    <li>
+                                                        <div class="side-article">
+                                                            <div class="side-article-img">
+                                                                <img src="images/blog/article-1.jpg">
+                                                            </div>
+                                                            <div class="side-article-desc">
+                                                                <a href="#" class="name">?????? ??? ?????? ????????</a>
+                                                                <span class="date">30 ????? 2015</span>
+                                                            </div>
+                                                        </div><!--End Side-article-->
+                                                    </li>
+                                                </ul><!--End Side-widget-list-->
+                                                <a class="custom-btn pull-right" href="Blogs.html">
+                                                    ?? ????????
+                                                </a>
+                                            </div><!--End Side-Widget-Content-->
+                                        </div><!--End Side-Widget-->
+                                        <div class="side-widget">
+                                            <div class="side-widget-title">
+                                                <h2 class="title title-sm has-after">
+                                                    ??????
+                                                </h2>
+                                            </div><!--End Side-widget-title-->
+                                            <div class="side-widget-content">
+                                                <ul class="tags">
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">??</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">????</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">?????</a>
+                                                    </li>
+                                                </ul><!--End Side-widget-list-->
+                                            </div><!--End Side-widget-content-->
+                                        </div><!--End Side-widget-->
+                                    </div><!--End Side-colume-->
+                                </div><!--End Col-md-3-->
 
 
-                        </div><!--End Row-->
-                    </div><!--End Container-->
-                </div><!--End page-content-->
-                <footer class="footer">
-                    <div class="container">
-                        <div class="copyright">
-                            <p>
-                                ???? ?????? ?????? <span>&copy;</span> ??????? 2017
-                            </p>
-                        </div><!--End Copyright-->
+                            </div><!--End Row-->
+                        </div><!--End Container-->
+                    </div><!--End page-content-->
+                    <footer class="footer">
+                        <div class="container">
+                            <div class="copyright">
+                                <p>
+                                    ???? ?????? ?????? <span>&copy;</span> ??????? 2017
+                                </p>
+                            </div><!--End Copyright-->
 
-                        <div class="design-by">
-                            <p>
-                                ????? <a href="#" target="_blank">Mohamed Ata</a>
-                            </p>
-                        </div><!--End Copyright-->
-                    </div><!--End Container-->
-                </footer><!--End Footer-->                
-            </div><!--End main-->
-        </div><!--End Wrapper-->
+                            <div class="design-by">
+                                <p>
+                                    ????? <a href="#" target="_blank">Mohamed Ata</a>
+                                </p>
+                            </div><!--End Copyright-->
+                        </div><!--End Container-->
+                    </footer><!--End Footer-->                
+                </div><!--End main-->
+            </div><!--End Wrapper-->
 
 
     </body>

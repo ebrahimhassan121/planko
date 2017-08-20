@@ -158,6 +158,19 @@ public class Comments_model {
           }
       
       }
+      public boolean DeleteComment(String commentID,String commentText){
+         
+          try{
+              query="UPDATE `comments` SET `Deleted`=0  WHERE comments.CommentID=?";
+             PreparedStatement statement=connect.prepareStatement(query);
+             statement.setString(1, commentID);
+             int updateCheck=statement.executeUpdate();
+             return (updateCheck>0);
+          }catch(Exception ex){
+              return false;
+          }
+      
+      }
     private void closeConnection() {
         try {
 //            rs.close();

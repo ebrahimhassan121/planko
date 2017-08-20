@@ -5,29 +5,23 @@
  */
 package Controller;
 
-import Model.Users_model;
-import beans.user_bean;
+import Model.Questions_model;
+import Model.Reply_model;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.json.Json;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import jdk.nashorn.internal.parser.JSONParser;
 
 /**
  *
  * @author EHS
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "QU", urlPatterns = {"/QU"})
+public class QU extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +34,19 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QU</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet QU at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,7 +61,6 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         response.sendRedirect("Home.jsp");
     }
 
@@ -70,40 +75,31 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
         try {
-            String email=request.getParameter("email");
-            String password=request.getParameter("password");
-            Model.Users_model users_model=new Users_model();
-            beans.user_bean user=users_model.select_user(email, password);
-             response.setContentType("text/plain");
-            if(user == null){
-//                request.setAttribute("login", "error");
-//                RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
-//                 dispatcher.forward(request, response);
-//                 return;
-            response.getWriter().write("error");
+
+            response.setContentType("text/plain");
+
+            if (session.getAttribute("ID") == null) {
+                String message = "error";
+                response.getWriter().write(message);
+                return;
             }
-            HttpSession session=request.getSession();
-          //  System.out.println(user.getRole());
-            if("1".equals(user.getRole())){
-                session.setMaxInactiveInterval(-1);
-                session.setAttribute("email", user.getEmail());
-                session.setAttribute("password", password);
-                session.setAttribute("avatar", user.getAvatar());
-                session.setAttribute("ID", user.getUserID());
-                session.setAttribute("phone", user.getPhone());
-                session.setAttribute("facebook", user.getFacebook());
-                session.setAttribute("twitter", user.getTwitter());
-               
-               
-                //response.sendRedirect(session.getAttribute("url").toString());
-                  response.getWriter().write("done");
+            String QuestionID = request.getParameter("I");
+            String QuestionTitle = request.getParameter("QTI").trim();
+            String QuestionText = request.getParameter("QT").trim();
+            Questions_model questions_model=new Questions_model();
+            if (questions_model.updateQuestion(QuestionID, QuestionTitle, QuestionText)) {
+                String message = "done";
+                response.getWriter().write(message);
                 return;
             }
         } catch (Exception ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
+            response.sendRedirect("Home.jsp");
+
         }
-            
     }
 
     /**

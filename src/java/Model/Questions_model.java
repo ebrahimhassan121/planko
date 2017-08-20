@@ -394,6 +394,39 @@ public class Questions_model {
 //        question_bean question=q.selectQuestionsByID(0+"");
 //        System.out.println(question.getQuestionTitle());
 //    }
+    public boolean updateQuestion(String QuestionID, String QuestionTitle, String QuestionText) {
+
+        try {
+            query = "UPDATE questions t1, questiondatails t2 SET t1.questionTitle=? , t2.questionsText=? WHERE t1.questionID=? AND t2.questionID=?;";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setString(1, QuestionTitle);
+            statement.setString(2, QuestionText);
+            statement.setInt(3, Integer.parseInt(QuestionID));
+            statement.setInt(4, Integer.parseInt(QuestionID));
+            int updateCheck = statement.executeUpdate();
+            return (updateCheck > 0);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return false;
+        }
+
+    }
+
+    public boolean DeleteQuestion(String QuestionID) {
+
+        try {
+            query = "UPDATE questions t1 SET t1.Deleted=0 WHERE t1.questionID=?";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setInt(1, Integer.parseInt(QuestionID));
+            int updateCheck = statement.executeUpdate();
+            return (updateCheck > 0);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return false;
+        }
+
+    }
+
     private void closeConnection() {
         try {
 //            rs.close();

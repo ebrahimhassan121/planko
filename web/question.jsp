@@ -116,166 +116,198 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="center-colume-lg-right">
-                                    <div class="question only-question">
-                                        <div class="question-head">
-                                            <a class="question-name title title-md" href="question/<%=question.getQuestionID()%>/<%=question.getQuestionTitle().replaceAll("\\s+", "-")%>">
-                                                <%=question.getQuestionTitle()%>
-                                            </a>
-                                            <div class="question-author">
-                                                <div class="question-author-img">
-                                                    <img src="<%=owner.getAvatar()%>" />
-                                                </div>
-                                                <div class="question-author-cont">
-                                                    <h4 class="author-name">
-                                                        <%=owner.getName()%>
-                                                    </h4>
-                                                    <span class="time">
-                                                        <%=question.getDateInArabic()%>
-                                                    </span>
-                                                    <span class="type ask">
-                                                        <i class="fa fa-question"></i>
-                                                        سؤال
-                                                    </span>
-                                                    <span class="type survay">
-                                                        <i class="fa fa-bar-chart"></i>
-                                                        استطلاع رأى
-                                                    </span>
-                                                </div><!--End question-author-cont-->
-                                            </div><!--End question-author-->
-                                            <% if (session.getAttribute("ID") != null && question.getOwnerID().equals(session.getAttribute("ID").toString())) {%>
-                                            <jsp:include page="postAction.jsp">
-                                                <jsp:param name="id" value="<%=question.getQuestionID()%>" />
-                                            </jsp:include>
-                                            <%}%>
-                                        </div><!--End question-head-->
-                                        <div class="question-content">
-                                            <div>
-                                                <p class="custom-p">
-                                                    <%=question.getQuestion_text()%>
-                                                </p>
-                                                <% if (question.getQuestion_image() != null) {%>
-                                                <img src="<%=question.getQuestion_image()%>">
+                                    <form >
+                                        <div class="question only-question">
+                                            <div class="question-head">
+                                                <a class="question-name title title-md" id="question-title"href="question/<%=question.getQuestionID()%>/<%=question.getQuestionTitle().replaceAll("\\s+", "-")%>">
+                                                    <%=question.getQuestionTitle()%>
+                                                </a>
+                                                <div class="question-author">
+                                                    <div class="question-author-img">
+                                                        <img src="<%=owner.getAvatar()%>" />
+                                                    </div>
+                                                    <div class="question-author-cont">
+                                                        <h4 class="author-name">
+                                                            <%=owner.getName()%>
+                                                        </h4>
+                                                        <span class="time">
+                                                            <%=question.getDateInArabic()%>
+                                                        </span>
+                                                        <span class="type ask">
+                                                            <i class="fa fa-question"></i>
+                                                            سؤال
+                                                        </span>
+                                                        <span class="type survay">
+                                                            <i class="fa fa-bar-chart"></i>
+                                                            استطلاع رأى
+                                                        </span>
+                                                    </div><!--End question-author-cont-->
+                                                </div><!--End question-author-->
+                                                <% if (session.getAttribute("ID") != null && question.getOwnerID().equals(session.getAttribute("ID").toString())) {%>
+                                                <jsp:include page="postAction.jsp">
+                                                    <jsp:param name="id" value="<%=question.getQuestionID()%>" />
+                                                </jsp:include>
+                                                <div class="modal fade ask" id="ask_edit" tabindex="-1" role="dialog" aria-labelledby="ask_edit">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="account">
+                                                                    <div class="account-img">
+                                                                        <img src="<%=owner.getAvatar()%>" alt="account image">
+                                                                    </div>
+
+                                                                    <div class="account-name">
+                                                                        <a href="Profile.jsp">
+                                                                            <h5><%=owner.getName()%></h5>
+                                                                        </a>
+                                                                    </div>
+                                                                    <button type="button" class="close" id="edit-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom: 10px">
+                                                                    <input type="text" class="form-control" id="title"style="height: 35px" value="<%=question.getQuestionTitle()%>" placeholder="*العنوان (اجباري)" />
+                                                                </div><!--End Form-group-->
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control" id="details" placeholder="التفاصيل (اختياري)"><%=question.getQuestion_text()%></textarea>
+                                                                </div><!--End Form-group-->
+                                                            </div><!--End modal-body-->
+                                                            <div class="modal-footer">
+                                                                <button id="save" class="custom-btn pull-right"> حفظ</button>
+                                                            </div>
+
+
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                                
+
                                                 <%}%>
-                                            </div>
-                                            <div>
-                                                <% if (Integer.parseInt(question.getCommentsCount()) <= 0) {%>
-                                                <div class="foot-info wait">
-                                                    <i class="fa fa-clock-o"></i>
-                                                    بإنتظار الحل
+                                            </div><!--End question-head-->
+                                            <div class="question-content">
+                                                <div>
+                                                    <p class="custom-p" id="question-content">
+                                                        <%=question.getQuestion_text()%>
+                                                    </p>
+                                                    <% if (question.getQuestion_image() != null) {%>
+                                                    <img src="<%=question.getQuestion_image()%>">
+                                                    <%}%>
                                                 </div>
-                                                <%} else {%>
-                                                <div class="foot-info solved">
-                                                    <i class="fa fa-check"></i>
-                                                    تم الحل
+                                                <div>
+                                                    <% if (Integer.parseInt(question.getCommentsCount()) <= 0) {%>
+                                                    <div class="foot-info wait">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        بإنتظار الحل
+                                                    </div>
+                                                    <%} else {%>
+                                                    <div class="foot-info solved">
+                                                        <i class="fa fa-check"></i>
+                                                        تم الحل
+                                                    </div>
+                                                    <% }%>
+                                                    <div class="foot-info">
+                                                        <a href="<%="cat/" + question.getQuestionCategory()%>" class="info">
+                                                            <i class="fa fa-align-center"></i>
+                                                            <%=question.getQuestionCategory()%>
+                                                        </a>
+                                                    </div>
+                                                    <div class="foot-info">
+                                                        <span class="info">
+                                                            <i class="fa fa-comments"></i>
+                                                            <%=question.getCommentsCount()%> تعليق
+                                                        </span>
+                                                    </div>
+                                                    <div class="foot-info">
+                                                        <%
+                                                            String colorLike = "";
+                                                            Model.Like_model like_model = new Like_model();
+                                                            String UserID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "";
+                                                            if (like_model.select_LikeByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
+                                                                colorLike = "#00008B";
+                                                            }
+                                                        %>
+                                                        <div id="<%=question.getQuestionID()%>d">
+                                                            <jsp:include page="like.jsp" flush="true">
+                                                                <jsp:param name="QID" value="<%=question.getQuestionID()%>" />
+                                                            </jsp:include>
+                                                        </div>
+                                                        <script>
+                                                            function addLIke<%=question.getQuestionID()%>() {
+                                                                 $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
+                                                                }, function (responseText) {
+                                                                    console.log(responseText);
+                                                                    if (responseText === "fav-unfav") {
+                                                                        console.log("ddd");
+                                                                        $('#<%=question.getQuestionID()%>d').load("./like.jsp?QID=<%=question.getQuestionID()%>");
+                                                                    } else if (responseText === "login_required") {
+                                                                        $("#login-dialog-link").click();
+                                                                    }
+                                                                });
+                                                            }
+                                                        </script>
+                                                    </div>
                                                 </div>
-                                                <% }%>
-                                                <div class="foot-info">
-                                                    <a href="<%="cat/" + question.getQuestionCategory()%>" class="info">
-                                                        <i class="fa fa-align-center"></i>
-                                                        <%=question.getQuestionCategory()%>
-                                                    </a>
-                                                </div>
-                                                <div class="foot-info">
-                                                    <span class="info">
-                                                        <i class="fa fa-comments"></i>
-                                                        <%=question.getCommentsCount()%> تعليق
-                                                    </span>
-                                                </div>
-                                                <div class="foot-info">
+                                            </div><!--End question-Content-->
+                                            <div class="question-foot">
+
+                                                <div class="share-box">
                                                     <%
-                                                        String colorLike = "";
-                                                        Model.Like_model like_model = new Like_model();
-                                                        String UserID = (session.getAttribute("ID") != null) ? session.getAttribute("ID").toString() : "";
-                                                        if (like_model.select_LikeByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
-                                                            colorLike = "#00008B";
+                                                        String classFav = "";
+                                                        Model.Favourite_model favourite_model = new Favourite_model();
+                                                        if (favourite_model.select_favouriteByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
+                                                            classFav = "added-to-wishlist";
                                                         }
                                                     %>
-                                                    <div id="<%=question.getQuestionID()%>d">
-                                                        <jsp:include page="like.jsp" flush="true">
-                                                            <jsp:param name="QID" value="<%=question.getQuestionID()%>" />
-                                                        </jsp:include>
-                                                    </div>
+                                                    <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav();">
+                                                        <i class="fa fa-heart" id="heart"></i>
+                                                    </span>
                                                     <script>
-                                                        function addLIke<%=question.getQuestionID()%>() {
-                                                             $.post('addLike', {questionid: "<%=question.getQuestionID()%>"
+                                                        function addFav() {
+                                                             $.post('addFavourite', {questionid: "<%=question.getQuestionID()%>"
                                                             }, function (responseText) {
-                                                                console.log(responseText);
+                                                                $('#top-header').load("top-header.jsp");
                                                                 if (responseText === "fav-unfav") {
-                                                                    console.log("ddd");
-                                                                    $('#<%=question.getQuestionID()%>d').load("./like.jsp?QID=<%=question.getQuestionID()%>");
+
                                                                 } else if (responseText === "login_required") {
                                                                     $("#login-dialog-link").click();
                                                                 }
                                                             });
                                                         }
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </div><!--End question-Content-->
-                                        <div class="question-foot">
-
-                                            <div class="share-box">
-                                                <%
-                                                    String classFav = "";
-                                                    Model.Favourite_model favourite_model = new Favourite_model();
-                                                    if (favourite_model.select_favouriteByQuestionIDANDUSERID(question.getQuestionID(), UserID)) {
-                                                        classFav = "added-to-wishlist";
-                                                    }
-                                                %>
-                                                <span class="btn-wishlist <%=classFav%>" id="favourite"title="إضافة اللى المفضلة" onclick="addFav();">
-                                                    <i class="fa fa-heart" id="heart"></i>
-                                                </span>
-                                                <script>
-                                                    function addFav() {
-                                                         $.post('addFavourite', {questionid: "<%=question.getQuestionID()%>"
-                                                        }, function (responseText) {
-                                                            $('#top-header').load("top-header.jsp");
-                                                            if (responseText === "fav-unfav") {
-
-                                                            } else if (responseText === "login_required") {
-                                                                $("#login-dialog-link").click();
+                                                        function copyStringToClipboard(string) {
+                                                            function handler(event) {
+                                                                event.clipboardData.setData('text/plain', string);
+                                                                event.preventDefault();
+                                                                document.removeEventListener('copy', handler, true);
                                                             }
-                                                        });
-                                                    }
-                                                    function copyStringToClipboard(string) {
-                                                        function handler(event) {
-                                                            event.clipboardData.setData('text/plain', string);
-                                                            event.preventDefault();
-                                                            document.removeEventListener('copy', handler, true);
-                                                        }
 
-                                                        document.addEventListener('copy', handler, true);
-                                                        document.execCommand('copy');
-                                                    }
-                                                </script>
-                                                <span class="icon-share" data-toggle="tooltip" data-placement="top" title="نسخ الرابط" onclick="copyStringToClipboard('<%=request.getRequestURL().toString()%>')">
-                                                    <i class="fa fa-mail-reply"></i>
-                                                </span>
-                                                <ul class="social">
-                                                    <li>
-                                                        <%
-                                                            System.out.println(request.getRequestURL().toString());
-                                                        %>
-                                                        <a href="http://www.facebook.com/share.php?u=<%=request.getRequestURL().toString()%>/" target="_blank" class="facebook" >
-                                                            <i class="fa fa-facebook"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="http://twitter.com/home?status=<%=question.getQuestionTitle()%>+<%=request.getRequestURL().toString()%>
-                                                           " target="_blank" class="twitter">
-                                                            <i class="fa fa-twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%=request.getRequestURL().toString()%>&title=<%=question.getQuestionTitle()%>&source=[SOURCE/DOMAIN]
-                                                           " target="_blank" class="linkedin">
-                                                            <i class="fa fa-linkedin"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div><!--End question-share-->
-                                        </div><!--End question-foot-->
-                                    </div><!--End question-->
+                                                            document.addEventListener('copy', handler, true);
+                                                            document.execCommand('copy');
+                                                        }
+                                                    </script>
+                                                    <span class="icon-share" data-toggle="tooltip" data-placement="top" title="نسخ الرابط" onclick="copyStringToClipboard('<%=request.getRequestURL().toString()%>')">
+                                                        <i class="fa fa-mail-reply"></i>
+                                                    </span>
+                                                    <ul class="social">
+                                                        <li>
+                                                            <a href="http://www.facebook.com/share.php?u=<%=request.getRequestURL().toString()%>/" target="_blank" class="facebook" >
+                                                                <i class="fa fa-facebook"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://twitter.com/home?status=<%=question.getQuestionTitle()%>+<%=request.getRequestURL().toString()%>
+                                                               " target="_blank" class="twitter">
+                                                                <i class="fa fa-twitter"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%=request.getRequestURL().toString()%>&title=<%=question.getQuestionTitle()%>&source=[SOURCE/DOMAIN]
+                                                               " target="_blank" class="linkedin">
+                                                                <i class="fa fa-linkedin"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div><!--End question-share-->
+                                            </div><!--End question-foot-->
+                                        </div><!--End question-->
+                                    </form>
                                     <div class="commentes">
                                         <div class="comments-title">
                                             <h2 class="title title-md has-after">
@@ -359,22 +391,44 @@
                                                     </div><!--End Content-info-->
 
                                                     <div class="content-body">
-                                                        <p style="padding-left: 0.75em">
-                                                            <span id="sct<%=arrComments.get(i).getCommentID()%>">
-                                                                <%=arrComments.get(i).getComment()%>
-                                                            </span>
-                                                            <% if (session.getAttribute("ID") != null && arrComments.get(i).getCommenterID().equals(session.getAttribute("ID").toString())) {%>
-                                                            <span class=" hidden" id="sce<%=arrComments.get(i).getCommentID()%>">
-                                                                <jsp:include page="commentEdit.jsp">
-                                                                    <jsp:param name="type" value="comment" />
-                                                                    <jsp:param name="text" value="<%=arrComments.get(i).getComment()%>" />
-                                                                    <jsp:param name="id" value="<%=arrComments.get(i).getCommentID()%>" />
-                                                                </jsp:include>
-                                                            </span>
-                                                            <%}%>
-                                                        </p>
+                                                        <form method="post" action="CU" id="cm<%=arrComments.get(i).getCommentID()%>">
 
+                                                            <p style="padding-left: 0.75em">
+                                                                <span id="sct<%=arrComments.get(i).getCommentID()%>">
+                                                                    <%=arrComments.get(i).getComment()%>
+                                                                </span>
+                                                                <% if (session.getAttribute("ID") != null && arrComments.get(i).getCommenterID().equals(session.getAttribute("ID").toString())) {%>
+                                                                <span class=" hidden" id="sce<%=arrComments.get(i).getCommentID()%>">
+                                                                    <jsp:include page="commentEdit.jsp">
+                                                                        <jsp:param name="type" value="comment" />
+                                                                        <jsp:param name="text" value="<%=arrComments.get(i).getComment()%>" />
+                                                                        <jsp:param name="id" value="<%=arrComments.get(i).getCommentID()%>" />
+                                                                    </jsp:include>
+                                                                </span>
+                                                                <%}%>
+                                                            </p>
+                                                        </form>
+                                                        <script>
+                                                            $('#cm<%=arrComments.get(i).getCommentID()%>').submit(function (e) {
+                                                                e.preventDefault();
+                                                                var newText = this['text'].value;
+                                                                if (newText.toString().trim() !== "") {
+                                                                    $.post('CU',
+                                                                            {I: <%=arrComments.get(i).getCommentID()%>, T: newText},
+                                                                            function (responseText) {
+                                                                                if (responseText === "done") {
+                                                                                    $('#sct<%=arrComments.get(i).getCommentID()%>').text(newText);
+                                                                                    $('#sce<%=arrComments.get(i).getCommentID()%>').addClass('hidden');
+                                                                                    $('#sct<%=arrComments.get(i).getCommentID()%>').removeClass('hidden');
+                                                                                } else {
+                                                                                    window.location.href = "Home.jsp";
+                                                                                }
 
+                                                                            });
+                                                                }
+
+                                                            });
+                                                        </script>
                                                     </div><!--End Contwnt-body-->
                                                 </div><!--End Comment--content-->
 
@@ -401,7 +455,7 @@
                                                         <div class="content-time">
                                                             <span>
                                                                 <%=replys.get(r_counter).getDateInArabic()%>
-                                                           
+
                                                             </span>
                                                             <!--span>
                                                                 فى 11:16 مساءا
@@ -422,20 +476,46 @@
                                                             <i class="fa fa-mail-reply"></i>
                                                         </div--><!--End replay-->
                                                     </div><!--End Content-info-->
+                                                    <script>
 
-                                                    <div class="content-body">
-                                                        <p>
-                                                            <span id="srt<%=replys.get(i).getReplyID()%>">  <%=replys.get(r_counter).getReply()%></span>
-                                                            <% if (session.getAttribute("ID") != null && replys.get(i).getReplyerID().equals(session.getAttribute("ID").toString())) {%>
-                                                            <span class=" hidden" id="sre<%=replys.get(i).getReplyID()%>">
-                                                                <jsp:include page="commentEdit.jsp">
-                                                                    <jsp:param name="type" value="reply" />
-                                                                    <jsp:param name="text" value="<%=replys.get(i).getReply()%>" />
-                                                                    <jsp:param name="id" value="<%=replys.get(i).getReplyID()%>" />
-                                                                </jsp:include>
-                                                            </span>
-                                                            <%}%>
-                                                        </p>
+                                                    </script>
+                                                    <div class="content-body">  
+                                                        <form method="post" action="CU" id="cm<%=replys.get(r_counter).getReplyID()%>">
+                                                            <p>
+                                                                <span id="srt<%=replys.get(r_counter).getReplyID()%>">  <%=replys.get(r_counter).getReply()%></span>
+                                                                <% if (session.getAttribute("ID") != null && replys.get(r_counter).getReplyerID().equals(session.getAttribute("ID").toString())) {%>
+                                                                <span class=" hidden" id="sre<%=replys.get(r_counter).getReplyID()%>">
+                                                                    <jsp:include page="commentEdit.jsp">
+                                                                        <jsp:param name="type" value="reply" />
+                                                                        <jsp:param name="text" value="<%=replys.get(r_counter).getReply()%>" />
+                                                                        <jsp:param name="id" value="<%=replys.get(r_counter).getReplyID()%>" />
+                                                                    </jsp:include>
+                                                                </span>
+                                                                <%}%>
+                                                            </p>
+
+                                                        </form>
+                                                        <script>
+                                                            $('#cm<%=replys.get(r_counter).getReplyID()%>').submit(function (e) {
+                                                                e.preventDefault();
+                                                                var newText = this['text'].value;
+                                                                if (newText.toString().trim() !== "") {
+                                                                    $.post('RU',
+                                                                            {I: <%=replys.get(r_counter).getReplyID()%>, T: newText},
+                                                                            function (responseText) {
+                                                                                if (responseText === "done") {
+                                                                                    $('#srt<%=replys.get(r_counter).getReplyID()%>').text(newText);
+                                                                                    $('#sre<%=replys.get(r_counter).getReplyID()%>').addClass('hidden');
+                                                                                    $('#srt<%=replys.get(r_counter).getReplyID()%>').removeClass('hidden');
+                                                                                } else {
+                                                                                    window.location.href = "Home.jsp";
+                                                                                }
+
+                                                                            });
+                                                                }
+
+                                                            });
+                                                        </script>
                                                     </div><!--End Contwnt-body-->
                                                 </div><!--End Comment--content-->
 
@@ -471,8 +551,6 @@
                                                     },
                                                             );
                                                 });
-
-
                                             </script>
                                         </div>
                                         <%
@@ -532,4 +610,28 @@
         });
 
     </script>
+    <script>
+        $('#save').click(function (e) {
+            e.preventDefault();
+            var title = $('#title').val().trim();
+            var text = $('#details').val().trim();
+
+            $.post('QU',
+                    {
+                        I: "<%=question.getQuestionID()%>",
+                        QTI: title,
+                        QT: text
+                    },
+                    function (responseText) {
+                        console.log(responseText);
+                        if (responseText === "done") {
+                            $('#question-title').text(title);
+                            $('#question-content').text(text);
+                            $('#edit-close').click();
+                        }
+
+                    });
+        });
+    </script>
+
 </html>

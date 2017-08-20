@@ -85,12 +85,27 @@ public class Reply_model {
              int updateCheck=statement.executeUpdate();
              return (updateCheck>0);
           }catch(Exception ex){
+              System.err.println(ex.getMessage());
+              return false;
+          }
+      
+      }
+    
+  public boolean DeletReply(String ReplyID){
+         
+          try{
+              query="UPDATE `replay` SET `Deleted`=0 WHERE ReplyID=?";
+             PreparedStatement statement=connect.prepareStatement(query);
+             statement.setString(1, ReplyID);
+             int updateCheck=statement.executeUpdate();
+             return (updateCheck>0);
+          }catch(Exception ex){
+              System.err.println(ex.getMessage());
               return false;
           }
       
       }
 
-  
 
     private void closeConnection() {
         try {

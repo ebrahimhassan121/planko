@@ -172,6 +172,8 @@
                             var pathname = window.location.pathname;
                             if(pathname.indexOf("Home") >= 0){
                                 $('#ask-area').load("ask.jsp");
+                            }else if(pathname.indexOf("question") >= 0){
+                                location.reload();
                             }
                             
                         } else if (responseText === "error") {
