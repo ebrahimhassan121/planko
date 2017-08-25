@@ -89,6 +89,7 @@ public class UploadAvatar extends HttpServlet {
             System.out.println(filePart.getName());
             System.out.println(filePart.getSize());
             System.out.println(filePart.getContentType());
+            
             inputStream = filePart.getInputStream();
             HttpSession session=request.getSession();
             if(session.getAttribute("ID")==null){response.sendRedirect("Home.jsp");return;}

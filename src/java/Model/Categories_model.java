@@ -6,6 +6,7 @@
 package Model;
 
 import beans.Categories;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 public class Categories_model {
 
     Connection connect = null;
+    PreparedStatement statement = null;
     ResultSet rs = null;
     String query;
     Categories categories = null;
@@ -111,34 +113,36 @@ public class Categories_model {
             statement.setInt(1, Integer.parseInt(CatID));
             statement.setInt(2, Integer.parseInt(userID));
             statement.setInt(3, 0);
-            int insertionCheck=statement.executeUpdate();
-            return (insertionCheck>-1);
+            int insertionCheck = statement.executeUpdate();
+            return (insertionCheck > -1);
         } catch (Exception ex) {
             return updateFavCategories(userID, CatID);
         }
 
     }
-     public boolean updateFavCategories(String userID, String CatID) {
+
+    public boolean updateFavCategories(String userID, String CatID) {
         try {
             query = "UPDATE `favcat` SET `Deleted`=(case when (Deleted =0) THEN 1 ELSE 0 END) WHERE `CatID`=? AND `userID`=? ";
             PreparedStatement statement = connect.prepareStatement(query);
             statement.setInt(1, Integer.parseInt(CatID));
             statement.setInt(2, Integer.parseInt(userID));
-            int insertionCheck=statement.executeUpdate();
-            return (insertionCheck>-1);
+            int insertionCheck = statement.executeUpdate();
+            return (insertionCheck > -1);
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
 
     }
-       public boolean CheckISFavCategories(String userID, String CatID) {
+
+    public boolean CheckISFavCategories(String userID, String CatID) {
         try {
             query = "select * from `favCat` Where (`CatID`=? And `userID`=? And `Deleted`=0 )";
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setInt(1,Integer.parseInt(CatID));
-            statement.setInt(2,Integer.parseInt(userID));
-            rs=statement.executeQuery();
+            statement = connect.prepareStatement(query);
+            statement.setInt(1, Integer.parseInt(CatID));
+            statement.setInt(2, Integer.parseInt(userID));
+            rs = statement.executeQuery();
             return (rs.next());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -146,29 +150,112 @@ public class Categories_model {
         }
 
     }
+
     public ArrayList<Categories> Select_ALL_CategoriesByUserID(String UserID) {
-         ArrayList<Categories> arr_categories = new ArrayList<>() ;
+        ArrayList<Categories> arr_categories = new ArrayList<>();
         try {
             query = "SELECT `categoriesID`, `categoryName`, `photo` FROM `categories` WHERE  categories.categoriesID IN (SELECT favcat.CatID FROM `favcat` WHERE favcat.userID =? AND favcat.Deleted=0)";
-            PreparedStatement statement = connect.prepareStatement(query);
+            statement = connect.prepareStatement(query);
             statement.setInt(1, Integer.parseInt(UserID));
             rs = statement.executeQuery();
             System.out.println("--------------");
             while (rs.next()) {
-               categories = new Categories();
+                categories = new Categories();
                 categories.setCategoriesID(rs.getString("categoriesID"));
                 categories.setCategoryNam(rs.getString("categoryName"));
                 Blob imageBlob = rs.getBlob("photo");
-                if(imageBlob!=null){
-                categories.setPhoto(imageBlob.getBytes(1, (int) imageBlob.length()));
+                if (imageBlob != null) {
+                    categories.setPhoto(imageBlob.getBytes(1, (int) imageBlob.length()));
                 }
                 arr_categories.add(categories);
             }
             return arr_categories;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return  arr_categories;
+            return arr_categories;
         }
+    }
+
+  //////////////////// Khaled Code /////////////////////////////////////
+    
+    public boolean insertCategory(String name, InputStream photo) {
+        int row = 0;
+        query = "INSERT INTO `categories`(`categoryName`, `photo`) VALUES (?,?)";
+
+        try {
+            statement = connect.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setBlob(2, photo);
+
+            row = statement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return (row > 0);
+    }
+
+    public Categories getCategorie(String id) {
+
+        Categories categorie = null;
+
+        query = "select * from categories where categoriesID=?";
+        try {
+
+            statement = connect.prepareStatement(query);
+            statement.setString(1, id);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                categorie = new Categories();
+                categorie.setCategoriesID(rs.getString("categoriesID"));
+                categorie.setCategoryNam(rs.getString("categoryName"));
+                Blob imageBlob = rs.getBlob("photo");
+                if (imageBlob != null) {
+                    categorie.setPhoto(imageBlob.getBytes(1, (int) imageBlob.length()));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return categorie;
+    }
+
+    public boolean deletCategorie(String id) {
+        query = "DELETE FROM categories WHERE categoriesID = ?";
+        int row = 0;
+        try {
+            statement = connect.prepareStatement(query);
+            statement.setString(1, id);
+
+            row = statement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (row > 0);
+    }
+
+    public boolean updateCategorie(Categories cat, String id) {
+
+        query = "update categories set categoriesID =? , categoryName=? where category_id =?";
+        int row = 0;
+        try {
+
+            statement = connect.prepareStatement(query);
+            statement.setString(1, cat.getCategoriesID());
+            statement.setString(2, cat.getCategoryNam());
+            statement.setString(3, id);
+
+            row = statement.executeUpdate();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return (row > 0);
     }
 
 }

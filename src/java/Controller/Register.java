@@ -68,26 +68,27 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            request.setCharacterEncoding("UTF-8");
-            user_bean user=new user_bean();
-            Model.Users_model users_model=new Users_model();
-            user.setEmail(request.getParameter("email").toString());
-            user.setPassword(request.getParameter("password").toString());
-            user.setName(request.getParameter("fname").toString()+" "+request.getParameter("lname").toString());
-            user.setAbout("");
-            user.setAddress("");
-            boolean  isInserted=users_model.insert_user(user, 1);
-            System.out.println("----------"+isInserted+"------------");
-            if(isInserted){
-                request.setAttribute("register", user);
-                RequestDispatcher dispatcher=request.getRequestDispatcher("Profile.jsp");
-                 dispatcher.forward(request, response);
-                 return;
-            }else{
-                request.setAttribute("rigister", "false");
-                RequestDispatcher dispatcher=request.getRequestDispatcher("Home.jsp");
-                 dispatcher.forward(request, response);
-            }
+        request.setCharacterEncoding("UTF-8");
+        user_bean user = new user_bean();
+        int role = 1;
+        Model.Users_model users_model = new Users_model();
+        user.setEmail(request.getParameter("email").toString());
+        user.setPassword(request.getParameter("password").toString());
+        user.setName(request.getParameter("fname").toString() + " " + request.getParameter("lname").toString());
+        user.setAbout("");
+        user.setAddress("");
+        boolean isInserted = users_model.insert_user(user,role);
+        System.out.println("----------" + isInserted + "------------");
+        if (isInserted) {
+            request.setAttribute("register", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Profile.jsp");
+            dispatcher.forward(request, response);
+            return;
+        } else {
+            request.setAttribute("rigister", "false");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**

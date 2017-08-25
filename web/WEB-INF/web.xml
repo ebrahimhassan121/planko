@@ -4,7 +4,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
- 
+    <servlet>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>Controller.Contact</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>addQuestion</servlet-name>
         <servlet-class>Controller.addQuestion</servlet-class>
@@ -13,11 +16,15 @@
         <servlet-name>profile</servlet-name>
         <jsp-file>/Profile.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>Rpl</servlet-name>
+        <servlet-class>Controller.Rpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
-        <servlet>
+    <servlet>
         <servlet-name>question display</servlet-name>
         <jsp-file>/question.jsp</jsp-file>
     </servlet>
@@ -37,6 +44,14 @@
         <servlet-name>addQuestion</servlet-name>
         <url-pattern>/addQuestion</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/Contact_Us</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Rpl</servlet-name>
+        <url-pattern>/Rpl</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             -1
@@ -45,4 +60,18 @@
     <welcome-file-list>
         <welcome-file>Home.jsp</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>UpdateSetting</servlet-name>
+        <multipart-config>
+            <location>/tmp</location>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateSetting</servlet-name>
+        <url-pattern>/UpdateSetting</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

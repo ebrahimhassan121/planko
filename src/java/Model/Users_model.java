@@ -115,6 +115,7 @@ public class Users_model {
             preparedStatement.setString(4, user.getAbout());
             preparedStatement.execute();
             isInserted=true;
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

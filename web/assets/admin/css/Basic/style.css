@@ -1,0 +1,268 @@
+/* table-Content
+=======================/
+
+    # General
+    # 
+    #
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+/* General
+==================*/
+/* Set default body */
+body {
+    color: #333333;
+    font-family: "Open Sans", sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    direction: "ltr";
+    font-size: 14px;
+}
+
+/*
+
+/* Horizontal break */
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 0;
+}
+/* General utilities */
+.display-none,
+.display-hide {
+  display: none; }
+
+.hidden {
+  display: none !important; }
+
+.primary-font {
+  font-family: "Open Sans", sans-serif !important; }
+
+.bold {
+  font-weight: 700 !important; }
+  .bold.btn {
+    letter-spacing: 0; }
+
+.sbold {
+  font-weight: 600 !important; }
+  .sbold.btn {
+    letter-spacing: 0; }
+
+.thin {
+  font-weight: 300 !important; }
+
+.uppercase {
+  text-transform: uppercase !important; }
+
+.fix-margin {
+  margin-left: 0px !important; }
+
+.border {
+  border: 1px solid red; }
+
+.font-hg {
+  font-size: 23px; }
+
+.font-lg {
+  font-size: 18px; }
+
+.font-md {
+  font-size: 14px; }
+
+.font-sm {
+  font-size: 13px; }
+
+.font-xs {
+  font-size: 11px; }
+
+.inline {
+  display: inline; }
+
+.inline-block {
+  display: inline-block; }
+
+/* Margin and padding utilities */
+.no-space {
+  margin: 0px !important;
+  padding: 0px !important; }
+
+.no-margin {
+  margin: 0; }
+
+.margin-bottom-5 {
+  margin-bottom: 5px; }
+
+.margin-bottom-10 {
+  margin-bottom: 10px !important; }
+
+.margin-top-10 {
+  margin-top: 10px !important; }
+
+.margin-top-15 {
+  margin-top: 15px !important; }
+
+.margin-bottom-15 {
+  margin-bottom: 15px !important; }
+
+.margin-bottom-20 {
+  margin-bottom: 20px !important; }
+
+.margin-top-20 {
+  margin-top: 20px !important; }
+
+.margin-top-30 {
+  margin-top: 30px !important; }
+
+.margin-top-40 {
+  margin-top: 40px !important; }
+
+.margin-bottom-25 {
+  margin-bottom: 25px !important; }
+
+.margin-bottom-30 {
+  margin-bottom: 30px !important; }
+
+.margin-bottom-40 {
+  margin-bottom: 40px !important; }
+
+.margin-right-10 {
+  margin-right: 10px !important; }
+
+
+
+
+
+/* Links
+====================*/
+a {
+    text-shadow: none;
+    color: #337ab7; 
+}
+a:hover {
+    color: #23527c; 
+}
+a:focus, a:hover, a:active {
+    outline: 0; 
+}
+
+/* Primary Link */
+.primary-link {
+    color: #65A0D0;
+    font-weight: 600; 
+}
+.primary-link:hover {
+    color: #5194ca;
+}
+
+
+/* Headings
+==================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 36px;}
+
+h2 {
+    font-size: 30px; }
+
+h3 {
+    font-size: 24px; }
+
+h4 {
+    font-size: 18px; }
+
+h5 {
+    font-size: 14px; }
+
+h6 {
+    font-size: 12px; }
+
+/* Headings helper text */
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  color: #444444; }
+
+/* Block headings */
+h1.block,
+h2.block,
+h3.block,
+h4.block,
+h5.block,
+h6.block {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+/*Dropdown*/
+.admin-action{
+    position: absolute;
+    top: 0;
+    left: 25px;
+}
+.comment-action{
+    position: absolute;
+    top: 0;
+    left: 60px;
+}
+.dropdown .dots-menu{
+    border: 0;
+    background-color: transparent;
+    font-size: 17px;
+    color: #aaa;
+}
+.dropdown .dots-menu:hover,
+.dropdown .dots-menu:active{
+    color: darkblue;
+}
+.admin-action .dropdown-menu,
+.comment-action .dropdown-menu{
+    left: 0;
+    right: auto;
+    min-width: 120px;
+}
+.admin-action .dropdown-menu>li>a,
+.comment-action .dropdown-menu>li>a{
+    padding: 7px 10px;
+}
+.admin-action .dropdown-menu>li>a i,
+.comment-action .dropdown-menu>li>a i{
+    font-size: 16px;
+    margin-left: 5px;
+    color: darkblue;   
+}
+@media (max-width:380px){
+    .admin-action {
+        position: absolute;
+        top: 30px;
+        left: 0;
+    }
+}
